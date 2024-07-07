@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/analytics" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/buy" />
+            <option value="$PROJECT_DIR$/buy/data" />
+            <option value="$PROJECT_DIR$/buy/domain" />
+            <option value="$PROJECT_DIR$/buy/usecase" />
+            <option value="$PROJECT_DIR$/cart" />
+            <option value="$PROJECT_DIR$/cart/data" />
+            <option value="$PROJECT_DIR$/cart/domain" />
+            <option value="$PROJECT_DIR$/cart/usecase" />
+            <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/di" />
+            <option value="$PROJECT_DIR$/entities" />
+            <option value="$PROJECT_DIR$/framework" />
+            <option value="$PROJECT_DIR$/history" />
+            <option value="$PROJECT_DIR$/history/data" />
+            <option value="$PROJECT_DIR$/history/domain" />
+            <option value="$PROJECT_DIR$/history/usecase" />
+            <option value="$PROJECT_DIR$/home" />
+            <option value="$PROJECT_DIR$/home/data" />
+            <option value="$PROJECT_DIR$/home/domain" />
+            <option value="$PROJECT_DIR$/home/usecase" />
+            <option value="$PROJECT_DIR$/profile" />
+            <option value="$PROJECT_DIR$/profile/data" />
+            <option value="$PROJECT_DIR$/profile/domain" />
+            <option value="$PROJECT_DIR$/profile/usecase" />
+          </set>
+        </option>
+        <option name="resolveExternalAnnotations" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
