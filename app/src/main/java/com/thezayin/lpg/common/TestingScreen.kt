@@ -32,11 +32,10 @@ import androidx.compose.ui.unit.sp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.thezayin.lpg.R
-import com.thezayin.lpg.common.component.GlassComponent
-import com.thezayin.lpg.common.dialogs.NetworkDialog
+import com.thezayin.common.component.GlassComponent
+import com.thezayin.common.dialogs.NetworkDialog
 import com.thezayin.lpg.destinations.AdminHomeScreenDestination
 import com.thezayin.lpg.destinations.HomeScreenDestination
-import com.thezayin.lpg.presentation.users.home.component.TopBarComponent
 
 @Destination
 @Composable
@@ -46,20 +45,17 @@ fun TestingScreen(
     val activity = LocalContext.current as Activity
     var checkNetwork by remember { mutableStateOf(false) }
 
-    GlassComponent()
+    com.thezayin.common.component.GlassComponent()
 
     if (checkNetwork) {
-        NetworkDialog(showDialog = { checkNetwork = it })
+        com.thezayin.common.dialogs.NetworkDialog(showDialog = { checkNetwork = it })
     }
     Scaffold(
         modifier = Modifier
             .navigationBarsPadding(),
         containerColor = colorResource(id = R.color.semi_transparent),
         topBar = {
-            TopBarComponent(
-                modifier = Modifier,
-                navigator = navigator
-            )
+
         },
     ) { padding ->
         Column(
@@ -71,9 +67,7 @@ fun TestingScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             TestingMenu(option = "Admin Panel", modifier = Modifier) {
-                navigator.navigate(
-                    AdminHomeScreenDestination
-                )
+                navigator.navigate(AdminHomeScreenDestination)
             }
             TestingMenu(option = "User Panel", modifier = Modifier) {
                 navigator.navigate(HomeScreenDestination)

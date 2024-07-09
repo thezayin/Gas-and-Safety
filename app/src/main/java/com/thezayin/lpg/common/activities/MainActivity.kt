@@ -17,7 +17,7 @@ class MainActivity : ComponentActivity() {
                 val token = task.result
                 println("Token: $token")
             }
-            val token = task.result
+            task.result
         }
         enableEdgeToEdge()
         setContent {

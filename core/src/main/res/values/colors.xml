@@ -62,4 +62,7 @@
     <color name="color_starting">#00000000</color>
     <color name="color_mid">#B3000000</color>
     <color name="color_end">#000000</color>
+
+    <color name="semi_transparent">#80FFFFFF</color>
+    <color name="mid_transparent">#F2FFFFFF</color>
 </resources>
