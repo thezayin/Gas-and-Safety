@@ -2,19 +2,17 @@ package com.thezayin.lpg.common.application
 
 import android.app.Application
 import com.thezayin.analytics.di.analyticsHelperModule
-import com.thezayin.lpg.common.maps.di.mapsModule
-import com.thezayin.lpg.di.adminAddProductModule
-import com.thezayin.lpg.di.adminHomeModule
-import com.thezayin.lpg.di.adminProUpdateModule
-import com.thezayin.lpg.di.adminProductModule
-import com.thezayin.lpg.di.appModule
-import com.thezayin.lpg.di.getUserOrdersModule
-import com.thezayin.lpg.di.historyModule
-import com.thezayin.lpg.di.loginModule
-import com.thezayin.lpg.di.placeOrderViewModelModule
-import com.thezayin.lpg.di.userCartModule
-import com.thezayin.lpg.di.userHomeModule
-import com.thezayin.lpg.di.userProfile
+import com.thezayin.di.adminAddProductModule
+import com.thezayin.di.adminHomeModule
+import com.thezayin.di.adminProUpdateModule
+import com.thezayin.di.adminProductModule
+import com.thezayin.di.appModule
+import com.thezayin.di.buyModule
+import com.thezayin.di.getUserOrdersModule
+import com.thezayin.di.historyModule
+import com.thezayin.di.userCartModule
+import com.thezayin.di.userHomeModule
+import com.thezayin.di.userProfile
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -26,8 +24,6 @@ class App : Application() {
             androidLogger()
             androidContext(this@App)
             modules(appModule)
-            modules(mapsModule)
-            modules(loginModule)
             modules(userProfile)
             modules(historyModule)
             modules(userCartModule)
@@ -38,7 +34,7 @@ class App : Application() {
             modules(adminProUpdateModule)
             modules(analyticsHelperModule)
             modules(adminAddProductModule)
-            modules(placeOrderViewModelModule)
+            modules(buyModule)
         }
     }
 }

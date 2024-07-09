@@ -23,7 +23,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.thezayin.lpg.R
-import com.thezayin.lpg.common.component.GlassComponent
+import com.thezayin.common.component.GlassComponent
 import com.thezayin.lpg.destinations.TestingScreenDestination
 import kotlinx.coroutines.delay
 
@@ -34,7 +34,7 @@ import kotlinx.coroutines.delay
 fun SplashScreen(
     navController: DestinationsNavigator
 ) {
-    GlassComponent()
+    com.thezayin.common.component.GlassComponent()
     LaunchedEffect(Unit) {
         delay(5000L)
         navController.navigate(TestingScreenDestination)
