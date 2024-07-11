@@ -15,15 +15,15 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.thezayin.framework.extension.functions.getUserUUID
-import com.thezayin.lpg.R
 import com.thezayin.common.component.GlassComponent
 import com.thezayin.common.component.UserTopBar
 import com.thezayin.common.dialogs.LoadingDialog
+import com.thezayin.framework.extension.functions.getUserUUID
+import com.thezayin.lpg.R
 import com.thezayin.lpg.destinations.ContactUsScreenDestination
+import com.thezayin.userorderhistory.presentation.OrderHistoryViewModel
 import com.thezayin.userorderhistory.presentation.component.OrderList
 import com.thezayin.userorderhistory.presentation.component.ToggleButton
-import com.thezayin.userorderhistory.presentation.OrderHistoryViewModel
 import org.koin.compose.koinInject
 
 @Destination
@@ -38,9 +38,9 @@ fun OrderHistoryScreen(navigator: DestinationsNavigator) {
     val isLoading = viewModel.isLoading.collectAsState().value.isLoading
     LaunchedEffect(key1 = Unit) { viewModel.getOrdersHistory(userId) }
     if (isLoading) {
-        com.thezayin.common.dialogs.LoadingDialog()
+        LoadingDialog()
     }
-    com.thezayin.common.component.GlassComponent()
+    GlassComponent()
 
     Scaffold(
         modifier = Modifier,
@@ -50,7 +50,7 @@ fun OrderHistoryScreen(navigator: DestinationsNavigator) {
                 modifier = Modifier,
                 screen = "Profile",
                 onBackClick = { navigator.navigateUp() },
-                onContactClick = {navigator.navigate(ContactUsScreenDestination)}
+                onContactClick = { navigator.navigate(ContactUsScreenDestination) }
             )
         },
     ) { padding ->
@@ -65,7 +65,7 @@ fun OrderHistoryScreen(navigator: DestinationsNavigator) {
                     1 -> {
                         indexValue.intValue = 1
                         productList.value = list.filter {
-                                it.orderStatus == "In Progress" || it.orderStatus?.contains("Confirmed") == true
+                            it.orderStatus == "In Progress" || it.orderStatus?.contains("Confirmed") == true
                         }
                     }
 
@@ -80,10 +80,7 @@ fun OrderHistoryScreen(navigator: DestinationsNavigator) {
                     }
                 }
             }
-            OrderList(
-                list =
-                if (indexValue.intValue == 0) list else productList.value
-            )
+            OrderList(list = if (indexValue.intValue == 0) list else productList.value)
         }
     }
 }

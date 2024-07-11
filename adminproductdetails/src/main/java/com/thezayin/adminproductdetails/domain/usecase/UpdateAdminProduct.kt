@@ -16,5 +16,6 @@ class UpdateAdminProductIml(private val repository: ProDetailsRepository) :
         price: String,
         date: String,
         imageUrl: String
-    ): Flow<Response<Boolean>> = repository.updateProduct(id, name, description, price, date, imageUrl)
+    ): Flow<Response<Boolean>> =
+        repository.updateProduct(id, name, description, price, date, imageUrl)
 }

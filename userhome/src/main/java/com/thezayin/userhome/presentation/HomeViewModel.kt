@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thezayin.entities.GetErrorState
 import com.thezayin.entities.GetLoadingState
+import com.thezayin.entities.HomeProductsModel
 import com.thezayin.framework.utils.Response
 import com.thezayin.userhome.domain.usecase.GetProWithImg
 import com.thezayin.userhome.domain.usecase.GetProducts
@@ -28,7 +29,7 @@ class HomeViewModel(private val getProduct: GetProducts, private val getProWithI
         getProductsFromFirebase()
     }
 
-    private fun getProducts(list: List<com.thezayin.entities.HomeProductsModel>) =
+    private fun getProducts(list: List<HomeProductsModel>) =
         viewModelScope.launch {
             getProWithImg(list).collect { response ->
                 when (response) {

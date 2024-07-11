@@ -31,14 +31,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.thezayin.common.component.GlassComponent
+import com.thezayin.common.component.UserTopBar
 import com.thezayin.framework.extension.functions.openLink
 import com.thezayin.framework.extension.functions.sendMail
 import com.thezayin.framework.utils.Constants
 import com.thezayin.framework.utils.Constants.ABOUT_US_URL
 import com.thezayin.framework.utils.Constants.TERMS_CONDITIONS_URL
 import com.thezayin.lpg.R
-import com.thezayin.common.component.GlassComponent
-import com.thezayin.common.component.UserTopBar
 import com.thezayin.lpg.destinations.ContactUsScreenDestination
 
 @Destination
@@ -57,7 +57,7 @@ fun SettingScreen(
                 modifier = Modifier,
                 screen = "Profile",
                 onBackClick = { navigator.navigateUp() },
-                onContactClick = {navigator.navigate(ContactUsScreenDestination)}
+                onContactClick = { navigator.navigate(ContactUsScreenDestination) }
             )
         },
     ) { paddingValues ->
@@ -68,9 +68,7 @@ fun SettingScreen(
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
 
-        ) {
-            SettingOptionsList()
-        }
+        ) { SettingOptionsList() }
     }
 }
 

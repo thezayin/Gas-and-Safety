@@ -1,4 +1,4 @@
-package com.thezayin.useraddress.data.dao
+package com.thezayin.databases.dao
 
 import androidx.room.Dao
 import androidx.room.Insert

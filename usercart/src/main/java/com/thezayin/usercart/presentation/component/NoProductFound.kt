@@ -25,7 +25,7 @@ fun NoProductFound() {
         Text(
             text = "No Products in Cart",
             fontSize = 20.sp,
-            fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
+            fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
             color = colorResource(id = R.color.black)
         )
     }

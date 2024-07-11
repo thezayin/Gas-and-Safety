@@ -9,6 +9,4 @@ import com.thezayin.framework.remote.RemoteConfig
 class MainViewModel(
     val analyticsHelper: AnalyticsHelper,
     val remoteConfig: RemoteConfig
-) : ViewModel() {
-
-}
+) : ViewModel()

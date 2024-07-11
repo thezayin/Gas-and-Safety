@@ -44,8 +44,8 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     //room database
-    implementation (libs.androidx.room.ktx)
-    ksp (libs.androidx.room.compiler)
-    implementation (libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.runtime)
     implementation(libs.kotlinx.serialization.json)
 }

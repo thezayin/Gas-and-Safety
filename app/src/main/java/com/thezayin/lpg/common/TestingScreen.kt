@@ -31,9 +31,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.thezayin.lpg.R
 import com.thezayin.common.component.GlassComponent
 import com.thezayin.common.dialogs.NetworkDialog
+import com.thezayin.lpg.R
 import com.thezayin.lpg.destinations.AdminHomeScreenDestination
 import com.thezayin.lpg.destinations.HomeScreenDestination
 
@@ -45,10 +45,10 @@ fun TestingScreen(
     val activity = LocalContext.current as Activity
     var checkNetwork by remember { mutableStateOf(false) }
 
-    com.thezayin.common.component.GlassComponent()
+    GlassComponent()
 
     if (checkNetwork) {
-        com.thezayin.common.dialogs.NetworkDialog(showDialog = { checkNetwork = it })
+        NetworkDialog(showDialog = { checkNetwork = it })
     }
     Scaffold(
         modifier = Modifier

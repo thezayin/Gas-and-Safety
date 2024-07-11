@@ -18,7 +18,7 @@ fun OrderList(
             .padding(vertical = 30.dp, horizontal = 25.dp)
     ) {
         val sortedList = list.sortedByDescending { it.orderDateTime }
-        items(sortedList.size,) {orders->
+        items(sortedList.size) { orders ->
             HistoryCard(list[orders])
         }
     }

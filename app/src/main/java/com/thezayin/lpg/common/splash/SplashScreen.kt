@@ -1,4 +1,4 @@
-package com.thezayin.lpg.common.splash
+package com.thezayin.lpg.common.splashc
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
@@ -22,8 +22,8 @@ import androidx.compose.ui.unit.sp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.thezayin.lpg.R
 import com.thezayin.common.component.GlassComponent
+import com.thezayin.lpg.R
 import com.thezayin.lpg.destinations.TestingScreenDestination
 import kotlinx.coroutines.delay
 
@@ -31,10 +31,8 @@ import kotlinx.coroutines.delay
 @Composable
 @RootNavGraph(start = true)
 @Destination
-fun SplashScreen(
-    navController: DestinationsNavigator
-) {
-    com.thezayin.common.component.GlassComponent()
+fun SplashScreen(navController: DestinationsNavigator) {
+    GlassComponent()
     LaunchedEffect(Unit) {
         delay(5000L)
         navController.navigate(TestingScreenDestination)

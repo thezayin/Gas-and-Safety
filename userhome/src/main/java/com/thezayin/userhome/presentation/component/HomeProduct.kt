@@ -32,8 +32,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.thezayin.entities.HomeProductsModel
 import com.thezayin.core.R
+import com.thezayin.entities.HomeProductsModel
 
 @Composable
 fun HomeProduct(
@@ -63,7 +63,7 @@ fun HomeProduct(
                 horizontalArrangement = Arrangement.Start
             ) {
                 AsyncImage(
-                    model = product?.imageUri ?: com.thezayin.core.R.drawable.ic_mail,
+                    model = product?.imageUri ?: R.drawable.ic_mail,
                     contentDescription = null,
                     modifier = Modifier
                         .clip(shape = RoundedCornerShape(100.dp))
@@ -76,15 +76,15 @@ fun HomeProduct(
                 ) {
                     Text(
                         text = product?.name ?: "Product Name",
-                        color = colorResource(id = com.thezayin.core.R.color.black),
+                        color = colorResource(id = R.color.black),
                         fontSize = 16.sp,
-                        fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
+                        fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                     )
                     Text(
                         text = product?.description ?: "Product Description",
-                        color = colorResource(id = com.thezayin.core.R.color.black),
+                        color = colorResource(id = R.color.black),
                         fontSize = 12.sp,
-                        fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_regular)),
+                        fontFamily = FontFamily(Font(R.font.noto_sans_regular)),
                     )
                 }
             }
@@ -94,9 +94,9 @@ fun HomeProduct(
             ) {
                 Text(
                     text = " Rs: ${product?.price}",
-                    color = colorResource(id = com.thezayin.core.R.color.black),
+                    color = colorResource(id = R.color.black),
                     fontSize = 16.sp,
-                    fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
+                    fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                 )
             }
             Card(
@@ -121,7 +121,7 @@ fun HomeProduct(
                 ) {
                     Text(text = "Buy", color = colorResource(id = R.color.white))
                     Image(
-                        painter = painterResource(id = com.thezayin.core.R.drawable.ic_cart),
+                        painter = painterResource(id = R.drawable.ic_cart),
                         contentDescription = null,
                         colorFilter = ColorFilter.tint(color = colorResource(id = R.color.white)),
                         modifier = Modifier.size(20.dp)

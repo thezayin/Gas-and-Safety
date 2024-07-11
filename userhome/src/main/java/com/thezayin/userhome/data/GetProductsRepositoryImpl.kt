@@ -2,6 +2,7 @@ package com.thezayin.userhome.data
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import com.thezayin.entities.HomeProductsModel
 import com.thezayin.framework.utils.Response
 import com.thezayin.userhome.domain.repository.GetProductsRepository
 import kotlinx.coroutines.channels.awaitClose
@@ -13,15 +14,15 @@ class GetProductsRepositoryImpl(
     private val firestore: FirebaseFirestore,
     private val storage: FirebaseStorage
 ) : GetProductsRepository {
-    override fun getProducts(): Flow<Response<List<com.thezayin.entities.HomeProductsModel>>> =
+    override fun getProducts(): Flow<Response<List<HomeProductsModel>>> =
         callbackFlow {
             trySend(Response.Loading)
             val snapshotListener =
                 firestore.collection("products").addSnapshotListener { snapShot, error ->
                     val response = if (snapShot != null) {
                         val productList =
-                            snapShot.toObjects(com.thezayin.entities.HomeProductsModel::class.java)
-                        Response.Success<List<com.thezayin.entities.HomeProductsModel>>(productList)
+                            snapShot.toObjects(HomeProductsModel::class.java)
+                        Response.Success<List<HomeProductsModel>>(productList)
                     } else {
                         Response.Error(error?.message ?: error.toString())
                     }
@@ -33,9 +34,9 @@ class GetProductsRepositoryImpl(
             }
         }
 
-    override fun getProductsWithImages(list: List<com.thezayin.entities.HomeProductsModel>): Flow<Response<List<com.thezayin.entities.HomeProductsModel>>> =
+    override fun getProductsWithImages(list: List<HomeProductsModel>): Flow<Response<List<HomeProductsModel>>> =
         callbackFlow {
-            val listPro = mutableListOf<com.thezayin.entities.HomeProductsModel>()
+            val listPro = mutableListOf<HomeProductsModel>()
             try {
                 trySend(Response.Loading)
                 list.forEach { product ->
@@ -43,7 +44,7 @@ class GetProductsRepositoryImpl(
                         storage.reference.child(it)
                             .downloadUrl.addOnSuccessListener { uri ->
                                 listPro.add(
-                                    com.thezayin.entities.HomeProductsModel(
+                                    HomeProductsModel(
                                         id = product.id,
                                         name = product.name,
                                         description = product.description,

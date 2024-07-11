@@ -10,18 +10,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.thezayin.lpg.R
 import com.thezayin.common.component.GlassComponent
 import com.thezayin.common.component.UserTopBar
 import com.thezayin.common.dialogs.LoadingDialog
 import com.thezayin.common.snackbar.RememberSnackBar
+import com.thezayin.lpg.R
 import com.thezayin.lpg.destinations.ContactUsScreenDestination
 import com.thezayin.lpg.destinations.OrderScreenDestination
+import com.thezayin.usercart.presentation.CartViewModel
 import com.thezayin.usercart.presentation.component.CartBottomBar
 import com.thezayin.usercart.presentation.component.CartList
 import com.thezayin.usercart.presentation.component.DeleteAllCart
 import com.thezayin.usercart.presentation.component.NoProductFound
-import com.thezayin.usercart.presentation.CartViewModel
 import org.koin.compose.koinInject
 
 @Composable
@@ -34,10 +34,10 @@ fun CartScreen(navigator: DestinationsNavigator) {
     val delete = viewModel.isDeleteQuery.collectAsState().value.isSuccess
     val scope = rememberCoroutineScope()
 
-    com.thezayin.common.component.GlassComponent()
+    GlassComponent()
 
     if (isLoading) {
-        com.thezayin.common.dialogs.LoadingDialog()
+        LoadingDialog()
     }
 
     Scaffold(
@@ -48,7 +48,7 @@ fun CartScreen(navigator: DestinationsNavigator) {
                 modifier = Modifier,
                 screen = "Profile",
                 onBackClick = { navigator.navigateUp() },
-                onContactClick = {navigator.navigate(ContactUsScreenDestination)}
+                onContactClick = { navigator.navigate(ContactUsScreenDestination) }
             )
         },
         bottomBar = {
@@ -71,9 +71,7 @@ fun CartScreen(navigator: DestinationsNavigator) {
                 CartList(
                     modifier = Modifier,
                     productList = productList,
-                    onDecrement = {
-                        viewModel.decrementQuantity(it)
-                    },
+                    onDecrement = { viewModel.decrementQuantity(it) },
                     onIncrement = {
                         viewModel.incrementQuantity(it)
                     }
@@ -81,8 +79,9 @@ fun CartScreen(navigator: DestinationsNavigator) {
             }
         }
     }
+
     if (delete) {
-        com.thezayin.common.snackbar.RememberSnackBar(
+        RememberSnackBar(
             cartTintColor = com.thezayin.core.R.color.red,
             message = "Products Deleted", scope = scope
         ) { boolean ->

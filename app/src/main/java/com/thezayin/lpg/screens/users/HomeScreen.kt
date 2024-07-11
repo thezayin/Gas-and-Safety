@@ -12,12 +12,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.thezayin.framework.extension.functions.getUserUUID
-import com.thezayin.lpg.R
 import com.thezayin.common.component.GlassComponent
 import com.thezayin.common.dialogs.ErrorQueryDialog
 import com.thezayin.common.dialogs.LoadingDialog
 import com.thezayin.common.snackbar.RememberSnackBar
+import com.thezayin.framework.extension.functions.getUserUUID
+import com.thezayin.lpg.R
 import com.thezayin.lpg.destinations.AddressScreenDestination
 import com.thezayin.lpg.destinations.CartScreenDestination
 import com.thezayin.lpg.destinations.ContactUsScreenDestination
@@ -56,18 +56,17 @@ fun HomeScreen(
     activity.getUserUUID()
 
     if (isLoading || isLoadingCart) {
-        com.thezayin.common.dialogs.LoadingDialog()
+        LoadingDialog()
     }
-
     if (isError) {
-        com.thezayin.common.dialogs.ErrorQueryDialog(
+        ErrorQueryDialog(
             showDialog = { isError = it },
             callback = {},
             error = errorMessage
         )
     }
 
-    com.thezayin.common.component.GlassComponent()
+    GlassComponent()
 
     Scaffold(
         modifier = Modifier,
@@ -101,7 +100,7 @@ fun HomeScreen(
         }
     }
     if (addedToCart) {
-        com.thezayin.common.snackbar.RememberSnackBar(
+        RememberSnackBar(
             cartTintColor = com.thezayin.core.R.color.green,
             message = "Added to Cart",
             scope = scope

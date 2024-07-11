@@ -42,10 +42,10 @@ fun UpdateProductDetails(
         Text(
             text = "Name:",
             textAlign = TextAlign.Start,
-            color = colorResource(id = com.thezayin.core.R.color.black),
+            color = colorResource(id = R.color.black),
             fontSize = 16.sp,
             fontWeight = FontWeight.Bold,
-            fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
+            fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
             modifier = Modifier.padding(top = 10.dp, bottom = 5.dp)
         )
         TextField(
@@ -56,9 +56,9 @@ fun UpdateProductDetails(
             placeholder = {
                 Text(
                     text = "Enter Product Name",
-                    color = colorResource(id = com.thezayin.core.R.color.grey),
+                    color = colorResource(id = R.color.grey),
                     fontSize = 12.sp,
-                    fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
+                    fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                 )
             },
             singleLine = true,
@@ -79,10 +79,10 @@ fun UpdateProductDetails(
         Text(
             text = "Description:",
             textAlign = TextAlign.Start,
-            color = colorResource(id = com.thezayin.core.R.color.black),
+            color = colorResource(id = R.color.black),
             fontSize = 16.sp,
             fontWeight = FontWeight.Bold,
-            fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
+            fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
             modifier = Modifier.padding(top = 10.dp, bottom = 5.dp)
         )
         TextField(
@@ -93,9 +93,9 @@ fun UpdateProductDetails(
             placeholder = {
                 Text(
                     text = "Enter Product Description",
-                    color = colorResource(id = com.thezayin.core.R.color.grey),
+                    color = colorResource(id = R.color.grey),
                     fontSize = 12.sp,
-                    fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
+                    fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                 )
             },
             singleLine = true,
@@ -116,10 +116,10 @@ fun UpdateProductDetails(
         Text(
             text = "Type:",
             textAlign = TextAlign.Start,
-            color = colorResource(id = com.thezayin.core.R.color.black),
+            color = colorResource(id = R.color.black),
             fontSize = 16.sp,
             fontWeight = FontWeight.Bold,
-            fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
+            fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
             modifier = Modifier.padding(top = 10.dp, bottom = 5.dp)
         )
         TextField(
@@ -130,9 +130,9 @@ fun UpdateProductDetails(
             placeholder = {
                 Text(
                     text = "Enter Product Type",
-                    color = colorResource(id = com.thezayin.core.R.color.grey),
+                    color = colorResource(id = R.color.grey),
                     fontSize = 12.sp,
-                    fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
+                    fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                 )
             },
             singleLine = true,
@@ -153,10 +153,10 @@ fun UpdateProductDetails(
         Text(
             text = "Price:",
             textAlign = TextAlign.Start,
-            color = colorResource(id = com.thezayin.core.R.color.black),
+            color = colorResource(id = R.color.black),
             fontSize = 16.sp,
             fontWeight = FontWeight.Bold,
-            fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
+            fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
             modifier = Modifier.padding(top = 10.dp, bottom = 5.dp)
         )
         TextField(
@@ -167,9 +167,9 @@ fun UpdateProductDetails(
             placeholder = {
                 Text(
                     text = "Enter Product Price",
-                    color = colorResource(id = com.thezayin.core.R.color.grey),
+                    color = colorResource(id = R.color.grey),
                     fontSize = 12.sp,
-                    fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
+                    fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                 )
             },
             singleLine = true,

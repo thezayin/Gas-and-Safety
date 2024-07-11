@@ -8,6 +8,7 @@ import com.thezayin.di.adminProUpdateModule
 import com.thezayin.di.adminProductModule
 import com.thezayin.di.appModule
 import com.thezayin.di.buyModule
+import com.thezayin.di.dbModule
 import com.thezayin.di.getUserOrdersModule
 import com.thezayin.di.historyModule
 import com.thezayin.di.userCartModule
@@ -35,6 +36,7 @@ class App : Application() {
             modules(analyticsHelperModule)
             modules(adminAddProductModule)
             modules(buyModule)
+            modules(dbModule)
         }
     }
 }

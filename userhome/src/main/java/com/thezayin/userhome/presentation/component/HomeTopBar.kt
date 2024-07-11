@@ -42,7 +42,8 @@ fun TopBarComponent(
             painter = painterResource(id = com.thezayin.core.R.drawable.ic_call),
             contentDescription = null,
             modifier = Modifier
-                .size(30.dp).clickable {
+                .size(30.dp)
+                .clickable {
                     navigateToContact()
                 },
         )

@@ -20,19 +20,19 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.input.TextFieldValue
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.thezayin.lpg.R
 import com.thezayin.common.component.GlassComponent
 import com.thezayin.common.component.UserTopBar
 import com.thezayin.common.dialogs.ErrorQueryDialog
 import com.thezayin.common.dialogs.FieldsDialog
 import com.thezayin.common.dialogs.LoadingDialog
 import com.thezayin.common.dialogs.NetworkDialog
+import com.thezayin.lpg.R
 import com.thezayin.lpg.destinations.AddressScreenDestination
 import com.thezayin.lpg.destinations.ContactUsScreenDestination
+import com.thezayin.useraddress.presentation.ProfileViewModel
 import com.thezayin.useraddress.presentation.component.LocationDetails
 import com.thezayin.useraddress.presentation.component.SaveProfileButton
 import com.thezayin.useraddress.presentation.component.UserDetails
-import com.thezayin.useraddress.presentation.ProfileViewModel
 import org.koin.compose.koinInject
 
 @Composable
@@ -62,31 +62,28 @@ fun ProfileScreen(
     val city = remember { mutableStateOf("") }
     val area = remember { mutableStateOf("") }
 
-    com.thezayin.common.component.GlassComponent()
+    GlassComponent()
 
     if (checkNetwork) {
-        com.thezayin.common.dialogs.NetworkDialog(showDialog = { checkNetwork = it })
+        NetworkDialog(showDialog = { checkNetwork = it })
     }
-
     if (checkField) {
-        com.thezayin.common.dialogs.FieldsDialog(showDialog = { checkField = it })
+        FieldsDialog(showDialog = { checkField = it })
     }
-
     if (isLoading) {
-        com.thezayin.common.dialogs.LoadingDialog()
+        LoadingDialog()
     }
-
     if (isAddedSuccessful) {
         navigator.navigate(AddressScreenDestination)
     }
-
     if (isError) {
-        com.thezayin.common.dialogs.ErrorQueryDialog(
+        ErrorQueryDialog(
             showDialog = { isError = it },
             callback = { navigator.navigateUp() },
             error = errorMessage
         )
     }
+
     Scaffold(
         modifier = Modifier,
         containerColor = colorResource(id = R.color.semi_transparent),
@@ -95,7 +92,7 @@ fun ProfileScreen(
                 modifier = Modifier,
                 screen = "Profile",
                 onBackClick = { navigator.navigateUp() },
-                onContactClick = {navigator.navigate(ContactUsScreenDestination)}
+                onContactClick = { navigator.navigate(ContactUsScreenDestination) }
             )
         },
         bottomBar = {
@@ -122,7 +119,6 @@ fun ProfileScreen(
                 .fillMaxSize(),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
-
             Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                 UserDetails(
                     email = email,

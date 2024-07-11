@@ -59,7 +59,7 @@ fun LocationDetails(
             text = "Select City",
             modifier = Modifier.padding(bottom = 10.dp),
             fontSize = 16.sp,
-            fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold))
+            fontFamily = FontFamily(Font(R.font.noto_sans_bold))
         )
         ExposedDropdownMenuBox(
             expanded = expandedCity.value,
@@ -96,9 +96,9 @@ fun LocationDetails(
                         text = {
                             Text(
                                 text = item,
-                                color = colorResource(id = com.thezayin.core.R.color.grey),
+                                color = colorResource(id = R.color.grey),
                                 fontSize = 12.sp,
-                                fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
+                                fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                                 fontWeight = if (index == selectedCityIndex.value) FontWeight.Bold else null
                             )
                         },
@@ -117,7 +117,7 @@ fun LocationDetails(
                 text = "Select Area",
                 modifier = Modifier.padding(top = 15.dp, bottom = 10.dp),
                 fontSize = 16.sp,
-                fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold))
+                fontFamily = FontFamily(Font(R.font.noto_sans_bold))
             )
             ExposedDropdownMenuBox(
                 expanded = expandedArea.value,
@@ -157,9 +157,9 @@ fun LocationDetails(
                             text = {
                                 Text(
                                     text = item,
-                                    color = colorResource(id = com.thezayin.core.R.color.grey),
+                                    color = colorResource(id = R.color.grey),
                                     fontSize = 12.sp,
-                                    fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
+                                    fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                                     fontWeight = if (index == selectedAreaIndex.intValue) FontWeight.Bold else null
                                 )
                             },
@@ -177,10 +177,10 @@ fun LocationDetails(
             Text(
                 text = "Address:",
                 textAlign = TextAlign.Start,
-                color = colorResource(id = com.thezayin.core.R.color.black),
+                color = colorResource(id = R.color.black),
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
-                fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
+                fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                 modifier = Modifier.padding(top = 10.dp, bottom = 5.dp)
             )
             TextField(
@@ -191,9 +191,9 @@ fun LocationDetails(
                 placeholder = {
                     Text(
                         text = "Enter Address",
-                        color = colorResource(id = com.thezayin.core.R.color.grey),
+                        color = colorResource(id = R.color.grey),
                         fontSize = 12.sp,
-                        fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
+                        fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                     )
                 },
                 singleLine = true,

@@ -3,6 +3,7 @@ package com.thezayin.userbuy.presentation
 import android.annotation.SuppressLint
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.thezayin.entities.CartModel
 import com.thezayin.entities.GetErrorState
 import com.thezayin.entities.GetLoadingState
 import com.thezayin.entities.GetSuccessState
@@ -84,6 +85,8 @@ class OrderViewModel(
         phoneNumber: String,
         email: String?,
         address: String,
+        area: String,
+        city: String,
         message: String?,
         totalAmount: String,
     ) = viewModelScope.launch {
@@ -93,6 +96,8 @@ class OrderViewModel(
             phoneNumber,
             email,
             address,
+            area,
+            city,
             message,
             currentDate,
             orderTime,
@@ -144,5 +149,5 @@ class OrderViewModel(
         }
     }
 
-    data class GetProductState(val list: List<com.thezayin.entities.CartModel> = emptyList())
+    data class GetProductState(val list: List<CartModel> = emptyList())
 }

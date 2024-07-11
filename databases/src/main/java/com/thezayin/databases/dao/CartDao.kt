@@ -1,4 +1,4 @@
-package com.thezayin.usercart.data.dao
+package com.thezayin.databases.dao
 
 import androidx.room.Dao
 import androidx.room.Insert

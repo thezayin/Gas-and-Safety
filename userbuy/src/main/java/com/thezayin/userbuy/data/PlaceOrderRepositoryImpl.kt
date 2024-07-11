@@ -1,6 +1,9 @@
 package com.thezayin.userbuy.data
 
 import com.google.firebase.firestore.FirebaseFirestore
+import com.thezayin.entities.CartModel
+import com.thezayin.entities.ProfileModel
+import com.thezayin.entities.UserOrderModel
 import com.thezayin.framework.utils.Response
 import com.thezayin.userbuy.domain.repository.PlaceOrderRepository
 import kotlinx.coroutines.flow.Flow
@@ -13,8 +16,10 @@ class PlaceOrderRepositoryImpl(private val fireStore: FirebaseFirestore) : Place
         userID: String,
         name: String,
         phoneNumber: String,
-        email: String?,
         address: String,
+        area: String,
+        city: String,
+        email: String?,
         message: String?,
         orderDate: String,
         orderTime: String,
@@ -22,19 +27,21 @@ class PlaceOrderRepositoryImpl(private val fireStore: FirebaseFirestore) : Place
         orderStatus: String,
         paymentMethod: String,
         totalAmount: String,
-        orders: List<com.thezayin.entities.CartModel>
+        orders: List<CartModel>
     ): Flow<Response<Boolean>> =
         flow {
             try {
                 emit(Response.Loading)
                 val orderId = fireStore.collection("user_orders").document().id
-                val order = com.thezayin.entities.UserOrderModel(
+                val order = UserOrderModel(
                     id = orderId,
-                    userId = userID,
+                    userID = userID,
                     name = name,
                     phoneNumber = phoneNumber,
                     email = email,
                     address = address,
+                    area = area,
+                    city = city,
                     message = message,
                     orderDate = orderDate,
                     orderTime = orderTime,
@@ -51,7 +58,7 @@ class PlaceOrderRepositoryImpl(private val fireStore: FirebaseFirestore) : Place
                         operationSuccessFull = false
                     }.await()
 
-                val userInfo = com.thezayin.entities.ProfileModel(
+                val userInfo = ProfileModel(
                     name = name,
                     phoneNumber = phoneNumber,
                     email = email,

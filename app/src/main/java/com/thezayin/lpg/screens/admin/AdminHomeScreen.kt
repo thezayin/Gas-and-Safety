@@ -16,15 +16,15 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.thezayin.adminhome.presentation.AdminHomeViewModel
 import com.thezayin.adminhome.presentation.components.AdminHomeTopBar
-import com.thezayin.lpg.R
+import com.thezayin.adminhome.presentation.components.AdminMenu
 import com.thezayin.common.component.GlassComponent
 import com.thezayin.common.dialogs.LoadingDialog
 import com.thezayin.common.dialogs.NetworkDialog
+import com.thezayin.lpg.R
 import com.thezayin.lpg.destinations.AddProductScreenDestination
 import com.thezayin.lpg.destinations.AdminProductScreenDestination
 import com.thezayin.lpg.destinations.FetchOrdersScreenDestination
 import com.thezayin.lpg.destinations.SettingScreenDestination
-import com.thezayin.adminhome.presentation.components.AdminMenu
 import org.koin.compose.koinInject
 
 @Composable
@@ -35,14 +35,14 @@ fun AdminHomeScreen(navigator: DestinationsNavigator) {
     val isLoading = viewModel.isLoading.collectAsState().value.isLoading
     val optionList = viewModel.adminHomeOptions.collectAsState().value.list
     if (checkNetwork) {
-        com.thezayin.common.dialogs.NetworkDialog(showDialog = { checkNetwork = it })
+        NetworkDialog(showDialog = { checkNetwork = it })
     }
 
     if (isLoading) {
-        com.thezayin.common.dialogs.LoadingDialog()
+        LoadingDialog()
     }
 
-    com.thezayin.common.component.GlassComponent()
+    GlassComponent()
     Scaffold(
         modifier = Modifier
             .navigationBarsPadding(),

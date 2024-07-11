@@ -30,11 +30,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.thezayin.common.component.GlassComponent
+import com.thezayin.common.component.UserTopBar
 import com.thezayin.framework.extension.functions.makeCall
 import com.thezayin.framework.extension.functions.sendMail
 import com.thezayin.lpg.R
-import com.thezayin.common.component.GlassComponent
-import com.thezayin.common.component.UserTopBar
 import com.thezayin.lpg.destinations.ContactUsScreenDestination
 
 @Composable
@@ -42,8 +42,7 @@ import com.thezayin.lpg.destinations.ContactUsScreenDestination
 fun ContactUsScreen(
     navigator: DestinationsNavigator
 ) {
-
-    com.thezayin.common.component.GlassComponent()
+    GlassComponent()
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
@@ -54,7 +53,7 @@ fun ContactUsScreen(
                 modifier = Modifier,
                 screen = "Profile",
                 onBackClick = { navigator.navigateUp() },
-                onContactClick = {navigator.navigate(ContactUsScreenDestination)}
+                onContactClick = { navigator.navigate(ContactUsScreenDestination) }
             )
         },
     ) { paddingValues ->
@@ -66,9 +65,7 @@ fun ContactUsScreen(
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
 
-        ) {
-            ContactUsList()
-        }
+        ) { ContactUsList() }
     }
 }
 

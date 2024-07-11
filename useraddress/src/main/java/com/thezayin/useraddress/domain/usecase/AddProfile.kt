@@ -1,13 +1,14 @@
 package com.thezayin.useraddress.domain.usecase
 
 import com.thezayin.framework.utils.Response
+import com.thezayin.useraddress.domain.repository.ProfileRepository
 import kotlinx.coroutines.flow.Flow
 
 interface AddProfile :
     suspend (String, String, String, String, String, String) -> Flow<Response<Boolean>>
 
 class AddProfileImpl(
-    private val profileRepository: com.thezayin.useraddress.domain.repository.ProfileRepository
+    private val profileRepository: ProfileRepository
 ) : AddProfile {
     override suspend fun invoke(
         name: String,
