@@ -1,5 +1,3 @@
-@file:Suppress("DEPRECATION")
-
 package com.thezayin.adminaddproducts.presentation.components
 
 import android.net.Uri
@@ -27,7 +25,7 @@ import coil.compose.AsyncImage
 import com.thezayin.core.R
 
 @Composable
-fun AddImage(imageSelected: MutableState<Boolean>, imageUri: Uri?, onClick: () -> Unit, ) {
+fun AddImage(imageSelected: MutableState<Boolean>, imageUri: Uri?, onClick: () -> Unit) {
 
     Card(
         modifier = Modifier

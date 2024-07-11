@@ -44,6 +44,7 @@ dependencies {
     implementation(project(":common"))
     implementation(project(":entities"))
     implementation(project(":framework"))
+    implementation(project(":databases"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -73,7 +74,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.common.java8)
 
     //room database
-    implementation (libs.androidx.room.ktx)
-    ksp (libs.androidx.room.compiler)
-    implementation (libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.runtime)
 }

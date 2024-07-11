@@ -16,13 +16,11 @@ class FetchOrdersRepositoryImpl(private val firestore: FirebaseFirestore) : Fetc
                 firestore.collection("user_orders").addSnapshotListener { snapShot, error ->
                     val response = if (snapShot != null) {
                         val productList = snapShot.toObjects(OrderModel::class.java)
-                        Response.Success<List<OrderModel>>(productList).apply {
-                        }
+                        Response.Success<List<OrderModel>>(productList)
                     } else {
                         Response.Error(error?.message ?: error.toString())
                     }
-                    trySend(response).isSuccess.apply {
-                    }
+                    trySend(response).isSuccess
                 }
             awaitClose {
                 snapshotListener.remove()

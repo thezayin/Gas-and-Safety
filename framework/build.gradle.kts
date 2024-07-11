@@ -2,8 +2,8 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("kotlin-kapt")
-    id ("kotlinx-serialization")
-    id ("kotlin-parcelize")
+    id("kotlinx-serialization")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -81,8 +81,8 @@ dependencies {
     implementation(libs.firebase.config)
 
     //serialization
-    api (libs.kotlinx.serialization.json)
+    api(libs.kotlinx.serialization.json)
     // dependency for exoplayer
-    api ("com.google.android.exoplayer:exoplayer-core:2.19.1")
-    api ("com.google.android.exoplayer:exoplayer-ui:2.19.1")
+    api("com.google.android.exoplayer:exoplayer-core:2.19.1")
+    api("com.google.android.exoplayer:exoplayer-ui:2.19.1")
 }

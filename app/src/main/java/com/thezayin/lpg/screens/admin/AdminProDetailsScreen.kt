@@ -33,6 +33,7 @@ import com.thezayin.adminproductdetails.presentation.component.ImageComponent
 import com.thezayin.common.component.AdminTopBar
 import com.thezayin.common.component.GlassComponent
 import com.thezayin.common.component.SaveButton
+import com.thezayin.common.dialogs.ErrorQueryDialog
 import com.thezayin.common.dialogs.FieldsDialog
 import com.thezayin.common.dialogs.LoadingDialog
 import com.thezayin.common.dialogs.NetworkDialog
@@ -79,11 +80,11 @@ fun AdminProDetailsScreen(
     }
 
     if (isLoading) {
-       LoadingDialog()
+        LoadingDialog()
     }
 
     if (isError) {
-        com.thezayin.common.dialogs.ErrorQueryDialog(
+        ErrorQueryDialog(
             showDialog = { isError = it },
             callback = { navigator.navigateUp() },
             error = errorMessage
@@ -91,7 +92,7 @@ fun AdminProDetailsScreen(
     }
 
     if (isSuccessful) {
-       SuccessQueryDialog(
+        SuccessQueryDialog(
             showDialog = { isSuccessful = it },
             callback = { navigator.navigateUp() })
     }
@@ -111,7 +112,7 @@ fun AdminProDetailsScreen(
             )
         },
         bottomBar = {
-          SaveButton {
+            SaveButton {
                 if (name.value.text.isEmpty() || description.value.text.isEmpty() || price.value.text.isEmpty() || image == null) {
                     checkField = true
                 } else {
@@ -135,8 +136,7 @@ fun AdminProDetailsScreen(
                 modifier = Modifier.padding(top = 30.dp)
             ) {
                 AdminDeleteProduct(
-                    onClick = { viewModel.deleteProduct(id) },
-                    id = id
+                    onClick = { viewModel.deleteProduct(id) }
                 )
                 ImageComponent(
                     oldUri = imageUri, imageUri = image, onImageSelected = {

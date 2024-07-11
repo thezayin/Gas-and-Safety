@@ -1,7 +1,7 @@
 package com.thezayin.adminorders.domain.repository
 
-import com.thezayin.framework.utils.Response
 import com.thezayin.entities.OrderModel
+import com.thezayin.framework.utils.Response
 import kotlinx.coroutines.flow.Flow
 
 interface FetchOrdersRepository {

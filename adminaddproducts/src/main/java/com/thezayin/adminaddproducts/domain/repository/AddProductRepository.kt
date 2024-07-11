@@ -12,5 +12,6 @@ interface AddProductRepository {
         date: String,
         imageUrl: String
     ): Flow<Response<Boolean>>
+
     fun addImage(image: Uri): Flow<Response<String>>
 }

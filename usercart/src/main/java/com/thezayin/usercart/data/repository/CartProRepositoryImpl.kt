@@ -1,7 +1,9 @@
 package com.thezayin.usercart.data.repository
 
+import com.thezayin.databases.databasae.CartDatabase
+import com.thezayin.entities.CartModel
+import com.thezayin.entities.HomeProductsModel
 import com.thezayin.framework.utils.Response
-import com.thezayin.usercart.data.database.CartDatabase
 import com.thezayin.usercart.domain.repository.CartProRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -15,7 +17,7 @@ class CartProRepositoryImpl(
     val sdf = SimpleDateFormat("dd/M/yyyy")
     private val currentDate: String = sdf.format(Date())
 
-    override fun getAllProduct(): Flow<Response<List<com.thezayin.entities.CartModel>>> = flow {
+    override fun getAllProduct(): Flow<Response<List<CartModel>>> = flow {
         try {
             emit(Response.Loading)
             val cartList = cartDatabase.cartDao().getAllProduct()
@@ -25,11 +27,11 @@ class CartProRepositoryImpl(
         }
     }
 
-    override fun addToCart(product: com.thezayin.entities.HomeProductsModel): Flow<Response<Boolean>> =
+    override fun addToCart(product: HomeProductsModel): Flow<Response<Boolean>> =
         flow {
             try {
                 emit(Response.Loading)
-                val cartModel = com.thezayin.entities.CartModel(
+                val cartModel = CartModel(
                     id = product.id,
                     name = product.name,
                     price = product.price,

@@ -23,8 +23,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.thezayin.entities.OrderModel
 import com.thezayin.core.R
+import com.thezayin.entities.OrderModel
 
 @Composable
 fun HistoryCard(
@@ -63,9 +63,9 @@ fun HistoryCard(
                     ) {
                         Text(
                             text = order?.orderTime + " " + order?.orderDate,
-                            color = colorResource(id = com.thezayin.core.R.color.black),
+                            color = colorResource(id = R.color.black),
                             fontSize = 16.sp,
-                            fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
+                            fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                         )
                         Card(
                             modifier = Modifier.padding(bottom = 10.dp),
@@ -78,8 +78,8 @@ fun HistoryCard(
                                 text = order?.orderStatus ?: "pending",
                                 fontSize = 12.sp,
                                 fontWeight = FontWeight.Medium,
-                                fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
-                                color = colorResource(id = com.thezayin.core.R.color.white),
+                                fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
+                                color = colorResource(id = R.color.white),
                                 modifier = Modifier.padding(
                                     vertical = 4.dp, horizontal = 12.dp
                                 )
@@ -89,31 +89,31 @@ fun HistoryCard(
 
                     Text(
                         text = order?.name ?: "name",
-                        color = colorResource(id = com.thezayin.core.R.color.black),
+                        color = colorResource(id = R.color.black),
                         fontSize = 16.sp,
-                        fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
+                        fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                     )
 
 
                     Text(
                         text = order?.phoneNumber ?: "03011001111",
-                        color = colorResource(id = com.thezayin.core.R.color.black),
+                        color = colorResource(id = R.color.black),
                         fontSize = 16.sp,
-                        fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
+                        fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                     )
 
                     Text(
                         text = order?.address ?: "Islamabad",
-                        color = colorResource(id = com.thezayin.core.R.color.black),
+                        color = colorResource(id = R.color.black),
                         fontSize = 16.sp,
-                        fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
+                        fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                     )
                     Text(
                         text = "Orders",
-                        color = colorResource(id = com.thezayin.core.R.color.black),
+                        color = colorResource(id = R.color.black),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Medium,
-                        fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_italic)),
+                        fontFamily = FontFamily(Font(R.font.noto_sans_italic)),
                     )
                     OrderProductList(orders = order!!.orders!!)
                 }
@@ -123,9 +123,9 @@ fun HistoryCard(
             ) {
                 Text(
                     text = "Total: ${order?.totalAmount ?: "0"}Rs.",
-                    color = colorResource(id = com.thezayin.core.R.color.black),
+                    color = colorResource(id = R.color.black),
                     fontSize = 16.sp,
-                    fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
+                    fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                 )
             }
         }

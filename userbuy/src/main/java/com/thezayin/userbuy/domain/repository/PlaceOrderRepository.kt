@@ -1,5 +1,6 @@
 package com.thezayin.userbuy.domain.repository
 
+import com.thezayin.entities.CartModel
 import com.thezayin.framework.utils.Response
 import kotlinx.coroutines.flow.Flow
 
@@ -8,8 +9,10 @@ interface PlaceOrderRepository {
         userID: String,
         name: String,
         phoneNumber: String,
-        email: String?,
         address: String,
+        area: String,
+        city: String,
+        email: String?,
         message: String?,
         orderDate: String,
         orderTime: String,
@@ -17,6 +20,6 @@ interface PlaceOrderRepository {
         orderStatus: String,
         paymentMethod: String,
         totalAmount: String,
-        orders: List<com.thezayin.entities.CartModel>
+        orders: List<CartModel>
     ): Flow<Response<Boolean>>
 }

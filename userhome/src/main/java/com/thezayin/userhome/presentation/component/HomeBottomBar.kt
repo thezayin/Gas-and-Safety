@@ -26,8 +26,8 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.thezayin.entities.ProfileModel
 import com.thezayin.core.R
+import com.thezayin.entities.ProfileModel
 
 @Composable
 fun HomeBottomBar(

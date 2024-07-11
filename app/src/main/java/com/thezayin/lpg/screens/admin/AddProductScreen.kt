@@ -26,6 +26,13 @@ import com.thezayin.adminaddproducts.presentation.AddProductViewModel
 import com.thezayin.adminaddproducts.presentation.components.AddImage
 import com.thezayin.adminaddproducts.presentation.components.AddProductDetails
 import com.thezayin.common.component.AdminTopBar
+import com.thezayin.common.component.GlassComponent
+import com.thezayin.common.component.SaveButton
+import com.thezayin.common.dialogs.ErrorQueryDialog
+import com.thezayin.common.dialogs.FieldsDialog
+import com.thezayin.common.dialogs.LoadingDialog
+import com.thezayin.common.dialogs.NetworkDialog
+import com.thezayin.common.dialogs.SuccessQueryDialog
 import com.thezayin.lpg.R
 import org.koin.compose.koinInject
 
@@ -56,28 +63,28 @@ fun AddProductScreen(
         }
     )
 
-    com.thezayin.common.component.GlassComponent()
+    GlassComponent()
 
     if (checkNetwork) {
-        com.thezayin.common.dialogs.NetworkDialog(showDialog = { checkNetwork = it })
+        NetworkDialog(showDialog = { checkNetwork = it })
     }
 
     if (checkField) {
-        com.thezayin.common.dialogs.FieldsDialog(showDialog = { checkField = it })
+        FieldsDialog(showDialog = { checkField = it })
     }
 
     if (isLoading) {
-        com.thezayin.common.dialogs.LoadingDialog()
+        LoadingDialog()
     }
 
     if (isSuccessful) {
-        com.thezayin.common.dialogs.SuccessQueryDialog(
+        SuccessQueryDialog(
             showDialog = { isSuccessful = it },
             callback = { navigator.navigateUp() })
     }
 
     if (isError) {
-        com.thezayin.common.dialogs.ErrorQueryDialog(
+        ErrorQueryDialog(
             showDialog = { isError = it },
             callback = { navigator.navigateUp() },
             error = errorMessage
@@ -94,7 +101,7 @@ fun AddProductScreen(
             )
         },
         bottomBar = {
-            com.thezayin.common.component.SaveButton {
+            SaveButton {
                 if (name.value.text.isEmpty() || description.value.text.isEmpty() || price.value.text.isEmpty() || imageUri == null) {
                     checkField = true
                 } else {

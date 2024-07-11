@@ -1,14 +1,13 @@
 package com.thezayin.useraddress.data.repository
 
+import com.thezayin.databases.databasae.CartDatabase
+import com.thezayin.entities.ProfileModel
 import com.thezayin.framework.utils.Response
-import com.thezayin.useraddress.data.databasae.ProfileDatabase
 import com.thezayin.useraddress.domain.repository.ProfileRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class ProfileRepositoryImpl(
-    private val profileDatabase: ProfileDatabase
-) : ProfileRepository {
+class ProfileRepositoryImpl(private val database: CartDatabase) : ProfileRepository {
     override fun addProfile(
         name: String,
         phoneNumber: String,
@@ -19,7 +18,7 @@ class ProfileRepositoryImpl(
     ): Flow<Response<Boolean>> = flow {
         try {
             emit(Response.Loading)
-            val profile = com.thezayin.entities.ProfileModel(
+            val profile = ProfileModel(
                 name = name,
                 phoneNumber = phoneNumber,
                 address = address,
@@ -27,7 +26,7 @@ class ProfileRepositoryImpl(
                 city = city,
                 email = email
             )
-            profileDatabase.profileDao().addProfile(profile)
+            database.profileDao().addProfile(profile)
             emit(Response.Success(true))
         } catch (e: Exception) {
             emit(Response.Error(e.localizedMessage ?: "An error occurred"))
@@ -43,14 +42,14 @@ class ProfileRepositoryImpl(
     ): Flow<Response<Boolean>> = flow {
         try {
             emit(Response.Loading)
-            val profile = com.thezayin.entities.ProfileModel(
+            val profile = ProfileModel(
                 name = name,
                 phoneNumber = phoneNumber,
                 address = address,
                 email = email
             )
-            profileDatabase.profileDao().getAllProfiles().find { it.id == id }?.let {
-                profileDatabase.profileDao().updateProfileById(profile)
+            database.profileDao().getAllProfiles().find { it.id == id }?.let {
+                database.profileDao().updateProfileById(profile)
             }
             emit(Response.Success(true))
         } catch (e: Exception) {
@@ -61,7 +60,7 @@ class ProfileRepositoryImpl(
     override fun deleteProfileById(id: Int): Flow<Response<Boolean>> = flow {
         try {
             emit(Response.Loading)
-            profileDatabase.profileDao().deleteProfileById(id)
+            database.profileDao().deleteProfileById(id)
             emit(Response.Success(true))
         } catch (e: Exception) {
             emit(Response.Error(e.localizedMessage ?: "An error occurred"))
@@ -71,28 +70,28 @@ class ProfileRepositoryImpl(
     override fun deleteAllProfiles(): Flow<Response<Boolean>> = flow {
         try {
             emit(Response.Loading)
-            profileDatabase.profileDao().deleteAllProfiles()
+            database.profileDao().deleteAllProfiles()
             emit(Response.Success(true))
         } catch (e: Exception) {
             emit(Response.Error(e.localizedMessage ?: "An error occurred"))
         }
     }
 
-    override fun getAllProfiles(): Flow<Response<List<com.thezayin.entities.ProfileModel>>> = flow {
+    override fun getAllProfiles(): Flow<Response<List<ProfileModel>>> = flow {
         try {
             emit(Response.Loading)
-            val profileList = profileDatabase.profileDao().getAllProfiles()
+            val profileList = database.profileDao().getAllProfiles()
             emit(Response.Success(profileList))
         } catch (e: Exception) {
             emit(Response.Error(e.localizedMessage ?: "An error occurred"))
         }
     }
 
-    override fun getProfileById(id: Int): Flow<Response<com.thezayin.entities.ProfileModel>> =
+    override fun getProfileById(id: Int): Flow<Response<ProfileModel>> =
         flow {
             try {
                 emit(Response.Loading)
-                val profile = profileDatabase.profileDao().getProfile(id)
+                val profile = database.profileDao().getProfile(id)
                 emit(Response.Success(profile))
             } catch (e: Exception) {
                 emit(Response.Error(e.localizedMessage ?: "An error occurred"))

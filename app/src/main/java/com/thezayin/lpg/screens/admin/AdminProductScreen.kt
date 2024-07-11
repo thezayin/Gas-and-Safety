@@ -16,15 +16,15 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.thezayin.adminproducts.presentation.AdminProductViewModel
 import com.thezayin.adminproducts.presentation.component.AddProductButton
-import com.thezayin.lpg.R
+import com.thezayin.adminproducts.presentation.component.AdminProductList
 import com.thezayin.common.component.AdminTopBar
 import com.thezayin.common.component.GlassComponent
 import com.thezayin.common.dialogs.ErrorQueryDialog
 import com.thezayin.common.dialogs.LoadingDialog
 import com.thezayin.common.dialogs.NetworkDialog
+import com.thezayin.lpg.R
 import com.thezayin.lpg.destinations.AddProductScreenDestination
 import com.thezayin.lpg.destinations.AdminProDetailsScreenDestination
-import com.thezayin.adminproducts.presentation.component.AdminProductList
 import org.koin.compose.koinInject
 
 @Composable
@@ -39,18 +39,16 @@ fun AdminProductScreen(
     var isError = viewModel.isQueryError.collectAsState().value.isError
     val errorMessage = viewModel.isQueryError.collectAsState().value.errorMessage
 
-    com.thezayin.common.component.GlassComponent()
+    GlassComponent()
 
     if (checkNetwork) {
-        com.thezayin.common.dialogs.NetworkDialog(showDialog = { checkNetwork = it })
+        NetworkDialog(showDialog = { checkNetwork = it })
     }
-
     if (isLoading) {
-        com.thezayin.common.dialogs.LoadingDialog()
+        LoadingDialog()
     }
-
     if (isError) {
-        com.thezayin.common.dialogs.ErrorQueryDialog(
+        ErrorQueryDialog(
             showDialog = { isError = it },
             callback = { navigator.navigateUp() },
             error = errorMessage
@@ -60,9 +58,8 @@ fun AdminProductScreen(
     Scaffold(
         modifier = Modifier.navigationBarsPadding(),
         containerColor = colorResource(id = R.color.semi_transparent),
-
         topBar = {
-            com.thezayin.common.component.AdminTopBar(
+            AdminTopBar(
                 modifier = Modifier,
                 onBackClick = { navigator.navigateUp() },
                 screenTitle = "Products"

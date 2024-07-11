@@ -27,8 +27,7 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun AdminDeleteProduct(
-    onClick: () -> Unit = {},
-    id: String
+    onClick: () -> Unit = {}
 ) {
     Row(
         modifier = Modifier
@@ -77,5 +76,5 @@ fun AdminDeleteProduct(
 @Composable
 @Preview
 fun AdminDeleteProductPreview() {
-    AdminDeleteProduct({}, "")
+    AdminDeleteProduct {}
 }

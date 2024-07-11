@@ -15,14 +15,14 @@ import androidx.compose.ui.res.colorResource
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.thezayin.adminorders.presentation.FetchOrdersViewModel
-import com.thezayin.lpg.R
+import com.thezayin.adminorders.presentation.component.FetchOrdersList
+import com.thezayin.adminorders.presentation.component.UpdateStatus
 import com.thezayin.common.component.AdminTopBar
 import com.thezayin.common.component.GlassComponent
 import com.thezayin.common.dialogs.ErrorQueryDialog
 import com.thezayin.common.dialogs.LoadingDialog
 import com.thezayin.common.dialogs.NetworkDialog
-import com.thezayin.adminorders.presentation.component.FetchOrdersList
-import com.thezayin.adminorders.presentation.component.UpdateStatus
+import com.thezayin.lpg.R
 import org.koin.compose.koinInject
 
 @Composable
@@ -39,18 +39,18 @@ fun FetchOrdersScreen(
     val statusList = viewModel.orderStatusList.collectAsState().value.list
     val showDialog = remember { mutableStateOf(false) }
 
-    com.thezayin.common.component.GlassComponent()
+    GlassComponent()
 
     if (checkNetwork) {
-        com.thezayin.common.dialogs.NetworkDialog(showDialog = { checkNetwork = it })
+        NetworkDialog(showDialog = { checkNetwork = it })
     }
 
     if (isLoading) {
-        com.thezayin.common.dialogs.LoadingDialog()
+        LoadingDialog()
     }
 
     if (isError) {
-        com.thezayin.common.dialogs.ErrorQueryDialog(
+        ErrorQueryDialog(
             showDialog = { isError = it },
             callback = { navigator.navigateUp() },
             error = errorMessage
@@ -67,7 +67,6 @@ fun FetchOrdersScreen(
     Scaffold(
         modifier = Modifier.navigationBarsPadding(),
         containerColor = colorResource(id = R.color.semi_transparent),
-
         topBar = {
             AdminTopBar(
                 modifier = Modifier,

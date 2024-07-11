@@ -54,8 +54,8 @@ dependencies {
     implementation(libs.androidx.material3)
 
 
-    implementation (libs.coil.gif)
-    implementation (libs.coil.compose)
+    implementation(libs.coil.gif)
+    implementation(libs.coil.compose)
     implementation(libs.firebase.firestore.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

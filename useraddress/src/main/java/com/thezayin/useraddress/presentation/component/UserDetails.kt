@@ -41,10 +41,10 @@ fun UserDetails(
         Text(
             text = "Name:",
             textAlign = TextAlign.Start,
-            color = colorResource(id = com.thezayin.core.R.color.black),
+            color = colorResource(id = R.color.black),
             fontSize = 16.sp,
             fontWeight = FontWeight.Bold,
-            fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
+            fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
             modifier = Modifier.padding(top = 10.dp, bottom = 5.dp)
         )
         TextField(
@@ -55,9 +55,9 @@ fun UserDetails(
             placeholder = {
                 Text(
                     text = "Enter Name",
-                    color = colorResource(id = com.thezayin.core.R.color.grey),
+                    color = colorResource(id = R.color.grey),
                     fontSize = 12.sp,
-                    fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
+                    fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                 )
             },
             singleLine = true,
@@ -78,10 +78,10 @@ fun UserDetails(
         Text(
             text = "Phone Number:",
             textAlign = TextAlign.Start,
-            color = colorResource(id = com.thezayin.core.R.color.black),
+            color = colorResource(id = R.color.black),
             fontSize = 16.sp,
             fontWeight = FontWeight.Bold,
-            fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
+            fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
             modifier = Modifier.padding(top = 10.dp, bottom = 5.dp)
         )
         TextField(
@@ -95,9 +95,9 @@ fun UserDetails(
             placeholder = {
                 Text(
                     text = "03121234567",
-                    color = colorResource(id = com.thezayin.core.R.color.grey),
+                    color = colorResource(id = R.color.grey),
                     fontSize = 12.sp,
-                    fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
+                    fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                 )
             },
             singleLine = true,
@@ -118,10 +118,10 @@ fun UserDetails(
         Text(
             text = "Email:",
             textAlign = TextAlign.Start,
-            color = colorResource(id = com.thezayin.core.R.color.black),
+            color = colorResource(id = R.color.black),
             fontSize = 16.sp,
             fontWeight = FontWeight.Bold,
-            fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
+            fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
             modifier = Modifier.padding(top = 10.dp, bottom = 5.dp)
         )
         TextField(
@@ -132,9 +132,9 @@ fun UserDetails(
             placeholder = {
                 Text(
                     text = "Enter Email",
-                    color = colorResource(id = com.thezayin.core.R.color.grey),
+                    color = colorResource(id = R.color.grey),
                     fontSize = 12.sp,
-                    fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
+                    fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                 )
             },
             singleLine = true,

@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.thezayin.entities.GetErrorState
 import com.thezayin.entities.GetLoadingState
 import com.thezayin.entities.GetSuccessState
+import com.thezayin.entities.ProfileModel
 import com.thezayin.framework.utils.Response
 import com.thezayin.useraddress.domain.usecase.AddProfile
 import com.thezayin.useraddress.domain.usecase.DeleteAllProfiles
@@ -59,9 +60,18 @@ class ProfileViewModel(
     private val _getCityState = MutableStateFlow(GetCityState())
     val getCityState = _getCityState.asStateFlow()
 
+
+    private val _selectedItemIndex = MutableStateFlow(-1)
+    val selectedItemIndex = _selectedItemIndex.asStateFlow()
+
+
     init {
         fetchAllProfiles()
         fetchCityList()
+    }
+
+    fun onItemSelected(index: Int) {
+        _selectedItemIndex.value = index
     }
 
     private fun fetchCityList() = viewModelScope.launch {
@@ -242,6 +252,6 @@ class ProfileViewModel(
 
     data class GetAreaState(val data: List<String> = emptyList())
     data class GetCityState(val data: List<String> = emptyList())
-    data class GetProfileState(val data: List<com.thezayin.entities.ProfileModel> = emptyList())
-    data class GetProfileByIdState(val data: com.thezayin.entities.ProfileModel = com.thezayin.entities.ProfileModel())
+    data class GetProfileState(val data: List<ProfileModel> = emptyList())
+    data class GetProfileByIdState(val data: ProfileModel = ProfileModel())
 }

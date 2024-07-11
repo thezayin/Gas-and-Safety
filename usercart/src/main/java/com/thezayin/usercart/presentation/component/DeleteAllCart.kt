@@ -56,12 +56,12 @@ fun DeleteAllCart(callback: () -> Unit) {
             ) {
                 Text(
                     text = "Empty",
-                    color = colorResource(id = com.thezayin.core.R.color.black),
+                    color = colorResource(id = R.color.black),
                     fontSize = 12.sp,
-                    fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_regular)),
+                    fontFamily = FontFamily(Font(R.font.noto_sans_regular)),
                 )
                 Image(
-                    painter = painterResource(id = com.thezayin.core.R.drawable.ic_delete),
+                    painter = painterResource(id = R.drawable.ic_delete),
                     contentDescription = null,
                     modifier = Modifier
                         .padding(start = 5.dp)

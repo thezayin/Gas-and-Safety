@@ -32,6 +32,7 @@ fun ProfileData(
 ) {
     Card(
         modifier = Modifier
+            .padding(top = 15.dp)
             .fillMaxWidth()
             .heightIn(max = 400.dp),
         colors = CardDefaults.cardColors(
@@ -52,7 +53,7 @@ fun ProfileData(
                 horizontalArrangement = Arrangement.End
             ) {
                 Image(
-                    painter = painterResource(id = com.thezayin.core.R.drawable.ic_delete),
+                    painter = painterResource(id = R.drawable.ic_delete),
                     contentDescription = null,
                     modifier = Modifier
                         .clickable { onDeleteClick(profileModel.id!!) }
@@ -64,42 +65,40 @@ fun ProfileData(
                 text = "${profileModel.address}",
                 modifier = Modifier.padding(top = 5.dp),
                 fontSize = 12.sp,
-                color = colorResource(id = com.thezayin.core.R.color.black),
-                fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold))
+                color = colorResource(id = R.color.black),
+                fontFamily = FontFamily(Font(R.font.noto_sans_bold))
             )
 
             Text(
                 text = "${profileModel.area},${profileModel.city}",
                 modifier = Modifier.padding(top = 5.dp),
                 fontSize = 12.sp,
-                color = colorResource(id = com.thezayin.core.R.color.black),
-                fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold))
+                color = colorResource(id = R.color.black),
+                fontFamily = FontFamily(Font(R.font.noto_sans_bold))
             )
             Text(
                 text = "${profileModel.name}",
                 modifier = Modifier.padding(top = 5.dp),
                 fontSize = 12.sp,
-                color = colorResource(id = com.thezayin.core.R.color.black),
-                fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_regular))
+                color = colorResource(id = R.color.black),
+                fontFamily = FontFamily(Font(R.font.noto_sans_regular))
             )
             Text(
                 text = "${profileModel.area}",
                 modifier = Modifier.padding(top = 5.dp),
                 fontSize = 12.sp,
-                color = colorResource(id = com.thezayin.core.R.color.black),
-                fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_regular))
+                color = colorResource(id = R.color.black),
+                fontFamily = FontFamily(Font(R.font.noto_sans_regular))
             )
             Text(
                 text = "${profileModel.email}",
                 modifier = Modifier.padding(top = 5.dp, bottom = 20.dp),
                 fontSize = 12.sp,
-                color = colorResource(id = com.thezayin.core.R.color.black),
-                fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_regular))
+                color = colorResource(id = R.color.black),
+                fontFamily = FontFamily(Font(R.font.noto_sans_regular))
             )
         }
     }
-
-
 }
 
 @Composable

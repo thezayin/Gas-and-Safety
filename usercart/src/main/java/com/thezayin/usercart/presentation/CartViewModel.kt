@@ -2,8 +2,10 @@ package com.thezayin.usercart.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.thezayin.entities.CartModel
 import com.thezayin.entities.GetErrorState
 import com.thezayin.entities.GetLoadingState
+import com.thezayin.entities.HomeProductsModel
 import com.thezayin.framework.utils.Response
 import com.thezayin.usercart.domain.usecase.AddToCart
 import com.thezayin.usercart.domain.usecase.DeleteAllCart
@@ -93,7 +95,7 @@ class CartViewModel(
         }
     }
 
-    fun addedToCart(model: com.thezayin.entities.HomeProductsModel) = viewModelScope.launch {
+    fun addedToCart(model: HomeProductsModel) = viewModelScope.launch {
         addToCart(model).collect { response ->
             when (response) {
                 is Response.Success -> {
@@ -146,7 +148,7 @@ class CartViewModel(
         }
     }
 
-    private fun deleteProduct(product: com.thezayin.entities.CartModel) = viewModelScope.launch {
+    private fun deleteProduct(product: CartModel) = viewModelScope.launch {
         deleteFromCart(product.id!!).collect { response ->
             when (response) {
                 is Response.Success -> {
@@ -177,14 +179,14 @@ class CartViewModel(
         }
     }
 
-    fun incrementQuantity(product: com.thezayin.entities.CartModel) = viewModelScope.launch {
+    fun incrementQuantity(product: CartModel) = viewModelScope.launch {
         val quantity = product.quantity!! + 1
         val totalPrice = product.totalPrice!!.toInt() + product.price!!.toInt()
         val id = product.id!!
         updateProductQuantity(id, quantity, totalPrice)
     }
 
-    fun decrementQuantity(product: com.thezayin.entities.CartModel) {
+    fun decrementQuantity(product: CartModel) {
         if (product.quantity!! == 1) {
             deleteProduct(product)
             return
@@ -195,7 +197,7 @@ class CartViewModel(
         updateProductQuantity(id, quantity, totalPrice)
     }
 
-    data class GetProductState(val list: List<com.thezayin.entities.CartModel> = emptyList())
+    data class GetProductState(val list: List<CartModel> = emptyList())
     data class GetAddToCartState(val isAdded: Boolean = false)
     data class GetDeleteQueryState(val isSuccess: Boolean = false)
 }

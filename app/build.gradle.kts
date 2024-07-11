@@ -8,7 +8,7 @@ plugins {
     id("com.google.firebase.firebase-perf")
     id("com.google.firebase.appdistribution")
     id("kotlin-kapt")
-    id ("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
@@ -67,7 +67,7 @@ dependencies {
     implementation(project(":userhome"))
     implementation(project(":userorderhistory"))
     implementation(project(":di"))
-
+    implementation(project(":databases"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -130,8 +130,8 @@ dependencies {
     implementation(libs.timber)
     implementation(libs.androidx.ui.graphics.android)
 
-    implementation (libs.coil.gif)
-    implementation (libs.coil.compose)
+    implementation(libs.coil.gif)
+    implementation(libs.coil.compose)
 
     //firebase
     implementation(libs.firebase.database)
@@ -147,16 +147,16 @@ dependencies {
     implementation(libs.firebase.perf)
 
     //room database
-    implementation (libs.androidx.room.ktx)
-    ksp (libs.androidx.room.compiler)
-    implementation (libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.runtime)
 
     //Google Services & Maps
-    implementation ("com.google.android.gms:play-services-location:21.3.0")
-    implementation ("com.google.maps.android:maps-compose:2.9.0")
-    implementation ("com.google.android.gms:play-services-maps:19.0.0")
+    implementation("com.google.android.gms:play-services-location:21.3.0")
+    implementation("com.google.maps.android:maps-compose:2.9.0")
+    implementation("com.google.android.gms:play-services-maps:19.0.0")
 
     //Accompanist (Permission)
-    implementation ("com.google.accompanist:accompanist-permissions:0.34.0")
+    implementation("com.google.accompanist:accompanist-permissions:0.34.0")
 
 }

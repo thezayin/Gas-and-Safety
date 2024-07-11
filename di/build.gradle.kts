@@ -50,6 +50,7 @@ dependencies {
     implementation(project(":usercart"))
     implementation(project(":userhome"))
     implementation(project(":userorderhistory"))
+    implementation(project(":databases"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

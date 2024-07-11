@@ -44,9 +44,10 @@ import com.thezayin.adminproducts.domain.usecase.GetAdminProductImpl
 import com.thezayin.adminproducts.domain.usecase.GetProductImages
 import com.thezayin.adminproducts.domain.usecase.GetProductImagesImpl
 import com.thezayin.adminproducts.presentation.AdminProductViewModel
+import com.thezayin.databases.di.provideCartDao
+import com.thezayin.databases.di.provideCartDatabase
+import com.thezayin.databases.di.provideProfileDao
 import com.thezayin.framework.remote.RemoteConfig
-import com.thezayin.useraddress.data.di.provideProfileDatabase
-import com.thezayin.useraddress.data.di.provideProfileDao
 import com.thezayin.useraddress.data.repository.AreaRepositoryImpl
 import com.thezayin.useraddress.data.repository.ProfileRepositoryImpl
 import com.thezayin.useraddress.domain.repository.AreaRepository
@@ -73,8 +74,6 @@ import com.thezayin.userbuy.domain.repository.PlaceOrderRepository
 import com.thezayin.userbuy.domain.usecase.PlaceOrder
 import com.thezayin.userbuy.domain.usecase.PlaceOrderImpl
 import com.thezayin.userbuy.presentation.OrderViewModel
-import com.thezayin.usercart.data.di.provideCartDao
-import com.thezayin.usercart.data.di.provideCartDatabase
 import com.thezayin.usercart.data.repository.CartProRepositoryImpl
 import com.thezayin.usercart.domain.repository.CartProRepository
 import com.thezayin.usercart.domain.usecase.AddToCart
@@ -111,9 +110,13 @@ import org.koin.dsl.module
 /**
  * User Modules
  */
-val userCartModule = module {
+val dbModule = module {
     single { provideCartDatabase(androidContext()) }
     single { provideCartDao(get()) }
+    single { provideProfileDao(get()) }
+}
+
+val userCartModule = module {
     factoryOf(::CartProRepositoryImpl) bind CartProRepository::class
     factoryOf(::GetCartProductsImpl) bind GetCartProducts::class
     factoryOf(::DeleteAllCartImpl) bind DeleteAllCart::class
@@ -124,8 +127,6 @@ val userCartModule = module {
 }
 
 val userProfile = module {
-    single { provideProfileDatabase(androidContext()) }
-    single { provideProfileDao(get()) }
     singleOf(::ProfileRepositoryImpl) bind ProfileRepository::class
     singleOf(::AddProfileImpl) bind AddProfile::class
     singleOf(::UpdateProfileByIdImpl) bind UpdateProfileById::class

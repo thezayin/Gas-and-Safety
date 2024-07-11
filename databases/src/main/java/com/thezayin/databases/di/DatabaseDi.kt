@@ -1,8 +1,8 @@
-package com.thezayin.usercart.data.di
+package com.thezayin.databases.di
 
 import android.content.Context
 import androidx.room.Room
-import com.thezayin.usercart.data.database.CartDatabase
+import com.thezayin.databases.databasae.CartDatabase
 
 fun provideCartDatabase(context: Context) =
     Room.databaseBuilder(context, CartDatabase::class.java, "safe_gas_database")
@@ -11,3 +11,4 @@ fun provideCartDatabase(context: Context) =
         .build()
 
 fun provideCartDao(database: CartDatabase) = database.cartDao()
+fun provideProfileDao(database: CartDatabase) = database.profileDao()
