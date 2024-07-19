@@ -3,47 +3,6 @@ package com.thezayin.di
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import com.thezayin.adminaddproducts.data.AddProductRepositoryImpl
-import com.thezayin.adminaddproducts.domain.repository.AddProductRepository
-import com.thezayin.adminaddproducts.domain.usecase.AddProductUseCase
-import com.thezayin.adminaddproducts.domain.usecase.AddProductUseCaseImpl
-import com.thezayin.adminaddproducts.domain.usecase.UploadImage
-import com.thezayin.adminaddproducts.domain.usecase.UploadImageImpl
-import com.thezayin.adminaddproducts.presentation.AddProductViewModel
-import com.thezayin.adminhome.data.AdminOptionMenuRepositoryImpl
-import com.thezayin.adminhome.domain.repository.AdminOptionMenuRepository
-import com.thezayin.adminhome.domain.usecase.AdminOptionMenuUseCase
-import com.thezayin.adminhome.domain.usecase.AdminOptionMenuUseCaseImpl
-import com.thezayin.adminhome.presentation.AdminHomeViewModel
-import com.thezayin.adminorders.data.FetchOrdersRepositoryImpl
-import com.thezayin.adminorders.data.OrderStatusRepositoryImpl
-import com.thezayin.adminorders.domain.repository.FetchOrdersRepository
-import com.thezayin.adminorders.domain.repository.OrderStatusRepository
-import com.thezayin.adminorders.domain.usecase.FetchOrders
-import com.thezayin.adminorders.domain.usecase.FetchOrdersImpl
-import com.thezayin.adminorders.domain.usecase.GetStatusList
-import com.thezayin.adminorders.domain.usecase.GetStatusListImpl
-import com.thezayin.adminorders.domain.usecase.UpdateOrderStatus
-import com.thezayin.adminorders.domain.usecase.UpdateOrderStatusImpl
-import com.thezayin.adminorders.presentation.FetchOrdersViewModel
-import com.thezayin.adminproductdetails.data.ProDetailsRepositoryImpl
-import com.thezayin.adminproductdetails.domain.repository.ProDetailsRepository
-import com.thezayin.adminproductdetails.domain.usecase.DeleteAdminProduct
-import com.thezayin.adminproductdetails.domain.usecase.DeleteAdminProductImpl
-import com.thezayin.adminproductdetails.domain.usecase.UpdateAdminProduct
-import com.thezayin.adminproductdetails.domain.usecase.UpdateAdminProductIml
-import com.thezayin.adminproductdetails.domain.usecase.UpdateImage
-import com.thezayin.adminproductdetails.domain.usecase.UpdateImageImpl
-import com.thezayin.adminproductdetails.presentation.AdminProDetailsViewModel
-import com.thezayin.adminproducts.data.AdminProductRepositoryImpl
-import com.thezayin.adminproducts.data.GetProductImagesRepositoryImpl
-import com.thezayin.adminproducts.domain.repository.AdminProductRepository
-import com.thezayin.adminproducts.domain.repository.GetProductImagesRepository
-import com.thezayin.adminproducts.domain.usecase.GetAdminProduct
-import com.thezayin.adminproducts.domain.usecase.GetAdminProductImpl
-import com.thezayin.adminproducts.domain.usecase.GetProductImages
-import com.thezayin.adminproducts.domain.usecase.GetProductImagesImpl
-import com.thezayin.adminproducts.presentation.AdminProductViewModel
 import com.thezayin.databases.di.provideCartDao
 import com.thezayin.databases.di.provideCartDatabase
 import com.thezayin.databases.di.provideProfileDao
@@ -107,10 +66,10 @@ import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
-/**
- * User Modules
- */
 val dbModule = module {
+    single { FirebaseFirestore.getInstance() }
+    single { FirebaseAuth.getInstance() }
+    single { FirebaseStorage.getInstance() }
     single { provideCartDatabase(androidContext()) }
     single { provideCartDao(get()) }
     single { provideProfileDao(get()) }
@@ -159,53 +118,8 @@ val userHomeModule = module {
     viewModelOf(::HomeViewModel)
 }
 
-/**
- * Admin Modules
- */
 val appModule = module {
     single { Json { ignoreUnknownKeys = true } }
     singleOf(::RemoteConfig)
-}
-
-val getUserOrdersModule = module {
-    viewModelOf(::FetchOrdersViewModel)
-    factoryOf(::FetchOrdersRepositoryImpl) bind FetchOrdersRepository::class
-    factoryOf(::OrderStatusRepositoryImpl) bind OrderStatusRepository::class
-    factoryOf(::GetStatusListImpl) bind GetStatusList::class
-    factoryOf(::UpdateOrderStatusImpl) bind UpdateOrderStatus::class
-    factoryOf(::FetchOrdersImpl) bind FetchOrders::class
-}
-
-val adminProUpdateModule = module {
-    viewModelOf(::AdminProDetailsViewModel)
-    factoryOf(::ProDetailsRepositoryImpl) bind ProDetailsRepository::class
-    factoryOf(::DeleteAdminProductImpl) bind DeleteAdminProduct::class
-    factoryOf(::UpdateAdminProductIml) bind UpdateAdminProduct::class
-    factoryOf(::UpdateImageImpl) bind UpdateImage::class
-}
-
-val adminProductModule = module {
-    viewModelOf(::AdminProductViewModel)
-    factoryOf(::AdminProductRepositoryImpl) bind AdminProductRepository::class
-    factoryOf(::GetProductImagesImpl) bind GetProductImages::class
-    factoryOf(::GetProductImagesRepositoryImpl) bind GetProductImagesRepository::class
-    factoryOf(::GetAdminProductImpl) bind GetAdminProduct::class
-}
-
-
-val adminHomeModule = module {
-    viewModelOf(::AdminHomeViewModel)
-    factoryOf(::AdminOptionMenuRepositoryImpl) bind AdminOptionMenuRepository::class
-    factoryOf(::AdminOptionMenuUseCaseImpl) bind AdminOptionMenuUseCase::class
-}
-
-val adminAddProductModule = module {
-    viewModelOf(::AddProductViewModel)
-    single { FirebaseFirestore.getInstance() }
-    single { FirebaseAuth.getInstance() }
-    single { FirebaseStorage.getInstance() }
-    factoryOf(::AddProductRepositoryImpl) bind AddProductRepository::class
-    factoryOf(::AddProductUseCaseImpl) bind AddProductUseCase::class
-    factoryOf(::UploadImageImpl) bind UploadImage::class
 }
 

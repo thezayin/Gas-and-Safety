@@ -30,6 +30,14 @@ fun Context.checkForInternet(): Boolean {
     }
 }
 
+fun Context.copyToClipboard(text: String) {
+    val clipboard =
+        this.getSystemService(Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
+    val clip = android.content.ClipData.newPlainText("Copied Text", text)
+    clipboard.setPrimaryClip(clip)
+    Toast.makeText(this, "Copied to clipboard", Toast.LENGTH_SHORT).show()
+}
+
 fun Context.makeCall() {
     val number = "03033009802"
     val intent = Intent(Intent.ACTION_DIAL)

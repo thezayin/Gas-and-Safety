@@ -39,12 +39,6 @@ dependencies {
     implementation(project(":entities"))
     implementation(project(":framework"))
     implementation(project(":analytics"))
-    implementation(project(":adminaddproducts"))
-    implementation(project(":adminhome"))
-    implementation(project(":adminorders"))
-    implementation(project(":adminproductdetails"))
-    implementation(project(":adminproducts"))
-
     implementation(project(":useraddress"))
     implementation(project(":userbuy"))
     implementation(project(":usercart"))

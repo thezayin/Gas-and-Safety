@@ -6,8 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.google.firebase.messaging.FirebaseMessaging
 import com.ramcosta.composedestinations.DestinationsNavHost
-import com.thezayin.lpg.NavGraphs
 import com.thezayin.lpg.common.theme.LPGTheme
+import com.thezayin.lpg.screens.NavGraphs
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
