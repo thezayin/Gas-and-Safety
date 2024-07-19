@@ -1,6 +1,8 @@
 package com.thezayin.userorderhistory.presentation.component
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -8,6 +10,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -16,7 +19,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -25,11 +30,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.thezayin.core.R
 import com.thezayin.entities.OrderModel
+import com.thezayin.framework.extension.functions.copyToClipboard
 
 @Composable
 fun HistoryCard(
     order: OrderModel?
 ) {
+    val context = LocalContext.current
     Box(
         modifier = Modifier
             .padding(top = 10.dp, bottom = 10.dp)
@@ -85,6 +92,31 @@ fun HistoryCard(
                                 )
                             )
                         }
+                    }
+
+                    Row {
+                        Text(
+                            text = "Order Id:",
+                            modifier = Modifier.padding(end = 5.dp),
+                            color = colorResource(id = R.color.black),
+                            fontSize = 16.sp,
+                            fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
+                        )
+                        Text(
+                            text = order?.id ?: "000000",
+                            color = colorResource(id = R.color.black),
+                            fontSize = 16.sp,
+                            fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
+                        )
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_copy),
+                            contentDescription = null,
+                            modifier = Modifier
+                                .size(20.dp)
+                                .clickable {
+                                    context.copyToClipboard(order?.id ?: "000000")
+                                }
+                        )
                     }
 
                     Text(

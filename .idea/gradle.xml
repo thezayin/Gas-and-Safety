@@ -9,15 +9,11 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/adminaddproducts" />
-            <option value="$PROJECT_DIR$/adminhome" />
-            <option value="$PROJECT_DIR$/adminorders" />
-            <option value="$PROJECT_DIR$/adminproductdetails" />
-            <option value="$PROJECT_DIR$/adminproducts" />
             <option value="$PROJECT_DIR$/analytics" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/databases" />
             <option value="$PROJECT_DIR$/di" />
             <option value="$PROJECT_DIR$/entities" />
             <option value="$PROJECT_DIR$/framework" />
