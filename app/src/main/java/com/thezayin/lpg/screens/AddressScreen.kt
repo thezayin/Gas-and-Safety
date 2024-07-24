@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -72,6 +73,7 @@ fun AddressScreen(
     ) { padding ->
         Column(
             modifier = Modifier
+                .navigationBarsPadding()
                 .padding(horizontal = 25.dp)
                 .padding(padding)
                 .fillMaxWidth()

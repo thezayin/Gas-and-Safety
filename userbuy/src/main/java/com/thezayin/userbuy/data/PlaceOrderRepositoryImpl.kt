@@ -1,5 +1,6 @@
 package com.thezayin.userbuy.data
 
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.thezayin.entities.CartModel
 import com.thezayin.entities.ProfileModel
@@ -46,7 +47,7 @@ class PlaceOrderRepositoryImpl(private val fireStore: FirebaseFirestore) : Place
                     orderDate = orderDate,
                     orderTime = orderTime,
                     orderStatus = orderStatus,
-                    orderDateTime = orderDateTime,
+                    orderDateTime = Timestamp.now(),
                     paymentMethod = paymentMethod,
                     totalAmount = totalAmount,
                     orders = orders,

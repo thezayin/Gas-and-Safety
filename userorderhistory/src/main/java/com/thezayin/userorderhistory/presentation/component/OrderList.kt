@@ -17,7 +17,7 @@ fun OrderList(
             .fillMaxSize()
             .padding(vertical = 30.dp, horizontal = 25.dp)
     ) {
-        val sortedList = list.sortedByDescending { it.orderDateTime }
+        val sortedList = list.sortedByDescending { it.orderDateTime.toString() }
         items(sortedList.size) { orders ->
             HistoryCard(list[orders])
         }

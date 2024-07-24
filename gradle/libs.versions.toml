@@ -65,6 +65,7 @@ neumorphic = "0.0.6"
 opencvContrib = "4.5.3.0"
 skrapeit = "1.2.2"
 jetbrainsKotlinJvm = "1.9.22"
+firebaseCommonKtx = "21.0.0"
 
 [libraries]
 accompanist-navigation-animation = { module = "com.google.accompanist:accompanist-navigation-animation", version.ref = "accompanistNavigationAnimation" }
@@ -144,6 +145,7 @@ androidx-work-runtime = { module = "androidx.work:work-runtime", version.ref = "
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+firebase-common-ktx = { group = "com.google.firebase", name = "firebase-common-ktx", version.ref = "firebaseCommonKtx" }
 
 
 [plugins]

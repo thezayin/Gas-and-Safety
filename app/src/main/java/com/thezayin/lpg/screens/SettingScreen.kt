@@ -177,7 +177,7 @@ fun OtherListComponent() {
                 containerColor = colorResource(id = R.color.semi_transparent)
             ),
             onClick = {
-//                context.sendMail()
+               context.sendMail()
             }
         ) {
             Row(
@@ -227,12 +227,13 @@ fun SettingHeader() {
             onClick = {}
         ) {
             Image(
-                painter = painterResource(id = R.drawable.ic_launcher_foreground),
+                painter = painterResource(id = R.drawable.ic_logo),
+                modifier = Modifier.fillMaxSize(),
                 contentDescription = "Logo"
             )
         }
         Text(
-            text = "Safe Gas",
+            text = "Gas and Safety",
             fontSize = 20.sp,
             fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_medium)),
             color = colorResource(id = com.thezayin.core.R.color.black),

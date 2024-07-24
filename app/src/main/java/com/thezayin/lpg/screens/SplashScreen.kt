@@ -1,18 +1,21 @@
 package com.thezayin.lpg.screens
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -43,14 +46,12 @@ fun SplashScreen(navController: DestinationsNavigator) {
             .background(color = colorResource(id = R.color.semi_transparent))
             .fillMaxSize()
     ) {
-        Text(
-            text = "Safe Gas",
-            fontSize = 26.sp,
-            color = colorResource(id = R.color.black),
-            fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
-            fontWeight = FontWeight.Bold,
+        Image(
+            painter = painterResource(id = R.drawable.ic_logo),
+            contentDescription = null,
             modifier = Modifier
                 .align(Alignment.Center)
+                .size(180.dp)
         )
 
         Column(
@@ -65,7 +66,7 @@ fun SplashScreen(navController: DestinationsNavigator) {
                 modifier = Modifier
                     .padding(bottom = 10.dp),
                 color = colorResource(id = R.color.black),
-                text = "Order LPG cylinders safely and conveniently with SafeGas.",
+                text = "Order LPG cylinders safely and conveniently with Gass and Safety.",
                 fontSize = 10.sp,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,

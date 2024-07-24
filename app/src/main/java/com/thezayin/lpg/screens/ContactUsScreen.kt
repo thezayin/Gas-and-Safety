@@ -34,6 +34,7 @@ import com.thezayin.common.component.GlassComponent
 import com.thezayin.common.component.UserTopBar
 import com.thezayin.framework.extension.functions.makeCall
 import com.thezayin.framework.extension.functions.sendMail
+import com.thezayin.framework.extension.functions.sendWhatsappMsg
 import com.thezayin.lpg.R
 import com.thezayin.lpg.screens.destinations.ContactUsScreenDestination
 
@@ -99,7 +100,7 @@ fun ContactUsList() {
                     alignment = Alignment.BottomCenter
                 )
                 Text(
-                    text = "03122345671",
+                    text = "03366511222",
                     color = colorResource(id = com.thezayin.core.R.color.black),
                     fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_regular)),
                     fontSize = 13.sp,
@@ -121,6 +122,7 @@ fun ContactUsList() {
                 containerColor = colorResource(id = R.color.semi_transparent)
             ),
             onClick = {
+                activity.sendWhatsappMsg()
             }
         ) {
             Row(
@@ -137,7 +139,7 @@ fun ContactUsList() {
                     alignment = Alignment.BottomCenter
                 )
                 Text(
-                    text = "03121234567",
+                    text = "03366511222",
                     color = colorResource(id = com.thezayin.core.R.color.black),
                     fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_regular)),
                     fontSize = 13.sp,
@@ -160,7 +162,7 @@ fun ContactUsList() {
                 containerColor = colorResource(id = R.color.semi_transparent)
             ),
             onClick = {
-
+                activity.sendMail()
             }
         ) {
             Row(
@@ -177,7 +179,7 @@ fun ContactUsList() {
                     alignment = Alignment.BottomCenter
                 )
                 Text(
-                    text = "safegass@gmail.com",
+                    text = "gasandsafety@gmail.com",
                     color = colorResource(id = com.thezayin.core.R.color.black),
                     fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_regular)),
                     fontSize = 13.sp,
