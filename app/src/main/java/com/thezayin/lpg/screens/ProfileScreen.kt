@@ -114,12 +114,13 @@ fun ProfileScreen(
     ) { padding ->
         Column(
             modifier = Modifier
+                .verticalScroll(rememberScrollState())
                 .padding(padding)
                 .fillMaxWidth()
                 .fillMaxSize(),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
-            Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+            Column(modifier = Modifier) {
                 UserDetails(
                     email = email,
                     name = name,

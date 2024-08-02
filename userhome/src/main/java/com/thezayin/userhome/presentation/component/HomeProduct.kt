@@ -7,9 +7,11 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -50,7 +52,7 @@ fun HomeProduct(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(160.dp)
+                .heightIn(min = 160.dp, max = 400.dp)
                 .padding(horizontal = 20.dp),
             verticalArrangement = Arrangement.SpaceBetween,
             horizontalAlignment = Alignment.End
@@ -80,8 +82,10 @@ fun HomeProduct(
                         fontSize = 16.sp,
                         fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                     )
+                    Spacer(modifier = Modifier.height(5.dp))
                     Text(
-                        text = product?.description ?: "Product Description",
+                        text = product?.description
+                            ?: "Composite Fiber LPG Cylinder of BGC (Burhan Gas Company) Carries 10 Kg Gas",
                         color = colorResource(id = R.color.black),
                         fontSize = 12.sp,
                         fontFamily = FontFamily(Font(R.font.noto_sans_regular)),
@@ -101,7 +105,7 @@ fun HomeProduct(
             }
             Card(
                 modifier = Modifier
-                    .padding(bottom = 20.dp)
+                    .padding(bottom = 20.dp, top = 10.dp)
                     .width(80.dp)
                     .height(40.dp),
                 colors = CardDefaults.cardColors(

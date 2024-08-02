@@ -33,7 +33,9 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.thezayin.common.component.GlassComponent
 import com.thezayin.common.component.UserTopBar
 import com.thezayin.framework.extension.functions.makeCall
+import com.thezayin.framework.extension.functions.openLink
 import com.thezayin.framework.extension.functions.sendMail
+import com.thezayin.framework.extension.functions.sendWhatsappMsg
 import com.thezayin.lpg.R
 import com.thezayin.lpg.screens.destinations.ContactUsScreenDestination
 
@@ -99,7 +101,7 @@ fun ContactUsList() {
                     alignment = Alignment.BottomCenter
                 )
                 Text(
-                    text = "03122345671",
+                    text = "03366511222",
                     color = colorResource(id = com.thezayin.core.R.color.black),
                     fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_regular)),
                     fontSize = 13.sp,
@@ -121,6 +123,7 @@ fun ContactUsList() {
                 containerColor = colorResource(id = R.color.semi_transparent)
             ),
             onClick = {
+                activity.sendWhatsappMsg()
             }
         ) {
             Row(
@@ -137,47 +140,7 @@ fun ContactUsList() {
                     alignment = Alignment.BottomCenter
                 )
                 Text(
-                    text = "03121234567",
-                    color = colorResource(id = com.thezayin.core.R.color.black),
-                    fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_regular)),
-                    fontSize = 13.sp,
-                    modifier = Modifier
-                        .padding(vertical = 25.dp)
-                        .padding(start = 20.dp)
-                )
-            }
-        }
-
-        Spacer(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(10.dp)
-        )
-
-        Card(
-            shape = RoundedCornerShape(10.dp),
-            colors = CardDefaults.cardColors(
-                containerColor = colorResource(id = R.color.semi_transparent)
-            ),
-            onClick = {
-
-            }
-        ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 20.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Image(
-                    painter = painterResource(id = com.thezayin.core.R.drawable.ic_mail),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .size(13.dp),
-                    alignment = Alignment.BottomCenter
-                )
-                Text(
-                    text = "safegass@gmail.com",
+                    text = "03366511222",
                     color = colorResource(id = com.thezayin.core.R.color.black),
                     fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_regular)),
                     fontSize = 13.sp,
@@ -210,6 +173,46 @@ fun ContactUsList() {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
+                    painter = painterResource(id = com.thezayin.core.R.drawable.ic_mail),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .size(13.dp),
+                    alignment = Alignment.BottomCenter
+                )
+                Text(
+                    text = "gasandsafety@gmail.com",
+                    color = colorResource(id = com.thezayin.core.R.color.black),
+                    fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_regular)),
+                    fontSize = 13.sp,
+                    modifier = Modifier
+                        .padding(vertical = 25.dp)
+                        .padding(start = 20.dp)
+                )
+            }
+        }
+
+        Spacer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(10.dp)
+        )
+
+        Card(
+            shape = RoundedCornerShape(10.dp),
+            colors = CardDefaults.cardColors(
+                containerColor = colorResource(id = R.color.semi_transparent)
+            ),
+            onClick = {
+                activity.openLink("https://www.facebook.com/profile.php?id=61561593933149&mibextid=ZbWKwL")
+            }
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 20.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Image(
                     painter = painterResource(id = com.thezayin.core.R.drawable.ic_facebook),
                     contentDescription = null,
                     modifier = Modifier
@@ -217,7 +220,7 @@ fun ContactUsList() {
                     alignment = Alignment.BottomCenter
                 )
                 Text(
-                    text = "facebook/:safegass",
+                    text = "like us on facebook",
                     color = colorResource(id = com.thezayin.core.R.color.black),
                     fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_regular)),
                     fontSize = 13.sp,
@@ -238,7 +241,7 @@ fun ContactUsList() {
                 containerColor = colorResource(id = R.color.semi_transparent)
             ),
             onClick = {
-
+                activity.openLink("https://www.instagram.com/gasandsafety?igsh=MXM1M3YybDJiZTAwdg==")
             }
         ) {
             Row(
@@ -255,7 +258,7 @@ fun ContactUsList() {
                     alignment = Alignment.BottomCenter
                 )
                 Text(
-                    text = "instagram/:safegass",
+                    text = "follow us on instagram",
                     color = colorResource(id = com.thezayin.core.R.color.black),
                     fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_regular)),
                     fontSize = 13.sp,
@@ -266,44 +269,6 @@ fun ContactUsList() {
             }
         }
 
-        Spacer(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(10.dp)
-        )
-        Card(
-            shape = RoundedCornerShape(10.dp),
-            colors = CardDefaults.cardColors(
-                containerColor = colorResource(id = R.color.semi_transparent)
-            ),
-            onClick = {
-
-            }
-        ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 20.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Image(
-                    painter = painterResource(id = com.thezayin.core.R.drawable.ic_twitter),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .size(13.dp),
-                    alignment = Alignment.BottomCenter
-                )
-                Text(
-                    text = "twitter/:safegass",
-                    color = colorResource(id = com.thezayin.core.R.color.black),
-                    fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_regular)),
-                    fontSize = 13.sp,
-                    modifier = Modifier
-                        .padding(vertical = 25.dp)
-                        .padding(start = 20.dp)
-                )
-            }
-        }
 
         Spacer(
             modifier = Modifier

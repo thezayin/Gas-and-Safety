@@ -39,17 +39,24 @@ fun Context.copyToClipboard(text: String) {
 }
 
 fun Context.makeCall() {
-    val number = "03033009802"
+    val number = "+923366511222"
     val intent = Intent(Intent.ACTION_DIAL)
     intent.setData(Uri.parse("tel:$number"))
     this.startActivity(intent)
 }
 
+fun Context.sendWhatsappMsg() {
+    val url = "https://api.whatsapp.com/send?phone=+923366511222"
+    val i = Intent(Intent.ACTION_VIEW)
+    i.setData(Uri.parse(url))
+    this.startActivity(i)
+}
+
 fun Context.sendMail() {
     val i = Intent(Intent.ACTION_SEND)
     i.setType("message/rfc822")
-    i.putExtra(Intent.EXTRA_EMAIL, arrayOf("zainshahidbuttt@gmail.com"))
-    i.putExtra(Intent.EXTRA_SUBJECT, "subject of email")
+    i.putExtra(Intent.EXTRA_EMAIL, arrayOf("gasandsafety@gmail.com"))
+    i.putExtra(Intent.EXTRA_SUBJECT, "Gas And Safety")
     i.putExtra(Intent.EXTRA_TEXT, "body of email")
     try {
         startActivity(Intent.createChooser(i, "Send mail..."))

@@ -1,6 +1,7 @@
 package com.thezayin.lpg.screens
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -41,7 +42,7 @@ fun CartScreen(navigator: DestinationsNavigator) {
     }
 
     Scaffold(
-        modifier = Modifier,
+        modifier = Modifier .navigationBarsPadding(),
         containerColor = colorResource(id = R.color.semi_transparent),
         topBar = {
             UserTopBar(
