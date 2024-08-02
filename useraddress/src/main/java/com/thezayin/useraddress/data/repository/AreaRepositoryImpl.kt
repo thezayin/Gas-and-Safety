@@ -10,10 +10,14 @@ class AreaRepositoryImpl : AreaRepository {
         try {
             emit(Response.Loading)
             val list = when (city) {
-                "Islamabad" -> listOf("Select", "E-11, E-7, F-10")
+                "Islamabad" -> listOf(
+                    "Select",
+                    "DHA Phase 1",
+                    "DHA Phase 2",
+                )
+
                 "Rawalpindi" -> listOf(
                     "Select",
-                    "Bheria 9",
                     "Bahria Phase 8",
                     "Bahria Phase 7",
                     "Bahria Phase 6",
@@ -22,11 +26,6 @@ class AreaRepositoryImpl : AreaRepository {
                     "Bahria Phase 3",
                     "Bahria Phase 2",
                     "Bahria Phase 1",
-                    "DHA Phase 1",
-                    "DHA Phase 2",
-                    "DHA Phase 3",
-                    "DHA Phase 4",
-                    "DHA Phase 5",
                 )
 
                 else -> {

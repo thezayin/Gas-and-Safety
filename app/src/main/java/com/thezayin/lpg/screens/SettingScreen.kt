@@ -171,39 +171,6 @@ fun OtherListComponent() {
                 .height(10.dp)
         )
 
-        Card(
-            shape = RoundedCornerShape(10.dp),
-            colors = CardDefaults.cardColors(
-                containerColor = colorResource(id = R.color.semi_transparent)
-            ),
-            onClick = {
-               context.sendMail()
-            }
-        ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 20.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Image(
-                    painter = painterResource(id = com.thezayin.core.R.drawable.ic_app),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .size(13.dp),
-                    alignment = Alignment.BottomCenter
-                )
-                Text(
-                    text = "More Apps",
-                    color = colorResource(id = R.color.black),
-                    fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_regular)),
-                    fontSize = 13.sp,
-                    modifier = Modifier
-                        .padding(vertical = 25.dp)
-                        .padding(start = 20.dp)
-                )
-            }
-        }
         Spacer(
             modifier = Modifier
                 .fillMaxWidth()

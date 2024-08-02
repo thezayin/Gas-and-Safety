@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
@@ -43,6 +44,7 @@ fun SplashScreen(navController: DestinationsNavigator) {
 
     Box(
         modifier = Modifier
+            .navigationBarsPadding()
             .background(color = colorResource(id = R.color.semi_transparent))
             .fillMaxSize()
     ) {
@@ -66,7 +68,7 @@ fun SplashScreen(navController: DestinationsNavigator) {
                 modifier = Modifier
                     .padding(bottom = 10.dp),
                 color = colorResource(id = R.color.black),
-                text = "Order LPG cylinders safely and conveniently with Gass and Safety.",
+                text = "PROVIDING SAFE GAS ENERGY AND SECURING YOUR WORLD BY PROVIDING TRAINING AND SAFETY EQUIPMENT.",
                 fontSize = 10.sp,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,
