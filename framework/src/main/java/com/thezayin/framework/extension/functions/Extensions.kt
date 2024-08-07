@@ -9,6 +9,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.net.Uri
 import android.widget.Toast
+import java.util.Calendar
 import java.util.UUID
 
 
@@ -16,6 +17,12 @@ tailrec fun Context.getActivity(): Activity? = when (this) {
     is Activity -> this
     is ContextWrapper -> baseContext.getActivity()
     else -> null
+}
+
+fun isStoreOpen(storeOpeningTime: Int,storeClosingTime:Int): Boolean {
+    val currentTime = Calendar.getInstance()
+    val currentHour = currentTime.get(Calendar.HOUR_OF_DAY)
+    return currentHour in storeOpeningTime until storeClosingTime
 }
 
 fun Context.checkForInternet(): Boolean {

@@ -70,7 +70,6 @@ class PlaceOrderRepositoryImpl(private val fireStore: FirebaseFirestore) : Place
                     .addOnSuccessListener {
                     }.addOnFailureListener {
                     }.await()
-
                 emit(Response.Success(operationSuccessFull))
             } catch (e: Exception) {
                 emit(Response.Error(e.message ?: e.toString()))

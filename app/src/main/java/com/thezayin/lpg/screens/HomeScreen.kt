@@ -1,13 +1,19 @@
 package com.thezayin.lpg.screens
 
 import android.app.Activity
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
@@ -16,8 +22,10 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.thezayin.common.component.GlassComponent
 import com.thezayin.common.dialogs.ErrorQueryDialog
 import com.thezayin.common.dialogs.LoadingDialog
+import com.thezayin.common.dialogs.StoreClosedDialog
 import com.thezayin.common.snackbar.RememberSnackBar
 import com.thezayin.framework.extension.functions.getUserUUID
+import com.thezayin.framework.extension.functions.isStoreOpen
 import com.thezayin.lpg.R
 import com.thezayin.lpg.screens.destinations.AddressScreenDestination
 import com.thezayin.lpg.screens.destinations.CartScreenDestination
@@ -33,7 +41,8 @@ import com.thezayin.userhome.presentation.component.HomeProductList
 import com.thezayin.userhome.presentation.component.TopBarComponent
 import org.koin.compose.koinInject
 
-@Destination
+@RequiresApi(Build.VERSION_CODES.O)
+@Destination()
 @Composable
 fun HomeScreen(
     navigator: DestinationsNavigator
@@ -52,6 +61,19 @@ fun HomeScreen(
     val isLoadingCart = cartViewModel.isLoading.collectAsState().value.isLoading
     val addedToCart = cartViewModel.isAddedToCart.collectAsState().value.isAdded
 
+    val storeOpeningTime = 7 // 7:00 AM
+    val storeClosingTime = 19 // 7:00 PM
+    var showDialog by remember { mutableStateOf(!isStoreOpen(storeOpeningTime, storeClosingTime)) }
+
+    if (showDialog) {
+        StoreClosedDialog(
+            onDismiss = { showDialog = false },
+            showDialog = {
+                // Logic for placing the order even when the store is closed
+                showDialog = false
+            }
+        )
+    }
     val profileViewModel: ProfileViewModel = koinInject()
     val profileList = profileViewModel.getProfileList.collectAsState().value.data
     activity.getUserUUID()
@@ -70,7 +92,7 @@ fun HomeScreen(
     GlassComponent()
 
     Scaffold(
-        modifier = Modifier .navigationBarsPadding(),
+        modifier = Modifier.navigationBarsPadding(),
         containerColor = colorResource(id = R.color.semi_transparent),
         topBar = {
             TopBarComponent(
@@ -110,3 +132,4 @@ fun HomeScreen(
         }
     }
 }
+
