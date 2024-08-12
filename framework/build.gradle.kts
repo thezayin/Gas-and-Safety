@@ -85,4 +85,6 @@ dependencies {
     // dependency for exoplayer
     api("com.google.android.exoplayer:exoplayer-core:2.19.1")
     api("com.google.android.exoplayer:exoplayer-ui:2.19.1")
+    implementation (libs.sdp.compose)
+
 }

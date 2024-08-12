@@ -12,7 +12,7 @@ interface ProfileRepository {
         address: String,
         area: String,
         city: String,
-        email: String
+        email: String?
     ): Flow<Response<Boolean>>
 
     fun updateProfileById(

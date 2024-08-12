@@ -27,9 +27,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.thezayin.core.R
+import ir.kaaveh.sdpcompose.sdp
+import ir.kaaveh.sdpcompose.ssp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -49,16 +49,16 @@ fun LocationDetails(
 
     Column(
         modifier = modifier
-            .padding(horizontal = 25.dp)
-            .padding(top = 30.dp)
+            .padding(horizontal = 15.sdp)
+            .padding(top = 10.sdp)
             .fillMaxWidth(),
         horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.Center
     ) {
         Text(
             text = "Select City",
-            modifier = Modifier.padding(bottom = 10.dp),
-            fontSize = 16.sp,
+            modifier = Modifier.padding(bottom = 10.sdp),
+            fontSize = 12.ssp,
             fontFamily = FontFamily(Font(R.font.noto_sans_bold))
         )
         ExposedDropdownMenuBox(
@@ -76,7 +76,7 @@ fun LocationDetails(
                     .menuAnchor()
                     .fillMaxWidth(),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-                shape = RoundedCornerShape(8.dp),
+                shape = RoundedCornerShape(8.sdp),
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = colorResource(id = R.color.semi_transparent),
                     unfocusedContainerColor = colorResource(id = R.color.semi_transparent),
@@ -97,7 +97,7 @@ fun LocationDetails(
                             Text(
                                 text = item,
                                 color = colorResource(id = R.color.grey),
-                                fontSize = 12.sp,
+                                fontSize = 10.ssp,
                                 fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                                 fontWeight = if (index == selectedCityIndex.value) FontWeight.Bold else null
                             )
@@ -115,8 +115,8 @@ fun LocationDetails(
         if (areaList.isNotEmpty() && selectedCityIndex.value != 0) {
             Text(
                 text = "Select Area",
-                modifier = Modifier.padding(top = 15.dp, bottom = 10.dp),
-                fontSize = 16.sp,
+                modifier = Modifier.padding(top = 10.sdp, bottom = 10.sdp),
+                fontSize = 12.ssp,
                 fontFamily = FontFamily(Font(R.font.noto_sans_bold))
             )
             ExposedDropdownMenuBox(
@@ -136,7 +136,7 @@ fun LocationDetails(
                         .menuAnchor()
                         .fillMaxWidth(),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-                    shape = RoundedCornerShape(8.dp),
+                    shape = RoundedCornerShape(8.sdp),
                     colors = TextFieldDefaults.colors(
                         focusedContainerColor = colorResource(id = R.color.semi_transparent),
                         unfocusedContainerColor = colorResource(id = R.color.semi_transparent),
@@ -158,7 +158,7 @@ fun LocationDetails(
                                 Text(
                                     text = item,
                                     color = colorResource(id = R.color.grey),
-                                    fontSize = 12.sp,
+                                    fontSize = 10.ssp,
                                     fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                                     fontWeight = if (index == selectedAreaIndex.intValue) FontWeight.Bold else null
                                 )
@@ -178,10 +178,10 @@ fun LocationDetails(
                 text = "Address:",
                 textAlign = TextAlign.Start,
                 color = colorResource(id = R.color.black),
-                fontSize = 16.sp,
+                fontSize = 12.ssp,
                 fontWeight = FontWeight.Bold,
                 fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
-                modifier = Modifier.padding(top = 10.dp, bottom = 5.dp)
+                modifier = Modifier.padding(top = 10.sdp, bottom = 5.sdp)
             )
             TextField(
                 value = address.value,
@@ -192,16 +192,16 @@ fun LocationDetails(
                     Text(
                         text = "Enter Address",
                         color = colorResource(id = R.color.grey),
-                        fontSize = 12.sp,
+                        fontSize = 10.ssp,
                         fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                     )
                 },
                 singleLine = true,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(55.dp),
+                    .height(40.sdp),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-                shape = RoundedCornerShape(8.dp),
+                shape = RoundedCornerShape(8.sdp),
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = colorResource(id = R.color.semi_transparent),
                     unfocusedContainerColor = colorResource(id = R.color.semi_transparent),

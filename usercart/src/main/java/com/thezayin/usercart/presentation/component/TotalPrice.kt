@@ -12,22 +12,22 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import ir.kaaveh.sdpcompose.sdp
+import ir.kaaveh.sdpcompose.ssp
 
 @Composable
 fun TotalPrice(price: String) {
     Row(
         modifier = Modifier
-            .padding(horizontal = 25.dp)
+            .padding(horizontal = 15.sdp)
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
     ) {
         Text(
             text = "Total Price: $price",
-            modifier = Modifier.padding(top = 25.dp, bottom = 10.dp),
-            fontSize = 32.sp,
+            modifier = Modifier.padding(top = 25.sdp, bottom = 10.sdp),
+            fontSize = 20.ssp,
             fontWeight = FontWeight.ExtraBold,
             fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold))
         )

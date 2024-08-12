@@ -48,6 +48,7 @@ firebaseInappmessagingDisplay = "20.4.1"
 firebaseConfig = "21.6.3"
 playServicesAds = "23.0.0"
 playServicesMeasurementApi = "21.6.2"
+sdpCompose = "1.1.0"
 slf4jApi = "2.0.5"
 slf4jSimple = "1.6.1"
 timber = "5.0.1"
@@ -131,6 +132,7 @@ firebase-appdistribution-gradle = { group = "com.google.firebase", name = "fireb
 firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging", version.ref = "firebaseMessaging" }
 firebase-inappmessaging-display = { group = "com.google.firebase", name = "firebase-inappmessaging-display", version.ref = "firebaseInappmessagingDisplay" }
 firebase-config = { group = "com.google.firebase", name = "firebase-config", version.ref = "firebaseConfig" }
+sdp-compose = { module = "com.github.Kaaveh:sdp-compose", version.ref = "sdpCompose" }
 skrapeit = { module = "it.skrape:skrapeit", version.ref = "skrapeit" }
 
 lottie-compose = { module = "com.airbnb.android:lottie-compose", version.ref = "lottieCompose" }

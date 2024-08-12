@@ -26,6 +26,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.thezayin.core.R
+import ir.kaaveh.sdpcompose.sdp
+import ir.kaaveh.sdpcompose.ssp
 
 @Composable
 fun PersonalDataFields(
@@ -38,13 +40,13 @@ fun PersonalDataFields(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 25.dp),
+            .padding(horizontal = 15.sdp),
     ) {
         Text(
             text = "Name:",
             textAlign = TextAlign.Start,
             color = colorResource(id = R.color.black),
-            fontSize = 16.sp,
+            fontSize = 12.ssp,
             fontWeight = FontWeight.Bold,
             fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
             modifier = Modifier.padding(top = 10.dp, bottom = 5.dp)
@@ -58,7 +60,7 @@ fun PersonalDataFields(
                 Text(
                     text = "Enter Product Name",
                     color = colorResource(id = R.color.grey),
-                    fontSize = 12.sp,
+                    fontSize = 12.ssp,
                     fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                 )
             },
@@ -81,7 +83,7 @@ fun PersonalDataFields(
             text = "Phone Number:",
             textAlign = TextAlign.Start,
             color = colorResource(id = R.color.black),
-            fontSize = 16.sp,
+            fontSize = 16.ssp,
             fontWeight = FontWeight.Bold,
             fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
             modifier = Modifier.padding(top = 10.dp, bottom = 5.dp)
@@ -98,7 +100,7 @@ fun PersonalDataFields(
                 Text(
                     text = "0300123467",
                     color = colorResource(id = R.color.grey),
-                    fontSize = 12.sp,
+                    fontSize = 12.ssp,
                     fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                 )
             },
@@ -121,7 +123,7 @@ fun PersonalDataFields(
             text = "Address:",
             textAlign = TextAlign.Start,
             color = colorResource(id = R.color.black),
-            fontSize = 16.sp,
+            fontSize = 16.ssp,
             fontWeight = FontWeight.Bold,
             fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
             modifier = Modifier.padding(top = 10.dp, bottom = 5.dp)
@@ -135,7 +137,7 @@ fun PersonalDataFields(
                 Text(
                     text = "Enter Product Address",
                     color = colorResource(id = R.color.grey),
-                    fontSize = 12.sp,
+                    fontSize = 12.ssp,
                     fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                 )
             },
@@ -158,7 +160,7 @@ fun PersonalDataFields(
             text = "Email (optional):",
             textAlign = TextAlign.Start,
             color = colorResource(id = R.color.black),
-            fontSize = 16.sp,
+            fontSize = 16.ssp,
             fontWeight = FontWeight.Bold,
             fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
             modifier = Modifier.padding(top = 10.dp, bottom = 5.dp)
@@ -172,7 +174,7 @@ fun PersonalDataFields(
                 Text(
                     text = "Enter Product Price",
                     color = colorResource(id = R.color.grey),
-                    fontSize = 12.sp,
+                    fontSize = 12.ssp,
                     fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                 )
             },
@@ -195,7 +197,7 @@ fun PersonalDataFields(
             text = "Message (optional):",
             textAlign = TextAlign.Start,
             color = colorResource(id = R.color.black),
-            fontSize = 16.sp,
+            fontSize = 16.ssp,
             fontWeight = FontWeight.Bold,
             fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
             modifier = Modifier.padding(top = 10.dp, bottom = 5.dp)
@@ -209,7 +211,7 @@ fun PersonalDataFields(
                 Text(
                     text = "Enter Product Price",
                     color = colorResource(id = R.color.grey),
-                    fontSize = 12.sp,
+                    fontSize = 12.ssp,
                     fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                 )
             },

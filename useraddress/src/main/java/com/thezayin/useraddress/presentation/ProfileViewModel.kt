@@ -141,7 +141,7 @@ class ProfileViewModel(
         address: String,
         area: String,
         city: String,
-        email: String
+        email: String?
     ) = viewModelScope.launch {
         addProfile(name, phoneNumber, address, area, city, email).collect { response ->
             when (response) {

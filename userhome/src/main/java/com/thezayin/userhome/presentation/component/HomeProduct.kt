@@ -31,11 +31,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.thezayin.core.R
 import com.thezayin.entities.HomeProductsModel
+import ir.kaaveh.sdpcompose.sdp
+import ir.kaaveh.sdpcompose.ssp
 
 @Composable
 fun HomeProduct(
@@ -44,22 +44,22 @@ fun HomeProduct(
 ) {
     Box(
         modifier = Modifier
-            .padding(top = 10.dp, bottom = 10.dp)
-            .clip(shape = RoundedCornerShape(16.dp))
+            .padding(top = 5.sdp, bottom = 5.sdp)
+            .clip(shape = RoundedCornerShape(8.sdp))
             .background(color = colorResource(id = R.color.semi_transparent))
             .fillMaxWidth()
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .heightIn(min = 160.dp, max = 400.dp)
-                .padding(horizontal = 20.dp),
+                .heightIn(min = 80.sdp, max = 400.sdp)
+                .padding(horizontal = 15.sdp),
             verticalArrangement = Arrangement.SpaceBetween,
             horizontalAlignment = Alignment.End
         ) {
             Row(
                 modifier = Modifier
-                    .padding(top = 20.dp)
+                    .padding(top = 10.sdp)
                     .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Start
@@ -68,26 +68,26 @@ fun HomeProduct(
                     model = product?.imageUri ?: R.drawable.ic_mail,
                     contentDescription = null,
                     modifier = Modifier
-                        .clip(shape = RoundedCornerShape(100.dp))
-                        .size(50.dp)
+                        .clip(shape = RoundedCornerShape(100.sdp))
+                        .size(50.sdp)
                         .background(color = Color.White),
                     contentScale = ContentScale.Fit
                 )
                 Column(
-                    modifier = Modifier.padding(start = 20.dp)
+                    modifier = Modifier.padding(start = 10.sdp)
                 ) {
                     Text(
                         text = product?.name ?: "Product Name",
                         color = colorResource(id = R.color.black),
-                        fontSize = 16.sp,
+                        fontSize = 10.ssp,
                         fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                     )
-                    Spacer(modifier = Modifier.height(5.dp))
+                    Spacer(modifier = Modifier.height(5.sdp))
                     Text(
                         text = product?.description
                             ?: "Composite Fiber LPG Cylinder of BGC (Burhan Gas Company) Carries 10 Kg Gas",
                         color = colorResource(id = R.color.black),
-                        fontSize = 12.sp,
+                        fontSize = 8.ssp,
                         fontFamily = FontFamily(Font(R.font.noto_sans_regular)),
                     )
                 }
@@ -99,23 +99,23 @@ fun HomeProduct(
                 Text(
                     text = " Rs: ${product?.price}",
                     color = colorResource(id = R.color.black),
-                    fontSize = 16.sp,
+                    fontSize = 12.ssp,
                     fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                 )
             }
             Card(
                 modifier = Modifier
-                    .padding(bottom = 20.dp, top = 10.dp)
-                    .width(80.dp)
-                    .height(40.dp),
+                    .padding(bottom = 10.sdp, top = 5.sdp)
+                    .width(60.sdp)
+                    .height(30.sdp),
                 colors = CardDefaults.cardColors(
                     containerColor = colorResource(id = R.color.black)
                 ),
-                shape = RoundedCornerShape(10.dp),
+                shape = RoundedCornerShape(5.sdp),
             ) {
                 Row(
                     modifier = Modifier
-                        .padding(horizontal = 10.dp)
+                        .padding(horizontal = 5.sdp)
                         .fillMaxSize()
                         .clickable {
                             onClick()
@@ -128,7 +128,7 @@ fun HomeProduct(
                         painter = painterResource(id = R.drawable.ic_cart),
                         contentDescription = null,
                         colorFilter = ColorFilter.tint(color = colorResource(id = R.color.white)),
-                        modifier = Modifier.size(20.dp)
+                        modifier = Modifier.size(12.sdp)
                     )
                 }
             }

@@ -25,52 +25,54 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import ir.kaaveh.sdpcompose.sdp
+import ir.kaaveh.sdpcompose.ssp
 
 @Composable
 fun NetworkDialog(showDialog: (Boolean) -> Unit) {
     Dialog(onDismissRequest = {}) {
         Surface(
-            shape = RoundedCornerShape(16.dp),
+            shape = RoundedCornerShape(16.sdp),
             color = Color.White
         ) {
             Box(contentAlignment = Alignment.Center) {
-                Column(modifier = Modifier.padding(20.dp)) {
-                    Spacer(modifier = Modifier.height(20.dp))
+                Column(modifier = Modifier.padding(20.sdp)) {
+                    Spacer(modifier = Modifier.height(20.sdp))
                     Text(
                         text = "No internet connection",
                         fontFamily = FontFamily(Font(com.thezayin.core.R.font.abeezee_regular)),
                         color = colorResource(id = com.thezayin.core.R.color.black),
-                        fontSize = 16.sp,
+                        fontSize = 12.ssp,
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Center
                     )
-                    Spacer(modifier = Modifier.height(20.dp))
+                    Spacer(modifier = Modifier.height(20.sdp))
                     Box(
                         modifier = Modifier
-                            .padding(horizontal = 40.dp)
+                            .padding(horizontal = 40.sdp)
                             .fillMaxWidth(),
                         contentAlignment = Alignment.Center
                     ) {
                         Image(
                             painter = painterResource(id = com.thezayin.core.R.drawable.ic_connection),
                             contentDescription = null,
-                            modifier = Modifier.size(50.dp)
+                            modifier = Modifier.size(40.sdp)
                         )
                     }
-                    Spacer(modifier = Modifier.height(20.dp))
+                    Spacer(modifier = Modifier.height(20.sdp))
                     Button(
                         onClick = {
                             showDialog(false)
                         },
                         modifier = Modifier.fillMaxWidth(),
-                        shape = RoundedCornerShape(6.dp),
+                        shape = RoundedCornerShape(6.sdp),
                         colors = ButtonDefaults.buttonColors(contentColor = colorResource(id = com.thezayin.core.R.color.black))
                     ) {
                         Text(
                             text = "Retry",
                             fontFamily = FontFamily(Font(com.thezayin.core.R.font.abeezee_regular)),
                             color = colorResource(id = com.thezayin.core.R.color.white),
-                            fontSize = 16.sp,
+                            fontSize = 12.ssp,
                             textAlign = TextAlign.Center
                         )
                     }

@@ -11,8 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.unit.sp
 import com.thezayin.entities.CartModel
+import ir.kaaveh.sdpcompose.ssp
 
 @Composable
 fun OrderProductList(
@@ -30,13 +30,13 @@ fun OrderProductList(
                 Text(
                     text = orders[it].name + " x " + orders[it].quantity.toString(),
                     color = colorResource(id = com.thezayin.core.R.color.black),
-                    fontSize = 12.sp,
+                    fontSize = 8.ssp,
                     fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
                 )
 
                 Text(
                     text = "Rs. ${orders[it].price ?: "0"}",
-                    fontSize = 12.sp,
+                    fontSize = 8.ssp,
                     fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
                     color = colorResource(id = com.thezayin.core.R.color.black)
                 )

@@ -16,8 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import ir.kaaveh.sdpcompose.sdp
+import ir.kaaveh.sdpcompose.ssp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -44,24 +44,23 @@ fun RememberSnackBar(
             ),
     ) {
         Snackbar(
-            modifier = modifier.height(120.dp),
+            modifier = modifier.height(100.sdp),
             containerColor = colorResource(id = cartTintColor)
         ) {
             Row(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(10.dp),
+                    .padding(10.sdp),
                 verticalAlignment = Alignment.Bottom,
                 horizontalArrangement = Arrangement.Center
             ) {
                 Text(
                     text = message,
-                    fontSize = 22.sp,
+                    fontSize = 16.ssp,
                     color = colorResource(id = com.thezayin.core.R.color.white),
                     fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_regular))
                 )
             }
-
         }
     }
 }

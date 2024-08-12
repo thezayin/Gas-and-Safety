@@ -5,8 +5,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import com.thezayin.entities.OrderModel
+import ir.kaaveh.sdpcompose.sdp
 
 @Composable
 fun OrderList(
@@ -15,7 +15,7 @@ fun OrderList(
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .padding(vertical = 30.dp, horizontal = 25.dp)
+            .padding(vertical = 20.sdp, horizontal = 15.sdp)
     ) {
         val sortedList = list.sortedByDescending { it.orderDateTime.toString() }
         items(sortedList.size) { orders ->

@@ -3,6 +3,7 @@ package com.thezayin.lpg.screens
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -42,7 +43,9 @@ fun CartScreen(navigator: DestinationsNavigator) {
     }
 
     Scaffold(
-        modifier = Modifier .navigationBarsPadding(),
+        modifier = Modifier
+            .navigationBarsPadding()
+            .statusBarsPadding(),
         containerColor = colorResource(id = R.color.semi_transparent),
         topBar = {
             UserTopBar(

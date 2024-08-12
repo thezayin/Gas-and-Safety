@@ -5,7 +5,7 @@ import com.thezayin.useraddress.domain.repository.ProfileRepository
 import kotlinx.coroutines.flow.Flow
 
 interface AddProfile :
-    suspend (String, String, String, String, String, String) -> Flow<Response<Boolean>>
+    suspend (String, String, String, String, String, String?) -> Flow<Response<Boolean>>
 
 class AddProfileImpl(
     private val profileRepository: ProfileRepository
@@ -16,7 +16,7 @@ class AddProfileImpl(
         address: String,
         area: String,
         city: String,
-        email: String,
+        email: String?,
     ): Flow<Response<Boolean>> =
         profileRepository.addProfile(name, phoneNumber, address, area, city, email)
 }

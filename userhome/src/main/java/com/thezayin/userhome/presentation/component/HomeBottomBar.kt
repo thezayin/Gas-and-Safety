@@ -25,9 +25,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.thezayin.core.R
 import com.thezayin.entities.ProfileModel
+import ir.kaaveh.sdpcompose.sdp
+import ir.kaaveh.sdpcompose.ssp
 
 @Composable
 fun HomeBottomBar(
@@ -45,23 +46,23 @@ fun HomeBottomBar(
         modifier = modifier
             .clip(
                 shape = RoundedCornerShape(
-                    topEnd = 20.dp,
-                    topStart = 20.dp
+                    topEnd = 20.sdp,
+                    topStart = 20.sdp
                 )
             )
             .background(color = colorResource(id = R.color.semi_transparent))
-            .padding(bottom = 20.dp, top = 20.dp)
+            .padding(bottom = 10.sdp, top = 10.sdp)
             .fillMaxWidth()
-            .height(60.dp)
-            .padding(horizontal = 25.dp),
+            .height(50.sdp)
+            .padding(horizontal = 25.sdp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Card(
             modifier = Modifier
-                .width(100.dp)
-                .height(40.dp),
-            shape = RoundedCornerShape(30.dp),
+                .width(80.sdp)
+                .height(40.sdp),
+            shape = RoundedCornerShape(25.sdp),
             colors = CardDefaults.cardColors(
                 containerColor = colorResource(id = R.color.black)
             )
@@ -74,14 +75,15 @@ fun HomeBottomBar(
                 horizontalArrangement = Arrangement.Center
             ) {
                 Image(
-                    modifier = Modifier.size(20.dp),
+                    modifier = Modifier.size(20.sdp),
                     painter = painterResource(id = R.drawable.ic_home),
                     contentDescription = null,
                 )
                 Text(
                     text = "Home",
+                    fontSize = 10.ssp,
                     color = colorResource(id = R.color.white),
-                    modifier = Modifier.padding(start = 10.dp)
+                    modifier = Modifier.padding(start = 5.sdp)
                 )
             }
         }
@@ -90,7 +92,7 @@ fun HomeBottomBar(
             painter = painterResource(id = R.drawable.ic_history),
             contentDescription = null,
             modifier = Modifier
-                .size(27.dp)
+                .size(20.sdp)
                 .clickable {
                     navigateToHistory()
                 }
@@ -101,7 +103,7 @@ fun HomeBottomBar(
                 Badge { Text(text = badgeText) }
             }
         }, modifier = Modifier
-            .size(33.dp)
+            .size(30.sdp)
             .clickable {
                 navigateToCart()
             }) {
@@ -109,7 +111,7 @@ fun HomeBottomBar(
                 painter = painterResource(id = R.drawable.ic_cart),
                 contentDescription = null,
                 modifier = Modifier
-                    .size(33.dp)
+                    .size(25.sdp)
             )
         }
 
@@ -117,7 +119,7 @@ fun HomeBottomBar(
             painter = painterResource(id = R.drawable.ic_profile),
             contentDescription = null,
             modifier = Modifier
-                .size(28.dp)
+                .size(22.sdp)
                 .clickable {
                     if (profileList.isEmpty()) {
                         navigateToProfile()

@@ -19,7 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
+import ir.kaaveh.sdpcompose.sdp
 
 @Composable
 fun AddProfileButton(
@@ -27,16 +27,16 @@ fun AddProfileButton(
 ) {
     Row(
         modifier = Modifier
-            .padding(top = 30.dp, bottom = 25.dp)
+            .padding(top = 25.sdp, bottom = 10.sdp)
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.End
     ) {
         Card(
             modifier = Modifier
-                .width(120.dp)
-                .height(40.dp),
-            shape = RoundedCornerShape(30.dp),
+                .width(90.sdp)
+                .height(30.sdp),
+            shape = RoundedCornerShape(30.sdp),
             colors = CardDefaults.cardColors(containerColor = colorResource(id = com.thezayin.core.R.color.semi_transparent)),
         ) {
             Row(
@@ -53,8 +53,7 @@ fun AddProfileButton(
                     painter = painterResource(id = com.thezayin.core.R.drawable.ic_add),
                     contentDescription = null,
                     modifier = Modifier
-                        .padding(start = 5.dp)
-                        .size(20.dp)
+                        .size(15.sdp)
                 )
             }
         }

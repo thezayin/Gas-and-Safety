@@ -23,9 +23,9 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.thezayin.core.R
+import ir.kaaveh.sdpcompose.sdp
+import ir.kaaveh.sdpcompose.ssp
 
 @Composable
 fun UserDetails(
@@ -36,16 +36,16 @@ fun UserDetails(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 25.dp),
+            .padding(horizontal = 15.sdp),
     ) {
         Text(
             text = "Name:",
             textAlign = TextAlign.Start,
             color = colorResource(id = R.color.black),
-            fontSize = 16.sp,
+            fontSize = 12.ssp,
             fontWeight = FontWeight.Bold,
             fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
-            modifier = Modifier.padding(top = 10.dp, bottom = 5.dp)
+            modifier = Modifier.padding(top = 10.sdp, bottom = 5.sdp)
         )
         TextField(
             value = name.value,
@@ -56,16 +56,16 @@ fun UserDetails(
                 Text(
                     text = "Enter Name",
                     color = colorResource(id = R.color.grey),
-                    fontSize = 12.sp,
+                    fontSize = 10.ssp,
                     fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                 )
             },
             singleLine = true,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(55.dp),
+                .height(40.sdp),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-            shape = RoundedCornerShape(8.dp),
+            shape = RoundedCornerShape(8.sdp),
             colors = TextFieldDefaults.colors(
                 focusedContainerColor = colorResource(id = R.color.semi_transparent),
                 unfocusedContainerColor = colorResource(id = R.color.semi_transparent),
@@ -79,10 +79,10 @@ fun UserDetails(
             text = "Phone Number:",
             textAlign = TextAlign.Start,
             color = colorResource(id = R.color.black),
-            fontSize = 16.sp,
+            fontSize = 12.ssp,
             fontWeight = FontWeight.Bold,
             fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
-            modifier = Modifier.padding(top = 10.dp, bottom = 5.dp)
+            modifier = Modifier.padding(top = 10.sdp, bottom = 5.sdp)
         )
         TextField(
             value = phoneNumber.value,
@@ -96,16 +96,16 @@ fun UserDetails(
                 Text(
                     text = "03121234567",
                     color = colorResource(id = R.color.grey),
-                    fontSize = 12.sp,
+                    fontSize = 10.ssp,
                     fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                 )
             },
             singleLine = true,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(55.dp),
+                .height(40.sdp),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            shape = RoundedCornerShape(8.dp),
+            shape = RoundedCornerShape(8.sdp),
             colors = TextFieldDefaults.colors(
                 focusedContainerColor = colorResource(id = R.color.semi_transparent),
                 unfocusedContainerColor = colorResource(id = R.color.semi_transparent),
@@ -119,10 +119,10 @@ fun UserDetails(
             text = "Email:",
             textAlign = TextAlign.Start,
             color = colorResource(id = R.color.black),
-            fontSize = 16.sp,
+            fontSize = 12.ssp,
             fontWeight = FontWeight.Bold,
             fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
-            modifier = Modifier.padding(top = 10.dp, bottom = 5.dp)
+            modifier = Modifier.padding(top = 10.sdp, bottom = 5.sdp)
         )
         TextField(
             value = email.value,
@@ -133,16 +133,16 @@ fun UserDetails(
                 Text(
                     text = "Enter Email",
                     color = colorResource(id = R.color.grey),
-                    fontSize = 12.sp,
+                    fontSize = 10.ssp,
                     fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                 )
             },
             singleLine = true,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(55.dp),
+                .height(40.sdp),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-            shape = RoundedCornerShape(8.dp),
+            shape = RoundedCornerShape(8.sdp),
             colors = TextFieldDefaults.colors(
                 focusedContainerColor = colorResource(id = R.color.semi_transparent),
                 unfocusedContainerColor = colorResource(id = R.color.semi_transparent),

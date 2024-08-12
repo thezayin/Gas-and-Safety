@@ -4,7 +4,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
@@ -85,7 +87,9 @@ fun ProfileScreen(
     }
 
     Scaffold(
-        modifier = Modifier,
+        modifier = Modifier
+            .statusBarsPadding()
+            .navigationBarsPadding(),
         containerColor = colorResource(id = R.color.semi_transparent),
         topBar = {
             UserTopBar(
@@ -97,7 +101,7 @@ fun ProfileScreen(
         },
         bottomBar = {
             SaveProfileButton {
-                if (name.value.text.isEmpty() || phoneNumber.value.text.isEmpty() || email.value.text.isEmpty() || city.value.isEmpty() || area.value.isEmpty() || address.value.text.isEmpty()) {
+                if (name.value.text.isEmpty() || phoneNumber.value.text.isEmpty() || city.value.isEmpty() || area.value.isEmpty() || address.value.text.isEmpty()) {
                     checkField = true
                 } else {
                     viewModel.addNewProfile(

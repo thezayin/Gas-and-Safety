@@ -11,6 +11,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.thezayin.core.R
+import ir.kaaveh.sdpcompose.sdp
 
 @Composable
 fun CartBottomBar(
@@ -22,8 +23,8 @@ fun CartBottomBar(
         modifier = modifier
             .clip(
                 shape = RoundedCornerShape(
-                    topStart = 30.dp,
-                    topEnd = 30.dp
+                    topStart = 30.sdp,
+                    topEnd = 30.sdp
                 )
             )
             .background(color = colorResource(id = R.color.semi_transparent))

@@ -23,23 +23,24 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.thezayin.core.R
+import ir.kaaveh.sdpcompose.sdp
+import ir.kaaveh.sdpcompose.ssp
 
 @Composable
 fun DeleteAllCart(callback: () -> Unit) {
     Row(
         modifier = Modifier
-            .padding(top = 20.dp)
-            .padding(horizontal = 25.dp)
+            .padding(top = 20.sdp)
+            .padding(horizontal = 20.sdp)
             .fillMaxWidth(),
         horizontalArrangement = Arrangement.End
     ) {
         Card(
             modifier = Modifier
-                .height(40.dp)
-                .width(100.dp),
-            shape = RoundedCornerShape(20.dp),
+                .height(30.sdp)
+                .width(80.sdp),
+            shape = RoundedCornerShape(10.sdp),
             colors = CardDefaults.cardColors(
                 containerColor = colorResource(id = R.color.semi_transparent),
             )
@@ -49,7 +50,7 @@ fun DeleteAllCart(callback: () -> Unit) {
                     .clickable {
                         callback()
                     }
-                    .padding(horizontal = 10.dp)
+                    .padding(horizontal = 5.sdp)
                     .fillMaxSize(),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
@@ -57,15 +58,15 @@ fun DeleteAllCart(callback: () -> Unit) {
                 Text(
                     text = "Empty",
                     color = colorResource(id = R.color.black),
-                    fontSize = 12.sp,
+                    fontSize = 9.ssp,
                     fontFamily = FontFamily(Font(R.font.noto_sans_regular)),
                 )
                 Image(
                     painter = painterResource(id = R.drawable.ic_delete),
                     contentDescription = null,
                     modifier = Modifier
-                        .padding(start = 5.dp)
-                        .size(20.dp)
+                        .padding(start = 3.sdp)
+                        .size(15.sdp)
                 )
             }
         }

@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.thezayin.entities.HomeProductsModel
+import ir.kaaveh.sdpcompose.sdp
 
 @Composable
 fun HomeProductList(
@@ -16,8 +17,8 @@ fun HomeProductList(
 ) {
     LazyColumn(
         modifier = modifier
-            .padding(top = 30.dp)
-            .padding(horizontal = 20.dp)
+            .padding(top = 30.sdp)
+            .padding(horizontal = 15.sdp)
             .fillMaxSize(),
     ) {
         items(productList.size) { product ->
