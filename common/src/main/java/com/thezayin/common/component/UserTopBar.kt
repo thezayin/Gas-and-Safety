@@ -15,8 +15,8 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import ir.kaaveh.sdpcompose.sdp
+import ir.kaaveh.sdpcompose.ssp
 
 @Composable
 fun UserTopBar(
@@ -28,8 +28,8 @@ fun UserTopBar(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(top = 60.dp)
-            .padding(horizontal = 25.dp),
+            .padding(top = 20.sdp)
+            .padding(horizontal = 15.sdp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -40,12 +40,12 @@ fun UserTopBar(
                 .clickable {
                     onBackClick()
                 }
-                .size(25.dp),
+                .size(20.sdp),
         )
         Text(
             text = screen,
             color = colorResource(id = com.thezayin.core.R.color.black),
-            fontSize = 17.sp,
+            fontSize = 12.ssp,
             fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
         )
         Image(
@@ -55,7 +55,7 @@ fun UserTopBar(
                 .clickable {
                     onContactClick()
                 }
-                .size(30.dp),
+                .size(22.sdp),
         )
     }
 }

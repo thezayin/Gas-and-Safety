@@ -29,6 +29,8 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.thezayin.common.component.GlassComponent
 import com.thezayin.lpg.R
 import com.thezayin.lpg.screens.destinations.HomeScreenDestination
+import ir.kaaveh.sdpcompose.sdp
+import ir.kaaveh.sdpcompose.ssp
 import kotlinx.coroutines.delay
 
 @SuppressLint("OpaqueUnitKey")
@@ -53,23 +55,23 @@ fun SplashScreen(navController: DestinationsNavigator) {
             contentDescription = null,
             modifier = Modifier
                 .align(Alignment.Center)
-                .size(180.dp)
+                .size(180.sdp)
         )
 
         Column(
             modifier = Modifier
                 .align(Alignment.Center)
-                .padding(horizontal = 25.dp, vertical = 25.dp)
+                .padding(horizontal = 15.sdp, vertical = 15.sdp)
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Bottom
         ) {
             Text(
                 modifier = Modifier
-                    .padding(bottom = 10.dp),
+                    .padding(bottom = 10.sdp),
                 color = colorResource(id = R.color.black),
                 text = "PROVIDING SAFE GAS ENERGY AND SECURING YOUR WORLD BY PROVIDING TRAINING AND SAFETY EQUIPMENT.",
-                fontSize = 10.sp,
+                fontSize = 8.ssp,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,
                 fontFamily = FontFamily(Font(com.thezayin.core.R.font.abeezee_regular))

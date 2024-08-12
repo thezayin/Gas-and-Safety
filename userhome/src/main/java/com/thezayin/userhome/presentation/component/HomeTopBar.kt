@@ -12,7 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import ir.kaaveh.sdpcompose.sdp
 
 @Composable
 fun TopBarComponent(
@@ -23,8 +23,8 @@ fun TopBarComponent(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(top = 60.dp)
-            .padding(horizontal = 25.dp),
+            .padding(top = 20.sdp)
+            .padding(horizontal = 15.sdp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -35,14 +35,14 @@ fun TopBarComponent(
                 .clickable {
                     navigateToSetting()
                 }
-                .size(25.dp),
+                .size(20.sdp),
         )
 
         Image(
             painter = painterResource(id = com.thezayin.core.R.drawable.ic_call),
             contentDescription = null,
             modifier = Modifier
-                .size(30.dp)
+                .size(25.sdp)
                 .clickable {
                     navigateToContact()
                 },

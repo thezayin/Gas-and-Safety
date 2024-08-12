@@ -20,16 +20,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import com.thezayin.core.R
+import ir.kaaveh.sdpcompose.sdp
+import ir.kaaveh.sdpcompose.ssp
 
 @Composable
 @Preview
 fun ToggleButton(
     onClick: (index: Int) -> Unit = {}
 ) {
-    val cornerRadius = 8.dp
+    val cornerRadius = 8.sdp
 
     val (selectedIndex, onIndexSelected) = remember { mutableStateOf<Int?>(null) }
     val items = listOf(
@@ -41,7 +42,7 @@ fun ToggleButton(
 
     Row(
         modifier = Modifier
-            .padding(top = 30.dp)
+            .padding(top = 20.sdp)
             .fillMaxWidth(),
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
@@ -51,12 +52,12 @@ fun ToggleButton(
                 modifier = when (index) {
                     0 ->
                         Modifier
-                            .offset(0.dp, 0.dp)
+                            .offset(0.sdp, 0.sdp)
                             .zIndex(if (selectedIndex == index) 1f else 0f)
 
                     else ->
                         Modifier
-                            .offset((-1 * index).dp, 0.dp)
+                            .offset((-1 * index).sdp, 0.sdp)
                             .zIndex(if (selectedIndex == index) 1f else 0f)
                 },
                 onClick = {
@@ -114,7 +115,7 @@ fun ToggleButton(
                     } else {
                         Color.DarkGray.copy(alpha = 0.9f)
                     },
-                    fontSize = 9.sp,
+                    fontSize = 7.ssp,
                     modifier = Modifier
                 )
             }

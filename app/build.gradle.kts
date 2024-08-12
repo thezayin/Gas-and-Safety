@@ -20,7 +20,7 @@ android {
         minSdk = 24
         targetSdk = 34
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -90,7 +90,6 @@ dependencies {
 //neu morphic
     implementation(libs.neumorphic)
 
-
     //koin dependency injection
     implementation(libs.koin.core)
     implementation(libs.koin.compose)
@@ -153,5 +152,7 @@ dependencies {
 
     //Accompanist (Permission)
     implementation("com.google.accompanist:accompanist-permissions:0.34.0")
+
+    implementation (libs.sdp.compose)
 
 }

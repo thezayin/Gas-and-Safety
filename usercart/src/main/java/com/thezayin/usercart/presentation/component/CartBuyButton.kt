@@ -13,19 +13,19 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import ir.kaaveh.sdpcompose.sdp
+import ir.kaaveh.sdpcompose.ssp
 
 @Composable
 fun CartBuyButton(modifier: Modifier, onClick: () -> Unit) {
     Button(
         onClick = { onClick() },
         modifier = modifier
-            .padding(bottom = 20.dp)
+            .padding(bottom = 20.sdp)
             .fillMaxWidth()
-            .height(50.dp)
-            .padding(horizontal = 25.dp),
-        shape = RoundedCornerShape(10.dp),
+            .height(40.sdp)
+            .padding(horizontal = 25.sdp),
+        shape = RoundedCornerShape(10.sdp),
         colors = ButtonDefaults.buttonColors(
             containerColor = colorResource(id = com.thezayin.core.R.color.black),
         )
@@ -33,7 +33,7 @@ fun CartBuyButton(modifier: Modifier, onClick: () -> Unit) {
         Text(
             text = "Buy Now",
             color = colorResource(id = com.thezayin.core.R.color.white),
-            fontSize = 16.sp,
+            fontSize = 12.ssp,
             fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
         )
     }

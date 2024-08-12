@@ -2,7 +2,9 @@ package com.thezayin.lpg.screens
 
 import android.app.Activity
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -43,7 +45,9 @@ fun OrderHistoryScreen(navigator: DestinationsNavigator) {
     GlassComponent()
 
     Scaffold(
-        modifier = Modifier,
+        modifier = Modifier
+            .statusBarsPadding()
+            .navigationBarsPadding(),
         containerColor = colorResource(id = R.color.semi_transparent),
         topBar = {
             UserTopBar(

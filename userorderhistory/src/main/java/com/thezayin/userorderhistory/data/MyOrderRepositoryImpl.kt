@@ -18,14 +18,9 @@ class MyOrderRepositoryImpl(private val firestore: FirebaseFirestore) : MyOrders
                     .whereEqualTo("userID", userId)
                     .addSnapshotListener { snapShot, error ->
                         val response = if (snapShot != null) {
-                            Log.d("response", "${snapShot.documents}")
                             val productList =
-                                snapShot.toObjects(OrderModel::class.java).apply {
-                                    Log.d("response", "${this}")
-                                }
-                            Response.Success(productList).apply {
-                                Log.d("response", "${productList}")
-                            }
+                                snapShot.toObjects(OrderModel::class.java)
+                            Response.Success(productList)
                         } else {
                             Response.Error(error?.message ?: error.toString())
                         }

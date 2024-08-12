@@ -14,7 +14,7 @@ class ProfileRepositoryImpl(private val database: CartDatabase) : ProfileReposit
         address: String,
         area: String,
         city: String,
-        email: String
+        email: String?
     ): Flow<Response<Boolean>> = flow {
         try {
             emit(Response.Loading)

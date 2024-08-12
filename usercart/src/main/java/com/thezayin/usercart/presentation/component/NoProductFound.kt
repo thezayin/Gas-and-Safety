@@ -11,8 +11,8 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.sp
 import com.thezayin.core.R
+import ir.kaaveh.sdpcompose.ssp
 
 @Composable
 @Preview
@@ -24,7 +24,7 @@ fun NoProductFound() {
     ) {
         Text(
             text = "No Products in Cart",
-            fontSize = 20.sp,
+            fontSize = 15.ssp,
             fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
             color = colorResource(id = R.color.black)
         )

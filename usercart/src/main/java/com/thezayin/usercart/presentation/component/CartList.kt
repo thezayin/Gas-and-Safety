@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.thezayin.entities.CartModel
+import ir.kaaveh.sdpcompose.sdp
 
 @Composable
 fun CartList(
@@ -18,9 +19,9 @@ fun CartList(
 ) {
     LazyColumn(
         modifier = modifier
-            .padding(horizontal = 20.dp)
+            .padding(horizontal = 15.sdp)
             .fillMaxSize()
-            .padding(top = 10.dp),
+            .padding(top = 8.sdp),
     ) {
         items(productList.size) { product ->
             CartProductInfo(

@@ -27,10 +27,11 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.thezayin.core.R
 import com.thezayin.entities.OrderModel
 import com.thezayin.framework.extension.functions.copyToClipboard
+import ir.kaaveh.sdpcompose.sdp
+import ir.kaaveh.sdpcompose.ssp
 
 @Composable
 fun HistoryCard(
@@ -39,29 +40,29 @@ fun HistoryCard(
     val context = LocalContext.current
     Box(
         modifier = Modifier
-            .padding(top = 10.dp, bottom = 10.dp)
-            .clip(shape = RoundedCornerShape(16.dp))
+            .padding(top = 5.sdp, bottom = 5.sdp)
+            .clip(shape = RoundedCornerShape(8.sdp))
             .background(color = colorResource(id = R.color.semi_transparent))
             .fillMaxWidth()
     ) {
         Column(
             modifier = Modifier
-                .heightIn(min = 250.dp, max = 700.dp)
+                .heightIn(min = 250.sdp, max = 700.sdp)
                 .fillMaxWidth()
-                .padding(horizontal = 20.dp),
+                .padding(horizontal = 10.sdp),
             verticalArrangement = Arrangement.SpaceBetween,
             horizontalAlignment = Alignment.End
         ) {
             Row(
                 modifier = Modifier
-                    .padding(top = 25.dp, bottom = 5.dp)
+                    .padding(top = 20.sdp, bottom = 5.sdp)
                     .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Start
             ) {
                 Column(
-                    modifier = Modifier.padding(start = 20.dp),
-                    verticalArrangement = Arrangement.spacedBy(5.dp)
+                    modifier = Modifier.padding(start = 10.sdp),
+                    verticalArrangement = Arrangement.spacedBy(5.sdp)
                 ) {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
@@ -71,24 +72,24 @@ fun HistoryCard(
                         Text(
                             text = order?.orderTime + " " + order?.orderDate,
                             color = colorResource(id = R.color.black),
-                            fontSize = 16.sp,
+                            fontSize = 10.ssp,
                             fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                         )
                         Card(
-                            modifier = Modifier.padding(bottom = 10.dp),
-                            shape = RoundedCornerShape(40.dp),
+                            modifier = Modifier.padding(bottom = 10.sdp),
+                            shape = RoundedCornerShape(40.sdp),
                             colors = CardDefaults.cardColors(
                                 colorResource(id = R.color.black)
                             )
                         ) {
                             Text(
                                 text = order?.orderStatus ?: "pending",
-                                fontSize = 12.sp,
+                                fontSize = 8.ssp,
                                 fontWeight = FontWeight.Medium,
                                 fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                                 color = colorResource(id = R.color.white),
                                 modifier = Modifier.padding(
-                                    vertical = 4.dp, horizontal = 12.dp
+                                    vertical = 4.sdp, horizontal = 12.sdp
                                 )
                             )
                         }
@@ -97,22 +98,22 @@ fun HistoryCard(
                     Row {
                         Text(
                             text = "Order Id:",
-                            modifier = Modifier.padding(end = 5.dp),
+                            modifier = Modifier.padding(end = 5.sdp),
                             color = colorResource(id = R.color.black),
-                            fontSize = 16.sp,
+                            fontSize = 10.ssp,
                             fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                         )
                         Text(
                             text = order?.id ?: "000000",
                             color = colorResource(id = R.color.black),
-                            fontSize = 16.sp,
+                            fontSize = 10.ssp,
                             fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                         )
                         Image(
                             painter = painterResource(id = R.drawable.ic_copy),
                             contentDescription = null,
                             modifier = Modifier
-                                .size(20.dp)
+                                .size(15.sdp)
                                 .clickable {
                                     context.copyToClipboard(order?.id ?: "000000")
                                 }
@@ -122,7 +123,7 @@ fun HistoryCard(
                     Text(
                         text = order?.name ?: "name",
                         color = colorResource(id = R.color.black),
-                        fontSize = 16.sp,
+                        fontSize = 12.ssp,
                         fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                     )
 
@@ -130,20 +131,20 @@ fun HistoryCard(
                     Text(
                         text = order?.phoneNumber ?: "03011001111",
                         color = colorResource(id = R.color.black),
-                        fontSize = 16.sp,
+                        fontSize = 12.ssp,
                         fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                     )
 
                     Text(
                         text = order?.address ?: "Islamabad",
                         color = colorResource(id = R.color.black),
-                        fontSize = 16.sp,
+                        fontSize = 12.ssp,
                         fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                     )
                     Text(
                         text = "Orders",
                         color = colorResource(id = R.color.black),
-                        fontSize = 16.sp,
+                        fontSize = 12.ssp,
                         fontWeight = FontWeight.Medium,
                         fontFamily = FontFamily(Font(R.font.noto_sans_italic)),
                     )
@@ -151,12 +152,12 @@ fun HistoryCard(
                 }
             }
             Row(
-                modifier = Modifier.padding(vertical = 25.dp),
+                modifier = Modifier.padding(vertical = 15.sdp),
             ) {
                 Text(
                     text = "Total: ${order?.totalAmount ?: "0"}Rs.",
                     color = colorResource(id = R.color.black),
-                    fontSize = 16.sp,
+                    fontSize = 12.ssp,
                     fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                 )
             }

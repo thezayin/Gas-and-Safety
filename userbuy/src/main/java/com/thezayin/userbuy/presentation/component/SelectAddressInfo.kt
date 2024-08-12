@@ -18,10 +18,10 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.thezayin.core.R
 import com.thezayin.entities.ProfileModel
+import ir.kaaveh.sdpcompose.sdp
+import ir.kaaveh.sdpcompose.ssp
 
 @Composable
 fun SelectAddressInfo(
@@ -32,9 +32,9 @@ fun SelectAddressInfo(
 ) {
     Card(
         modifier = modifier
-            .padding(top = 15.dp)
+            .padding(top = 10.sdp)
             .fillMaxWidth()
-            .heightIn(max = 400.dp),
+            .heightIn(max = 400.sdp),
         colors = CardDefaults.cardColors(
             containerColor = if (profileModel.id == selectedIndex) colorResource(id = R.color.green_level_2) else colorResource(
                 id = R.color.semi_transparent
@@ -49,46 +49,46 @@ fun SelectAddressInfo(
                         profileModel.id!!
                     )
                 }
-                .padding(horizontal = 20.dp)
+                .padding(horizontal = 20.sdp)
                 .fillMaxWidth()
-                .heightIn(max = 400.dp),
+                .heightIn(max = 400.sdp),
             horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.Top
         ) {
-            Spacer(modifier = Modifier.height(25.dp))
+            Spacer(modifier = Modifier.height(20.sdp))
             Text(
                 text = "${profileModel.address}",
-                modifier = Modifier.padding(top = 5.dp),
-                fontSize = 12.sp,
+                modifier = Modifier.padding(top = 5.sdp),
+                fontSize = 10.ssp,
                 color = colorResource(id = R.color.black),
                 fontFamily = FontFamily(Font(R.font.noto_sans_bold))
             )
 
             Text(
                 text = "${profileModel.area},${profileModel.city}",
-                modifier = Modifier.padding(top = 5.dp),
-                fontSize = 12.sp,
+                modifier = Modifier.padding(top = 5.sdp),
+                fontSize = 10.ssp,
                 color = colorResource(id = R.color.black),
                 fontFamily = FontFamily(Font(R.font.noto_sans_bold))
             )
             Text(
                 text = "${profileModel.name}",
-                modifier = Modifier.padding(top = 5.dp),
-                fontSize = 12.sp,
+                modifier = Modifier.padding(top = 5.sdp),
+                fontSize = 10.ssp,
                 color = colorResource(id = R.color.black),
                 fontFamily = FontFamily(Font(R.font.noto_sans_regular))
             )
             Text(
                 text = "${profileModel.area}",
-                modifier = Modifier.padding(top = 5.dp),
-                fontSize = 12.sp,
+                modifier = Modifier.padding(top = 5.sdp),
+                fontSize = 10.ssp,
                 color = colorResource(id = R.color.black),
                 fontFamily = FontFamily(Font(R.font.noto_sans_regular))
             )
             Text(
                 text = "${profileModel.email}",
-                modifier = Modifier.padding(top = 5.dp, bottom = 20.dp),
-                fontSize = 12.sp,
+                modifier = Modifier.padding(top = 5.sdp, bottom = 20.sdp),
+                fontSize = 10.ssp,
                 color = colorResource(id = R.color.black),
                 fontFamily = FontFamily(Font(R.font.noto_sans_regular))
             )

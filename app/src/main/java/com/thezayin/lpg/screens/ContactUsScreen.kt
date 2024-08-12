@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -27,7 +28,6 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.thezayin.common.component.GlassComponent
@@ -38,6 +38,7 @@ import com.thezayin.framework.extension.functions.sendMail
 import com.thezayin.framework.extension.functions.sendWhatsappMsg
 import com.thezayin.lpg.R
 import com.thezayin.lpg.screens.destinations.ContactUsScreenDestination
+import ir.kaaveh.sdpcompose.ssp
 
 @Composable
 @Destination
@@ -48,6 +49,7 @@ fun ContactUsScreen(
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
+            .statusBarsPadding()
             .navigationBarsPadding(),
         containerColor = colorResource(id = R.color.semi_transparent),
         topBar = {
@@ -104,7 +106,7 @@ fun ContactUsList() {
                     text = "03366511222",
                     color = colorResource(id = com.thezayin.core.R.color.black),
                     fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_regular)),
-                    fontSize = 13.sp,
+                    fontSize = 13.ssp,
                     modifier = Modifier
                         .padding(vertical = 25.dp)
                         .padding(start = 20.dp)
@@ -143,7 +145,7 @@ fun ContactUsList() {
                     text = "03366511222",
                     color = colorResource(id = com.thezayin.core.R.color.black),
                     fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_regular)),
-                    fontSize = 13.sp,
+                    fontSize = 13.ssp,
                     modifier = Modifier
                         .padding(vertical = 25.dp)
                         .padding(start = 20.dp)
@@ -183,7 +185,7 @@ fun ContactUsList() {
                     text = "gasandsafety@gmail.com",
                     color = colorResource(id = com.thezayin.core.R.color.black),
                     fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_regular)),
-                    fontSize = 13.sp,
+                    fontSize = 13.ssp,
                     modifier = Modifier
                         .padding(vertical = 25.dp)
                         .padding(start = 20.dp)
@@ -223,7 +225,7 @@ fun ContactUsList() {
                     text = "like us on facebook",
                     color = colorResource(id = com.thezayin.core.R.color.black),
                     fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_regular)),
-                    fontSize = 13.sp,
+                    fontSize = 13.ssp,
                     modifier = Modifier
                         .padding(vertical = 25.dp)
                         .padding(start = 20.dp)
@@ -261,7 +263,7 @@ fun ContactUsList() {
                     text = "follow us on instagram",
                     color = colorResource(id = com.thezayin.core.R.color.black),
                     fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_regular)),
-                    fontSize = 13.sp,
+                    fontSize = 13.ssp,
                     modifier = Modifier
                         .padding(vertical = 25.dp)
                         .padding(start = 20.dp)
