@@ -25,7 +25,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "LPG"
+rootProject.name = "Gas and Safety"
 include(":app")
 include(":analytics")
 include(":framework")
