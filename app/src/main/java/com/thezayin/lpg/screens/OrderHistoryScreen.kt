@@ -18,6 +18,7 @@ import androidx.compose.ui.res.colorResource
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.thezayin.common.component.GlassComponent
+import com.thezayin.common.component.SetBarColors
 import com.thezayin.common.component.UserTopBar
 import com.thezayin.common.dialogs.LoadingDialog
 import com.thezayin.framework.extension.functions.getUserUUID
@@ -43,6 +44,7 @@ fun OrderHistoryScreen(navigator: DestinationsNavigator) {
         LoadingDialog()
     }
     GlassComponent()
+    SetBarColors()
 
     Scaffold(
         modifier = Modifier
@@ -52,7 +54,7 @@ fun OrderHistoryScreen(navigator: DestinationsNavigator) {
         topBar = {
             UserTopBar(
                 modifier = Modifier,
-                screen = "Profile",
+                screen = "Order History",
                 onBackClick = { navigator.navigateUp() },
                 onContactClick = { navigator.navigate(ContactUsScreenDestination) }
             )

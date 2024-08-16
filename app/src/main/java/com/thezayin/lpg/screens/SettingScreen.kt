@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.thezayin.common.component.GlassComponent
+import com.thezayin.common.component.SetBarColors
 import com.thezayin.common.component.UserTopBar
 import com.thezayin.framework.extension.functions.openLink
 import com.thezayin.framework.extension.functions.sendMail
@@ -50,6 +51,7 @@ fun SettingScreen(
     navigator: DestinationsNavigator
 ) {
     GlassComponent()
+    SetBarColors()
     Scaffold(
         modifier = Modifier
             .fillMaxSize()

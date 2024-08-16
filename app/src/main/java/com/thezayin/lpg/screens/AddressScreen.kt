@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.thezayin.common.component.GlassComponent
+import com.thezayin.common.component.SetBarColors
 import com.thezayin.common.component.UserTopBar
 import com.thezayin.common.dialogs.ErrorQueryDialog
 import com.thezayin.common.dialogs.LoadingDialog
@@ -45,6 +46,7 @@ fun AddressScreen(
     val list = viewModel.getProfileList.collectAsState().value.data
 
     GlassComponent()
+    SetBarColors()
 
     if (checkNetwork) {
         NetworkDialog(showDialog = { checkNetwork = it })
@@ -61,7 +63,9 @@ fun AddressScreen(
     }
 
     Scaffold(
-        modifier = Modifier,
+        modifier = Modifier
+            .statusBarsPadding()
+            .navigationBarsPadding(),
         containerColor = colorResource(id = R.color.semi_transparent),
         topBar = {
             UserTopBar(
@@ -74,8 +78,6 @@ fun AddressScreen(
     ) { padding ->
         Column(
             modifier = Modifier
-                .statusBarsPadding()
-                .navigationBarsPadding()
                 .padding(horizontal = 25.dp)
                 .padding(padding)
                 .fillMaxWidth()

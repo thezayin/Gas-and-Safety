@@ -23,6 +23,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.thezayin.common.component.GlassComponent
+import com.thezayin.common.component.SetBarColors
 import com.thezayin.common.component.UserTopBar
 import com.thezayin.common.dialogs.ErrorQueryDialog
 import com.thezayin.common.dialogs.FieldsDialog
@@ -65,6 +66,7 @@ fun ProfileScreen(
     val area = remember { mutableStateOf("") }
 
     GlassComponent()
+    SetBarColors()
 
     if (checkNetwork) {
         NetworkDialog(showDialog = { checkNetwork = it })

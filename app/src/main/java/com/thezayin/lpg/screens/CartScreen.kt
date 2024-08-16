@@ -13,6 +13,7 @@ import androidx.compose.ui.res.colorResource
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.thezayin.common.component.GlassComponent
+import com.thezayin.common.component.SetBarColors
 import com.thezayin.common.component.UserTopBar
 import com.thezayin.common.dialogs.LoadingDialog
 import com.thezayin.common.snackbar.RememberSnackBar
@@ -37,6 +38,7 @@ fun CartScreen(navigator: DestinationsNavigator) {
     val scope = rememberCoroutineScope()
 
     GlassComponent()
+    SetBarColors()
 
     if (isLoading) {
         LoadingDialog()
@@ -50,7 +52,7 @@ fun CartScreen(navigator: DestinationsNavigator) {
         topBar = {
             UserTopBar(
                 modifier = Modifier,
-                screen = "Profile",
+                screen = "Cart",
                 onBackClick = { navigator.navigateUp() },
                 onContactClick = { navigator.navigate(ContactUsScreenDestination) }
             )

@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.thezayin.common.component.GlassComponent
+import com.thezayin.common.component.SetBarColors
 import com.thezayin.common.component.UserTopBar
 import com.thezayin.common.dialogs.ErrorQueryDialog
 import com.thezayin.common.dialogs.FieldsDialog
@@ -78,6 +79,7 @@ fun OrderScreen(
     val activity = LocalContext.current as Activity
 
     GlassComponent()
+    SetBarColors()
 
     if (checkNetwork) {
         NetworkDialog(showDialog = { checkNetwork = it })

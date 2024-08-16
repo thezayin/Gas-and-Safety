@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.thezayin.common.component.GlassComponent
+import com.thezayin.common.component.SetBarColors
 import com.thezayin.common.component.UserTopBar
 import com.thezayin.framework.extension.functions.makeCall
 import com.thezayin.framework.extension.functions.openLink
@@ -38,6 +39,7 @@ import com.thezayin.framework.extension.functions.sendMail
 import com.thezayin.framework.extension.functions.sendWhatsappMsg
 import com.thezayin.lpg.R
 import com.thezayin.lpg.screens.destinations.ContactUsScreenDestination
+import ir.kaaveh.sdpcompose.sdp
 import ir.kaaveh.sdpcompose.ssp
 
 @Composable
@@ -46,6 +48,7 @@ fun ContactUsScreen(
     navigator: DestinationsNavigator
 ) {
     GlassComponent()
+    SetBarColors()
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
@@ -55,7 +58,7 @@ fun ContactUsScreen(
         topBar = {
             UserTopBar(
                 modifier = Modifier,
-                screen = "Profile",
+                screen = "Contact Us",
                 onBackClick = { navigator.navigateUp() },
                 onContactClick = { navigator.navigate(ContactUsScreenDestination) }
             )
@@ -64,8 +67,8 @@ fun ContactUsScreen(
         Column(
             modifier = Modifier
                 .padding(paddingValues)
-                .padding(top = 60.dp)
-                .padding(horizontal = 25.dp)
+                .padding(top = 40.sdp)
+                .padding(horizontal = 15.sdp)
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
 
@@ -81,7 +84,7 @@ fun ContactUsList() {
         modifier = Modifier.fillMaxSize()
     ) {
         Card(
-            shape = RoundedCornerShape(10.dp),
+            shape = RoundedCornerShape(8.sdp),
             colors = CardDefaults.cardColors(
                 containerColor = colorResource(id = R.color.semi_transparent)
             ),
@@ -92,24 +95,24 @@ fun ContactUsList() {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 20.dp),
+                    .padding(horizontal = 15.sdp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
                     painter = painterResource(id = com.thezayin.core.R.drawable.ic_call),
                     contentDescription = null,
                     modifier = Modifier
-                        .size(20.dp),
+                        .size(15.sdp),
                     alignment = Alignment.BottomCenter
                 )
                 Text(
                     text = "03366511222",
                     color = colorResource(id = com.thezayin.core.R.color.black),
                     fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_regular)),
-                    fontSize = 13.ssp,
+                    fontSize = 10.ssp,
                     modifier = Modifier
-                        .padding(vertical = 25.dp)
-                        .padding(start = 20.dp)
+                        .padding(vertical = 18.sdp)
+                        .padding(start = 15.sdp)
                 )
             }
         }
@@ -117,10 +120,10 @@ fun ContactUsList() {
         Spacer(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(10.dp)
+                .height(8.sdp)
         )
         Card(
-            shape = RoundedCornerShape(10.dp),
+            shape = RoundedCornerShape(8.sdp),
             colors = CardDefaults.cardColors(
                 containerColor = colorResource(id = R.color.semi_transparent)
             ),
@@ -131,24 +134,24 @@ fun ContactUsList() {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 20.dp),
+                    .padding(horizontal = 15.sdp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
                     painter = painterResource(id = com.thezayin.core.R.drawable.ic_whatsapp),
                     contentDescription = null,
                     modifier = Modifier
-                        .size(13.dp),
+                        .size(12.sdp),
                     alignment = Alignment.BottomCenter
                 )
                 Text(
                     text = "03366511222",
                     color = colorResource(id = com.thezayin.core.R.color.black),
                     fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_regular)),
-                    fontSize = 13.ssp,
+                    fontSize = 10.ssp,
                     modifier = Modifier
-                        .padding(vertical = 25.dp)
-                        .padding(start = 20.dp)
+                        .padding(vertical = 18.sdp)
+                        .padding(start = 15.sdp)
                 )
             }
         }
@@ -156,11 +159,11 @@ fun ContactUsList() {
         Spacer(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(10.dp)
+                .height(8.sdp)
         )
 
         Card(
-            shape = RoundedCornerShape(10.dp),
+            shape = RoundedCornerShape(8.sdp),
             colors = CardDefaults.cardColors(
                 containerColor = colorResource(id = R.color.semi_transparent)
             ),
@@ -171,24 +174,24 @@ fun ContactUsList() {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 20.dp),
+                    .padding(horizontal = 15.sdp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
                     painter = painterResource(id = com.thezayin.core.R.drawable.ic_mail),
                     contentDescription = null,
                     modifier = Modifier
-                        .size(13.dp),
+                        .size(10.sdp),
                     alignment = Alignment.BottomCenter
                 )
                 Text(
                     text = "gasandsafety@gmail.com",
                     color = colorResource(id = com.thezayin.core.R.color.black),
                     fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_regular)),
-                    fontSize = 13.ssp,
+                    fontSize = 10.ssp,
                     modifier = Modifier
-                        .padding(vertical = 25.dp)
-                        .padding(start = 20.dp)
+                        .padding(vertical = 18.sdp)
+                        .padding(start = 15.sdp)
                 )
             }
         }
@@ -196,11 +199,11 @@ fun ContactUsList() {
         Spacer(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(10.dp)
+                .height(8.sdp)
         )
 
         Card(
-            shape = RoundedCornerShape(10.dp),
+            shape = RoundedCornerShape(8.sdp),
             colors = CardDefaults.cardColors(
                 containerColor = colorResource(id = R.color.semi_transparent)
             ),
@@ -211,34 +214,34 @@ fun ContactUsList() {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 20.dp),
+                    .padding(horizontal = 15.sdp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
                     painter = painterResource(id = com.thezayin.core.R.drawable.ic_facebook),
                     contentDescription = null,
                     modifier = Modifier
-                        .size(13.dp),
+                        .size(10.sdp),
                     alignment = Alignment.BottomCenter
                 )
                 Text(
                     text = "like us on facebook",
                     color = colorResource(id = com.thezayin.core.R.color.black),
                     fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_regular)),
-                    fontSize = 13.ssp,
+                    fontSize = 10.ssp,
                     modifier = Modifier
-                        .padding(vertical = 25.dp)
-                        .padding(start = 20.dp)
+                        .padding(vertical = 18.sdp)
+                        .padding(start = 15.sdp)
                 )
             }
         }
         Spacer(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(10.dp)
+                .height(8.sdp)
         )
         Card(
-            shape = RoundedCornerShape(10.dp),
+            shape = RoundedCornerShape(8.sdp),
             colors = CardDefaults.cardColors(
                 containerColor = colorResource(id = R.color.semi_transparent)
             ),
@@ -249,24 +252,24 @@ fun ContactUsList() {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 20.dp),
+                    .padding(horizontal = 15.sdp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
                     painter = painterResource(id = com.thezayin.core.R.drawable.ic_instagram),
                     contentDescription = null,
                     modifier = Modifier
-                        .size(13.dp),
+                        .size(10.sdp),
                     alignment = Alignment.BottomCenter
                 )
                 Text(
                     text = "follow us on instagram",
                     color = colorResource(id = com.thezayin.core.R.color.black),
                     fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_regular)),
-                    fontSize = 13.ssp,
+                    fontSize = 10.ssp,
                     modifier = Modifier
-                        .padding(vertical = 25.dp)
-                        .padding(start = 20.dp)
+                        .padding(vertical = 18.sdp)
+                        .padding(start = 15.sdp)
                 )
             }
         }
@@ -275,7 +278,7 @@ fun ContactUsList() {
         Spacer(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(10.dp)
+                .height(8.sdp)
         )
     }
 }
