@@ -18,8 +18,6 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import ir.kaaveh.sdpcompose.sdp
 import ir.kaaveh.sdpcompose.ssp
@@ -28,7 +26,7 @@ import ir.kaaveh.sdpcompose.ssp
 fun LoadingDialog() {
     Dialog(onDismissRequest = { }) {
         Card(
-            colors = CardDefaults.cardColors(containerColor = colorResource(id = com.thezayin.core.R.color.semi_transparent)),
+            colors = CardDefaults.cardColors(containerColor = colorResource(id = com.thezayin.core.R.color.white)),
             shape = RoundedCornerShape(16.sdp),
         ) {
             Box(contentAlignment = Alignment.Center) {

@@ -21,12 +21,11 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.thezayin.common.component.GlassComponent
+import com.thezayin.common.component.SetBarColors
 import com.thezayin.lpg.R
 import com.thezayin.lpg.screens.destinations.HomeScreenDestination
 import ir.kaaveh.sdpcompose.sdp
@@ -39,6 +38,7 @@ import kotlinx.coroutines.delay
 @Destination
 fun SplashScreen(navController: DestinationsNavigator) {
     GlassComponent()
+    SetBarColors()
     LaunchedEffect(Unit) {
         delay(timeMillis = 5000L)
         navController.navigate(HomeScreenDestination)

@@ -52,7 +52,7 @@ fun HomeProduct(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .heightIn(min = 80.sdp, max = 400.sdp)
+                .heightIn(min = 100.sdp, max = 400.sdp)
                 .padding(horizontal = 15.sdp),
             verticalArrangement = Arrangement.SpaceBetween,
             horizontalAlignment = Alignment.End
@@ -92,44 +92,46 @@ fun HomeProduct(
                     )
                 }
             }
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.End
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(top = 10.sdp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
+                    modifier = Modifier.padding(start = 5.sdp),
                     text = " Rs: ${product?.price}",
                     color = colorResource(id = R.color.black),
-                    fontSize = 12.ssp,
+                    fontSize = 14.ssp,
                     fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
                 )
-            }
-            Card(
-                modifier = Modifier
-                    .padding(bottom = 10.sdp, top = 5.sdp)
-                    .width(60.sdp)
-                    .height(30.sdp),
-                colors = CardDefaults.cardColors(
-                    containerColor = colorResource(id = R.color.black)
-                ),
-                shape = RoundedCornerShape(5.sdp),
-            ) {
-                Row(
+                Card(
                     modifier = Modifier
-                        .padding(horizontal = 5.sdp)
-                        .fillMaxSize()
-                        .clickable {
-                            onClick()
-                        },
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Center
+                        .padding(bottom = 10.sdp, top = 5.sdp)
+                        .width(100.sdp)
+                        .height(30.sdp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = colorResource(id = R.color.black)
+                    ),
+                    shape = RoundedCornerShape(5.sdp),
                 ) {
-                    Text(text = "Buy", color = colorResource(id = R.color.white))
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_cart),
-                        contentDescription = null,
-                        colorFilter = ColorFilter.tint(color = colorResource(id = R.color.white)),
-                        modifier = Modifier.size(12.sdp)
-                    )
+                    Row(
+                        modifier = Modifier
+                            .padding(horizontal = 5.sdp)
+                            .fillMaxSize()
+                            .clickable {
+                                onClick()
+                            },
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        Text(text = "Add to Cart", color = colorResource(id = R.color.white))
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_cart),
+                            contentDescription = null,
+                            colorFilter = ColorFilter.tint(color = colorResource(id = R.color.white)),
+                            modifier = Modifier.size(12.sdp)
+                        )
+                    }
                 }
             }
         }

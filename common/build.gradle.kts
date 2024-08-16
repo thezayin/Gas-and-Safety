@@ -67,5 +67,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation (libs.sdp.compose)
+    implementation ("com.google.accompanist:accompanist-systemuicontroller:0.30.1")
 
 }

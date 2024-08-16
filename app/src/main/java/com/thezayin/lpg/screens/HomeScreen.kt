@@ -2,6 +2,7 @@ package com.thezayin.lpg.screens
 
 import android.app.Activity
 import android.os.Build
+import androidx.activity.compose.BackHandler
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.navigationBarsPadding
@@ -21,6 +22,7 @@ import androidx.compose.ui.res.colorResource
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.thezayin.common.component.GlassComponent
+import com.thezayin.common.component.SetBarColors
 import com.thezayin.common.dialogs.ErrorQueryDialog
 import com.thezayin.common.dialogs.LoadingDialog
 import com.thezayin.common.dialogs.StoreClosedDialog
@@ -91,6 +93,7 @@ fun HomeScreen(
     }
 
     GlassComponent()
+    SetBarColors()
 
     Scaffold(
         modifier = Modifier
@@ -133,6 +136,10 @@ fun HomeScreen(
         ) { boolean ->
             cartViewModel.updateCartValue(boolean)
         }
+    }
+
+    BackHandler {
+        activity.finish()
     }
 }
 
