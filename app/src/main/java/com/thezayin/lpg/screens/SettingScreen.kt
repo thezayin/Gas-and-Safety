@@ -99,37 +99,37 @@ fun OtherListComponent() {
             color = colorResource(id = R.color.black),
         )
 
-        Card(
-            shape = RoundedCornerShape(10.sdp),
-            colors = CardDefaults.cardColors(
-                containerColor = colorResource(id = R.color.semi_transparent)
-            ),
-            onClick = {}
-        ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 20.sdp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Image(
-                    painter = painterResource(id = com.thezayin.core.R.drawable.ic_star),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .size(20.sdp),
-                    alignment = Alignment.BottomCenter
-                )
-                Text(
-                    text = "Leave a rating/review",
-                    color = colorResource(id = R.color.black),
-                    fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_regular)),
-                    fontSize = 10.ssp,
-                    modifier = Modifier
-                        .padding(vertical = 15.sdp)
-                        .padding(start = 10.sdp)
-                )
-            }
-        }
+//        Card(
+//            shape = RoundedCornerShape(10.sdp),
+//            colors = CardDefaults.cardColors(
+//                containerColor = colorResource(id = R.color.semi_transparent)
+//            ),
+//            onClick = {}
+//        ) {
+//            Row(
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .padding(horizontal = 20.sdp),
+//                verticalAlignment = Alignment.CenterVertically
+//            ) {
+//                Image(
+//                    painter = painterResource(id = com.thezayin.core.R.drawable.ic_star),
+//                    contentDescription = null,
+//                    modifier = Modifier
+//                        .size(20.sdp),
+//                    alignment = Alignment.BottomCenter
+//                )
+//                Text(
+//                    text = "Leave a rating/review",
+//                    color = colorResource(id = R.color.black),
+//                    fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_regular)),
+//                    fontSize = 10.ssp,
+//                    modifier = Modifier
+//                        .padding(vertical = 15.sdp)
+//                        .padding(start = 10.sdp)
+//                )
+//            }
+//        }
 
         Spacer(
             modifier = Modifier

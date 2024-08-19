@@ -2,13 +2,13 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.serialization.json)
-    id("com.google.devtools.ksp") version "1.9.22-1.0.17"
+    alias(libs.plugins.compose.compiler)
+    id("com.google.devtools.ksp") version "2.0.10-1.0.24"
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
     id("com.google.firebase.firebase-perf")
     id("com.google.firebase.appdistribution")
     id("kotlin-kapt")
-    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
@@ -39,9 +39,7 @@ android {
         compose = true
         dataBinding = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.8"
-    }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -56,11 +54,11 @@ dependencies {
     implementation(project(":framework"))
     implementation(project(":analytics"))
     implementation(project(":common"))
-    implementation(project(":useraddress"))
-    implementation(project(":userbuy"))
-    implementation(project(":usercart"))
-    implementation(project(":userhome"))
-    implementation(project(":userorderhistory"))
+    implementation(project(":address"))
+    implementation(project(":buy"))
+    implementation(project(":cart"))
+    implementation(project(":home"))
+    implementation(project(":history"))
     implementation(project(":di"))
     implementation(project(":databases"))
 
@@ -86,9 +84,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.common.java8)
-
-//neu morphic
-    implementation(libs.neumorphic)
 
     //koin dependency injection
     implementation(libs.koin.core)
@@ -145,13 +140,8 @@ dependencies {
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.runtime)
 
-    //Google Services & Maps
-    implementation("com.google.android.gms:play-services-location:21.3.0")
-    implementation("com.google.maps.android:maps-compose:2.9.0")
-    implementation("com.google.android.gms:play-services-maps:19.0.0")
-
     //Accompanist (Permission)
-    implementation("com.google.accompanist:accompanist-permissions:0.34.0")
+    implementation(libs.accompanist.permissions)
 
     implementation (libs.sdp.compose)
 
