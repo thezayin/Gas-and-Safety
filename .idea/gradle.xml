@@ -9,19 +9,19 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/address" />
             <option value="$PROJECT_DIR$/analytics" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/buy" />
+            <option value="$PROJECT_DIR$/cart" />
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/databases" />
             <option value="$PROJECT_DIR$/di" />
             <option value="$PROJECT_DIR$/entities" />
             <option value="$PROJECT_DIR$/framework" />
-            <option value="$PROJECT_DIR$/useraddress" />
-            <option value="$PROJECT_DIR$/userbuy" />
-            <option value="$PROJECT_DIR$/usercart" />
-            <option value="$PROJECT_DIR$/userhome" />
-            <option value="$PROJECT_DIR$/userorderhistory" />
+            <option value="$PROJECT_DIR$/history" />
+            <option value="$PROJECT_DIR$/home" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />
