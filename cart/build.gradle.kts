@@ -1,7 +1,8 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    id("com.google.devtools.ksp") version "1.9.22-1.0.17"
+    alias(libs.plugins.compose.compiler)
+    id("com.google.devtools.ksp") version "2.0.10-1.0.24"
 }
 
 android {
@@ -33,9 +34,6 @@ android {
     }
     buildFeatures {
         compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.8"
     }
 }
 

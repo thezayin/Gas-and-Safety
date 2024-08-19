@@ -1,11 +1,11 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    id("com.google.devtools.ksp") version "1.9.22-1.0.17"
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
-    namespace = "com.thezayin.useraddress"
+    namespace = "com.thezayin.userbuy"
     compileSdk = 34
 
     defaultConfig {
@@ -34,17 +34,14 @@ android {
     buildFeatures {
         compose = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.8"
-    }
 }
 
 dependencies {
     implementation(project(":core"))
+    implementation(project(":common"))
     implementation(project(":entities"))
     implementation(project(":framework"))
-    implementation(project(":common"))
-    implementation(project(":databases"))
+    implementation(project(":cart"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -72,10 +69,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.common.java8)
-    //room database
-    implementation(libs.androidx.room.ktx)
-    ksp(libs.androidx.room.compiler)
-    implementation(libs.androidx.room.runtime)
     implementation (libs.sdp.compose)
 
 }

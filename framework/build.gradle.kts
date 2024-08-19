@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.compose.compiler)
     id("kotlin-kapt")
     id("kotlinx-serialization")
     id("kotlin-parcelize")
@@ -34,10 +35,6 @@ android {
 
     kotlinOptions {
         jvmTarget = "1.8"
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.8"
     }
 
     buildFeatures {
@@ -83,8 +80,8 @@ dependencies {
     //serialization
     api(libs.kotlinx.serialization.json)
     // dependency for exoplayer
-    api("com.google.android.exoplayer:exoplayer-core:2.19.1")
-    api("com.google.android.exoplayer:exoplayer-ui:2.19.1")
+    api(libs.exoplayer.core)
+    api(libs.exoplayer.ui)
     implementation (libs.sdp.compose)
 
 }

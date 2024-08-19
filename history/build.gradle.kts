@@ -1,10 +1,11 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
-    namespace = "com.thezayin.userhome"
+    namespace = "com.thezayin.userorderhistory"
     compileSdk = 34
 
     defaultConfig {
@@ -33,17 +34,13 @@ android {
     buildFeatures {
         compose = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.8"
-    }
 }
 
 dependencies {
-    implementation(project(":core"))
     implementation(project(":common"))
+    implementation(project(":core"))
     implementation(project(":entities"))
     implementation(project(":framework"))
-    implementation(project(":usercart"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -73,5 +70,4 @@ dependencies {
     implementation(libs.androidx.lifecycle.common.java8)
 
     implementation (libs.sdp.compose)
-
 }
