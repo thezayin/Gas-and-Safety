@@ -1,17 +1,17 @@
 package com.thezayin.presentation.di
 
-import com.thezayin.data.CartProRepositoryImpl
-import com.thezayin.domain.repository.CartProRepository
-import com.thezayin.domain.usecase.AddToCart
-import com.thezayin.domain.usecase.AddToCartImpl
-import com.thezayin.domain.usecase.DeleteAllCart
-import com.thezayin.domain.usecase.DeleteAllCartImpl
-import com.thezayin.domain.usecase.DeleteFromCart
-import com.thezayin.domain.usecase.DeleteFromCartImpl
-import com.thezayin.domain.usecase.GetCartProducts
-import com.thezayin.domain.usecase.GetCartProductsImpl
-import com.thezayin.domain.usecase.UpdateQuantity
-import com.thezayin.domain.usecase.UpdateQuantityImpl
+import com.thezayin.data.CartRepositoryImpl
+import com.thezayin.domain.repository.CartRepository
+import com.thezayin.domain.usecase.AddProductToCart
+import com.thezayin.domain.usecase.AddProductToCartImpl
+import com.thezayin.domain.usecase.ClearCartUseCase
+import com.thezayin.domain.usecase.ClearCartUseCaseImpl
+import com.thezayin.domain.usecase.FetchCartProducts
+import com.thezayin.domain.usecase.FetchCartProductsImpl
+import com.thezayin.domain.usecase.RemoveProductFromCartUseCase
+import com.thezayin.domain.usecase.RemoveProductFromCartUseCaseImpl
+import com.thezayin.domain.usecase.UpdateCartProductQuantityUseCase
+import com.thezayin.domain.usecase.UpdateCartProductQuantityUseCaseImpl
 import com.thezayin.presentation.CartViewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.core.module.dsl.factoryOf
@@ -19,11 +19,11 @@ import org.koin.dsl.bind
 import org.koin.dsl.module
 
 val cartModule = module {
-    factoryOf(::CartProRepositoryImpl) bind CartProRepository::class
-    factoryOf(::GetCartProductsImpl) bind GetCartProducts::class
-    factoryOf(::DeleteAllCartImpl) bind DeleteAllCart::class
-    factoryOf(::AddToCartImpl) bind AddToCart::class
-    factoryOf(::DeleteFromCartImpl) bind DeleteFromCart::class
-    factoryOf(::UpdateQuantityImpl) bind UpdateQuantity::class
+    factoryOf(::CartRepositoryImpl) bind CartRepository::class
+    factoryOf(::FetchCartProductsImpl) bind FetchCartProducts::class
+    factoryOf(::ClearCartUseCaseImpl) bind ClearCartUseCase::class
+    factoryOf(::AddProductToCartImpl) bind AddProductToCart::class
+    factoryOf(::RemoveProductFromCartUseCaseImpl) bind RemoveProductFromCartUseCase::class
+    factoryOf(::UpdateCartProductQuantityUseCaseImpl) bind UpdateCartProductQuantityUseCase::class
     viewModelOf(::CartViewModel)
 }

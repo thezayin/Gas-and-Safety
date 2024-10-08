@@ -1,17 +1,20 @@
 package com.thezayin.presentation
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thezayin.databases.model.CartModel
 import com.thezayin.databases.model.ProfileModel
 import com.thezayin.domain.model.HomeProdModel
-import com.thezayin.domain.usecase.AddToCart
-import com.thezayin.domain.usecase.GetAllProfiles
-import com.thezayin.domain.usecase.GetCartProducts
-import com.thezayin.domain.usecase.GetProWithImg
-import com.thezayin.domain.usecase.GetProducts
-import com.thezayin.domain.usecase.UpdateQuantity
-import com.thezayin.framework.utils.Response
+import com.thezayin.domain.usecase.AddProductToCart
+import com.thezayin.domain.usecase.AddToCartParams
+import com.thezayin.domain.usecase.FetchCartProducts
+import com.thezayin.domain.usecase.FetchProductsUseCase
+import com.thezayin.domain.usecase.FetchProductsWithImagesUseCase
+import com.thezayin.domain.usecase.GetAllProfilesUseCase
+import com.thezayin.domain.usecase.UpdateCartProductQuantityUseCase
+import com.thezayin.domain.usecase.UpdateCartQuantityParams
+import com.thezayin.framework.utils.Resource
 import com.thezayin.presentation.events.HomeUiEvents
 import com.thezayin.presentation.state.HomeUiState
 import kotlinx.coroutines.delay
@@ -20,182 +23,253 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
+/**
+ * ViewModel for the Home screen, responsible for managing UI-related data and handling user interactions.
+ *
+ * This ViewModel interacts with various use cases to fetch products, manage the shopping cart,
+ * and retrieve user profiles. It also manages the UI state for the Home screen.
+ */
 class HomeViewModel(
-    private val addToCart: AddToCart,
-    private val getProduct: GetProducts,
-    private val getProWithImg: GetProWithImg,
-    private val getCartProducts: GetCartProducts,
-    private val getAllProfiles: GetAllProfiles,
-    private val updateQuantity: UpdateQuantity
+    private val addProductToCart: AddProductToCart,
+    private val fetchProducts: FetchProductsUseCase,
+    private val fetchProductsWithImages: FetchProductsWithImagesUseCase,
+    private val getCartProducts: FetchCartProducts,
+    private val getAllProfiles: GetAllProfilesUseCase,
+    private val updateCartProductQuantity: UpdateCartProductQuantityUseCase
 ) : ViewModel() {
+
     private val _homeUiState = MutableStateFlow(HomeUiState())
     val homeUiState = _homeUiState.asStateFlow()
 
     init {
-        getProductsFromFirebase()
-        getAllProducts()
-        fetchAllProfiles()
+        // Initial fetching of products, cart items, and user profiles
+        fetchProductsFromFirebase()
+        fetchAllCartItems()
+        fetchAllUserProfiles()
     }
 
-    private fun homeUiEvent(event: HomeUiEvents) {
+    // Convenience methods for event handling
+    private fun handleHomeUiEvent(event: HomeUiEvents) {
         when (event) {
-            is HomeUiEvents.GetProducts -> _homeUiState.update { it.copy(getProducts = event.list) }
-            is HomeUiEvents.ErrorMessage -> _homeUiState.update { it.copy(errorMessage = event.message) }
-            is HomeUiEvents.ShowError -> _homeUiState.update { it.copy(isError = event.isError) }
-            is HomeUiEvents.ShowLoading -> _homeUiState.update { it.copy(isLoading = event.isLoading) }
-            is HomeUiEvents.AddToCart -> _homeUiState.update { it.copy(isAdded = event.isAdded) }
-            is HomeUiEvents.GetCart -> _homeUiState.update { it.copy(getCart = event.cartList) }
-            is HomeUiEvents.GetAddresses -> _homeUiState.update { it.copy(getAddresses = event.getAddresses) }
-            is HomeUiEvents.ProductDetail -> _homeUiState.update { it.copy(productDetail = event.productDetail) }
+            is HomeUiEvents.GetProducts ->
+                _homeUiState.update { it.copy(getProducts = event.list) } // Update products in UI state
+
+            is HomeUiEvents.ErrorMessage ->
+                _homeUiState.update { it.copy(errorMessage = event.message) } // Update error message
+
+            is HomeUiEvents.ShowError ->
+                _homeUiState.update { it.copy(isError = event.isError) } // Show or hide error
+
+            is HomeUiEvents.ShowLoading ->
+                _homeUiState.update { it.copy(isLoading = event.isLoading) } // Show loading indicator
+
+            is HomeUiEvents.AddToCart ->
+                _homeUiState.update { it.copy(isAdded = event.isAdded) } // Update cart status
+
+            is HomeUiEvents.GetCart ->
+                _homeUiState.update { it.copy(getCart = event.cartList) } // Update cart items
+
+            is HomeUiEvents.GetAddresses ->
+                _homeUiState.update { it.copy(getAddresses = event.getAddresses) } // Update addresses
+
+            is HomeUiEvents.ProductDetail ->
+                _homeUiState.update { it.copy(productDetail = event.productDetail) } // Update product detail
         }
     }
 
-    fun getProductDetail(product: HomeProdModel) = homeUiEvent(HomeUiEvents.ProductDetail(product))
-    fun addedToCart(isAdd: Boolean) = homeUiEvent(HomeUiEvents.AddToCart(isAdd))
-    private fun getCart(list: List<CartModel>) = homeUiEvent(HomeUiEvents.GetCart(list))
-    private fun getProducts(list: List<HomeProdModel>) = homeUiEvent(HomeUiEvents.GetProducts(list))
-    private fun errorMessage(message: String) = homeUiEvent(HomeUiEvents.ErrorMessage(message))
-    private fun showLoading(isLoading: Boolean) = homeUiEvent(HomeUiEvents.ShowLoading(isLoading))
-    fun showError(isError: Boolean) = homeUiEvent(HomeUiEvents.ShowError(isError))
-    private fun getAddresses(list: List<ProfileModel>?) =
-        homeUiEvent(HomeUiEvents.GetAddresses(list))
+    // Emit product detail event
+    private fun emitProductDetail(product: HomeProdModel) =
+        handleHomeUiEvent(HomeUiEvents.ProductDetail(product))
 
-    fun getProduct(productId: String) = viewModelScope.launch {
-        showLoading(true)
-        delay(1000L)
-        _homeUiState.collect {
-            it.getProducts?.forEach { product ->
+    // Emit event indicating item was added to the cart
+    fun emitAddedToCart(isAdd: Boolean) = handleHomeUiEvent(HomeUiEvents.AddToCart(isAdd))
+
+    // Emit cart items to the UI
+    private fun emitCart(list: List<CartModel>) = handleHomeUiEvent(HomeUiEvents.GetCart(list))
+
+    // Emit the list of products to the UI
+    private fun emitProducts(list: List<HomeProdModel>) =
+        handleHomeUiEvent(HomeUiEvents.GetProducts(list))
+
+    // Emit error messages to the UI
+    private fun emitErrorMessage(message: String) =
+        handleHomeUiEvent(HomeUiEvents.ErrorMessage(message))
+
+    // Emit loading state to the UI
+    private fun emitShowLoading(isLoading: Boolean) =
+        handleHomeUiEvent(HomeUiEvents.ShowLoading(isLoading))
+
+    // Emit error state to the UI
+    fun emitShowError(isError: Boolean) = handleHomeUiEvent(HomeUiEvents.ShowError(isError))
+
+    // Emit addresses to the UI
+    private fun emitAddresses(list: List<ProfileModel>?) =
+        handleHomeUiEvent(HomeUiEvents.GetAddresses(list))
+
+    // Fetch product detail when user selects a product
+    fun getProductDetail(product: HomeProdModel) = emitProductDetail(product)
+
+    // Fetch a product by ID
+    fun fetchProduct(productId: String) = viewModelScope.launch {
+        emitShowLoading(true)
+        delay(1000L) // Simulate loading delay
+        _homeUiState.collect { state ->
+            state.getProducts?.forEach { product ->
                 if (product.id == productId) {
                     getProductDetail(product)
-                    showLoading(false)
+                    emitShowLoading(false)
                 } else {
-                    showLoading(false)
+                    emitShowLoading(false)
                 }
             }
-            showLoading(false)
+            emitShowLoading(false)
         }
     }
 
-    private fun fetchProducts(list: List<HomeProdModel>) = viewModelScope.launch {
-        getProWithImg(list).collect { response ->
+    // Fetch products from Firebase
+    private fun fetchProductsFromFirebase() = viewModelScope.launch {
+        fetchProducts().collect { response ->
             when (response) {
-                is Response.Success -> {
-                    getProducts(response.data)
-                    showLoading(false)
+                is Resource.Success -> {
+                    emitShowLoading(false)
+                    fetchProductsImages(response.data)
                 }
 
-                is Response.Error -> {
-                    showError(true)
-                    errorMessage(response.e)
-                    showError(false)
+                is Resource.Error -> {
+                    emitShowLoading(false)
+                    emitErrorMessage(response.e)
+                    emitShowError(true)
                 }
 
-                is Response.Loading -> showLoading(true)
+                is Resource.Loading -> {
+                    emitShowLoading(true)
+                }
             }
         }
     }
 
-    private fun getAllProducts() = viewModelScope.launch {
+    // Fetch images for the products
+    private fun fetchProductsImages(products: List<HomeProdModel>) = viewModelScope.launch {
+        fetchProductsWithImages(products).collect { response ->
+            when (response) {
+                is Resource.Success -> {
+                    emitShowLoading(false)
+                    emitProducts(response.data) // Update the UI with products
+                }
+
+                is Resource.Error -> {
+                    emitShowLoading(false)
+                    emitErrorMessage(response.e)
+                    emitShowError(true)
+                }
+
+                is Resource.Loading -> {
+                    emitShowLoading(true)
+                }
+            }
+        }
+    }
+
+    // Fetch all cart items
+    private fun fetchAllCartItems() = viewModelScope.launch {
         getCartProducts().collect { response ->
             when (response) {
-                is Response.Success -> {
-                    getCart(response.data)
-                    showLoading(false)
+                is Resource.Success -> {
+                    emitShowLoading(false)
+                    emitCart(response.data) // Update cart items
                 }
 
-                is Response.Error -> {
-                    showLoading(false)
-                    showError(true)
-                    errorMessage(response.e)
+                is Resource.Error -> {
+                    emitShowLoading(false)
+                    emitErrorMessage(response.e)
+                    emitShowError(true)
                 }
 
-                is Response.Loading -> showLoading(true)
-            }
-        }
-    }
-
-    fun addedToCart(
-        id: String, name: String, price: String, description: String, imageUri: String
-    ) = viewModelScope.launch {
-        val existingCartItem = _homeUiState.value.getCart?.find { it.id == id }
-        if (existingCartItem != null) {
-            val newQuantity = existingCartItem.quantity!! + 1
-            val newTotalPrice = existingCartItem.totalPrice!!.toInt() + price.toInt()
-            updateProductQuantity(id, newQuantity, newTotalPrice)
-        } else {
-            addToCart(id, name, price, description, imageUri).collect { response ->
-                when (response) {
-                    is Response.Success -> {
-                        showLoading(false)
-                        addedToCart(true)
-                        getAllProducts()
-                    }
-
-                    is Response.Error -> {
-                        showError(true)
-                        errorMessage(response.e)
-                    }
-
-                    is Response.Loading -> showLoading(true)
+                is Resource.Loading -> {
+                    emitShowLoading(true)
                 }
             }
         }
     }
 
-    private fun getProductsFromFirebase() = viewModelScope.launch {
-        getProduct().collect { response ->
-            when (response) {
-                is Response.Success -> {
-                    fetchProducts(response.data)
-                    showLoading(false)
-                }
-
-                is Response.Error -> {
-                    errorMessage(response.e)
-                    showLoading(false)
-                    showError(true)
-                }
-
-                is Response.Loading -> showLoading(true)
-            }
-        }
-    }
-
-    private fun fetchAllProfiles() = viewModelScope.launch {
+    // Fetch all user profiles
+    private fun fetchAllUserProfiles() = viewModelScope.launch {
         getAllProfiles().collect { response ->
             when (response) {
-                is Response.Success -> {
-                    showLoading(false)
-                    getAddresses(response.data)
+                is Resource.Success -> {
+                    emitShowLoading(false)
+                    emitAddresses(response.data) // Update addresses
                 }
 
-                is Response.Error -> {
-                    showLoading(false)
-                    showError(true)
-                    errorMessage(response.e)
+                is Resource.Error -> {
+                    emitShowLoading(false)
+                    emitErrorMessage(response.e)
+                    emitShowError(true)
                 }
 
-                is Response.Loading -> showLoading(true)
+                is Resource.Loading -> {
+                    emitShowLoading(true)
+                }
             }
         }
     }
 
+    // Add a product to the cart
+    fun addToCart(id: String, name: String, price: String, description: String, imageUri: String) =
+        viewModelScope.launch {
+            val existingCartItem = _homeUiState.value.getCart?.find { it.externalId == id }
+            if (existingCartItem != null) {
+                Log.d("jeje", "Cart Item already exists in cart")
+                val newQuantity = existingCartItem.quantity + 1
+                val newTotalPrice = existingCartItem.totalPrice + price.toInt()
+                updateProductQuantity(id, newQuantity, newTotalPrice.toInt())
+                Log.d("jeje", "New Quantity: $newQuantity")
+                emitShowLoading(false)
+            } else {
+                val params = AddToCartParams(id, name, price, description, imageUri)
+                addProductToCart(params).collect { response ->
+                    when (response) {
+                        is Resource.Success -> {
+                            Log.d("jeje", "Product added to cart")
+                            emitShowLoading(false)
+                            emitAddedToCart(true)
+                            fetchAllCartItems() // Refresh cart items
+                        }
+
+                        is Resource.Error -> {
+                            emitShowLoading(false)
+                            emitShowError(true)
+                            emitErrorMessage(response.e)
+                        }
+
+                        is Resource.Loading -> {
+                            Log.d("jeje", "Adding product to cart")
+                            emitShowLoading(true)
+                        }
+                    }
+                }
+            }
+        }
+
+    // Update the quantity of a product in the cart
     private fun updateProductQuantity(id: String, qty: Int, price: Int) = viewModelScope.launch {
-        updateQuantity(id, qty, price).collect { response ->
+        val params = UpdateCartQuantityParams(id, qty, price)
+        updateCartProductQuantity(params).collect { response ->
             when (response) {
-                is Response.Success -> {
-                    addedToCart(true)
-                    showLoading(false)
-                    getAllProducts()
+                is Resource.Success -> {
+                    emitShowLoading(false)
+                    fetchAllCartItems() // Refresh cart after update
                 }
 
-                is Response.Error -> {
-                    showLoading(false)
-                    showError(true)
-                    errorMessage(response.e)
+                is Resource.Error -> {
+                    emitShowLoading(false)
+                    emitShowError(true)
+                    emitErrorMessage(response.e)
                 }
 
-                is Response.Loading -> showLoading(true)
+                is Resource.Loading -> {
+                    emitShowLoading(true)
+                }
             }
         }
     }

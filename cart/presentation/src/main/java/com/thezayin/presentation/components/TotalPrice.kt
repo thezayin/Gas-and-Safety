@@ -15,21 +15,28 @@ import androidx.compose.ui.tooling.preview.Preview
 import ir.kaaveh.sdpcompose.sdp
 import ir.kaaveh.sdpcompose.ssp
 
+/**
+ * A composable function that displays the total price in the cart.
+ *
+ * This function presents the total price formatted as "Total Price: $price".
+ *
+ * @param price The total price to be displayed.
+ */
 @Composable
 fun TotalPrice(price: String) {
     Row(
         modifier = Modifier
-            .padding(horizontal = 15.sdp)
-            .fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center
+            .padding(horizontal = 15.sdp) // Horizontal padding for spacing
+            .fillMaxWidth(), // Fill the available width
+        verticalAlignment = Alignment.CenterVertically, // Center the text vertically
+        horizontalArrangement = Arrangement.Center // Center the text horizontally
     ) {
         Text(
-            text = "Total Price: $price",
-            modifier = Modifier.padding(top = 15.sdp, bottom = 15.sdp),
-            fontSize = 18.ssp,
-            fontWeight = FontWeight.ExtraBold,
-            fontFamily = FontFamily(Font(com.thezayin.assets.R.font.noto_sans_bold))
+            text = "Total Price: $price", // Display the total price
+            modifier = Modifier.padding(top = 15.sdp, bottom = 15.sdp), // Padding around the text
+            fontSize = 18.ssp, // Font size for the text
+            fontWeight = FontWeight.ExtraBold, // Boldness of the font
+            fontFamily = FontFamily(Font(com.thezayin.assets.R.font.noto_sans_bold)) // Font style
         )
     }
 }
@@ -37,5 +44,5 @@ fun TotalPrice(price: String) {
 @Composable
 @Preview
 fun TotalPricePreview() {
-    TotalPrice(price = "1000")
+    TotalPrice(price = "1000") // Preview the TotalPrice component with a sample price
 }

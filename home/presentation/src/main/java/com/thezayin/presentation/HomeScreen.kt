@@ -47,12 +47,12 @@ fun HomeScreen(
         errorMessage = errorMessage ?: "Unexpected Error, Restart App",
         list = list,
         isLoading = isLoading,
-        onErrorClose = { viewModel.showError(false) },
+        onErrorClose = { viewModel.emitShowError(false) },
         activity = activity,
         addedToCart = isAddedToCart,
         cartList = cartList,
         onCartClick = {
-            viewModel.addedToCart(
+            viewModel.addToCart(
                 id = it.id ?: "",
                 name = it.name ?: "",
                 price = it.price ?: "",
@@ -60,7 +60,7 @@ fun HomeScreen(
                 imageUri = it.imageUri.toString(),
             )
         },
-        updateCartValue = { viewModel.addedToCart(false) },
+        updateCartValue = { viewModel.emitAddedToCart(false) },
         navigateToCart = navigateToCart,
         navigateToContact = navigateToContact,
         navigateToHistory = navigateToHistory,

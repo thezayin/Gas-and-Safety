@@ -3,12 +3,12 @@ package com.thezayin.presentation.di
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import com.thezayin.data.repository.GetProductsRepositoryImpl
-import com.thezayin.domain.repository.GetProductsRepository
-import com.thezayin.domain.usecase.GetProWithImg
-import com.thezayin.domain.usecase.GetProWithImgImpl
-import com.thezayin.domain.usecase.GetProducts
-import com.thezayin.domain.usecase.GetProductsImpl
+import com.thezayin.data.repository.ProductRepositoryImpl
+import com.thezayin.domain.repository.ProductRepository
+import com.thezayin.domain.usecase.FetchProductsUseCase
+import com.thezayin.domain.usecase.FetchProductsUseCaseImpl
+import com.thezayin.domain.usecase.FetchProductsWithImagesUseCase
+import com.thezayin.domain.usecase.FetchProductsWithImagesUseCaseImpl
 import com.thezayin.presentation.HomeViewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.core.module.dsl.factoryOf
@@ -19,8 +19,8 @@ val homeModule = module {
     single { FirebaseFirestore.getInstance() }
     single { FirebaseAuth.getInstance() }
     single { FirebaseStorage.getInstance() }
-    factoryOf(::GetProductsRepositoryImpl) bind GetProductsRepository::class
-    factoryOf(::GetProductsImpl) bind GetProducts::class
-    factoryOf(::GetProWithImgImpl) bind GetProWithImg::class
+    factoryOf(::ProductRepositoryImpl) bind ProductRepository::class
+    factoryOf(::FetchProductsUseCaseImpl) bind FetchProductsUseCase::class
+    factoryOf(::FetchProductsWithImagesUseCaseImpl) bind FetchProductsWithImagesUseCase::class
     viewModelOf(::HomeViewModel)
 }

@@ -6,15 +6,18 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thezayin.databases.model.CartModel
 import com.thezayin.databases.model.ProfileModel
-import com.thezayin.domain.usecase.AddProfile
-import com.thezayin.domain.usecase.DeleteAllCart
-import com.thezayin.domain.usecase.GetAllProfiles
-import com.thezayin.domain.usecase.GetAreaList
-import com.thezayin.domain.usecase.GetCartProducts
-import com.thezayin.domain.usecase.GetCityList
-import com.thezayin.domain.usecase.GetProfileDataById
-import com.thezayin.domain.usecase.PlaceOrder
-import com.thezayin.framework.utils.Response
+import com.thezayin.domain.usecase.AddProfileParams
+import com.thezayin.domain.usecase.AddProfileUseCase
+import com.thezayin.domain.usecase.ClearCartUseCase
+import com.thezayin.domain.usecase.CreateOrder
+import com.thezayin.domain.usecase.FetchCartProducts
+import com.thezayin.domain.usecase.GetAllProfilesUseCase
+import com.thezayin.domain.usecase.GetAreaListParams
+import com.thezayin.domain.usecase.GetAreaListUseCase
+import com.thezayin.domain.usecase.GetCityListUseCase
+import com.thezayin.domain.usecase.GetProfileByIdParams
+import com.thezayin.domain.usecase.GetProfileByIdUseCase
+import com.thezayin.framework.utils.Resource
 import com.thezayin.presentation.event.OrderUiEvent
 import com.thezayin.presentation.state.OrderUiState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -26,14 +29,14 @@ import java.time.LocalDateTime
 import java.util.Date
 
 class OrderViewModel(
-    private val addProfile: AddProfile,
-    val placeOrder: PlaceOrder,
-    private val getAllProfiles: GetAllProfiles,
-    private val getCartProducts: GetCartProducts,
-    private val deleteAllCart: DeleteAllCart,
-    private val getProfileDataById: GetProfileDataById,
-    private val getCityList: GetCityList,
-    private val getAreaList: GetAreaList
+    private val addProfile: AddProfileUseCase,
+    val createOrder: CreateOrder,
+    private val getAllProfiles: GetAllProfilesUseCase,
+    private val getCartProducts: FetchCartProducts,
+    private val clearCartUseCase: ClearCartUseCase,
+    private val getProfileDataById: GetProfileByIdUseCase,
+    private val getCityList: GetCityListUseCase,
+    private val getAreaList: GetAreaListUseCase
 ) : ViewModel() {
 
     private val _orderUiState = MutableStateFlow(OrderUiState())
@@ -85,18 +88,18 @@ class OrderViewModel(
     private fun getAllProducts() = viewModelScope.launch {
         getCartProducts().collect { response ->
             when (response) {
-                is Response.Success -> {
+                is Resource.Success -> {
                     isLoading(false)
                     orderList(response.data)
                 }
 
-                is Response.Error -> {
+                is Resource.Error -> {
                     isLoading(false)
                     isError(false)
                     errorMessage(response.e)
                 }
 
-                is Response.Loading -> isLoading(true)
+                is Resource.Loading -> isLoading(true)
             }
         }
     }
@@ -111,7 +114,7 @@ class OrderViewModel(
         totalAmount: String,
         products: List<CartModel>
     ) = viewModelScope.launch {
-        placeOrder(
+        createOrder(
             userID,
             name,
             phoneNumber,
@@ -129,38 +132,38 @@ class OrderViewModel(
             products,
         ).collect { response ->
             when (response) {
-                is Response.Success -> {
+                is Resource.Success -> {
                     isLoading(false)
                     orderSuccess(true)
                     emptyCart()
                 }
 
-                is Response.Error -> {
+                is Resource.Error -> {
                     isLoading(false)
                     isError(true)
                     errorMessage(response.e)
                 }
 
-                is Response.Loading -> isLoading(true)
+                is Resource.Loading -> isLoading(true)
             }
         }
     }
 
     private fun emptyCart() = viewModelScope.launch {
-        deleteAllCart().collect {
+        clearCartUseCase().collect {
             when (it) {
-                is Response.Success -> {
+                is Resource.Success -> {
                     isLoading(false)
                     orderDeleteSuccess(true)
                 }
 
-                is Response.Error -> {
+                is Resource.Error -> {
                     isLoading(false)
                     isError(true)
                     errorMessage(it.e)
                 }
 
-                is Response.Loading -> isLoading(true)
+                is Resource.Loading -> isLoading(true)
 
             }
         }
@@ -169,39 +172,40 @@ class OrderViewModel(
     private fun fetchAllProfiles() = viewModelScope.launch {
         getAllProfiles().collect { response ->
             when (response) {
-                is Response.Success -> {
+                is Resource.Success -> {
                     isLoading(false)
                     Log.d("ProfileList", "${response.data}")
                     getAddresses(response.data)
                 }
 
-                is Response.Error -> {
+                is Resource.Error -> {
                     isLoading(false)
                     isError(true)
                     errorMessage(response.e)
                 }
 
-                is Response.Loading -> isLoading(true)
+                is Resource.Loading -> isLoading(true)
             }
         }
     }
 
 
     fun fetchProfileById(id: Int) = viewModelScope.launch {
-        getProfileDataById(id).collect { response ->
+        val pram = GetProfileByIdParams(id)
+        getProfileDataById(pram).collect { response ->
             when (response) {
-                is Response.Success -> {
+                is Resource.Success -> {
                     isLoading(false)
                     getAddress(response.data)
                 }
 
-                is Response.Error -> {
+                is Resource.Error -> {
                     isLoading(false)
                     isError(true)
                     errorMessage(response.e)
                 }
 
-                is Response.Loading -> isLoading(true)
+                is Resource.Loading -> isLoading(true)
             }
         }
     }
@@ -213,20 +217,28 @@ class OrderViewModel(
         area: String,
         city: String,
     ) = viewModelScope.launch {
-        addProfile(name, phoneNumber, address, area, city, null).collect { response ->
+        val pram = AddProfileParams(
+            name,
+            phoneNumber,
+            address,
+            area,
+            city,
+            null
+        )
+        addProfile(pram).collect { response ->
             when (response) {
-                is Response.Success -> {
+                is Resource.Success -> {
                     isLoading(false)
                     fetchAllProfiles()
                 }
 
-                is Response.Error -> {
+                is Resource.Error -> {
                     isLoading(false)
                     isError(true)
                     errorMessage(response.e)
                 }
 
-                is Response.Loading -> isLoading(true)
+                is Resource.Loading -> isLoading(true)
             }
         }
     }
@@ -234,37 +246,38 @@ class OrderViewModel(
     private fun fetchCityList() = viewModelScope.launch {
         getCityList().collect { response ->
             when (response) {
-                is Response.Success -> {
+                is Resource.Success -> {
                     isLoading(false)
                     cityList(response.data)
                 }
 
-                is Response.Error -> {
+                is Resource.Error -> {
                     isLoading(false)
                     isError(true)
                     errorMessage(response.e)
                 }
 
-                is Response.Loading -> isLoading(true)
+                is Resource.Loading -> isLoading(true)
             }
         }
     }
 
     fun fetchAreaList(city: String) = viewModelScope.launch {
-        getAreaList(city).collect { response ->
+        val pram = GetAreaListParams(city)
+        getAreaList(pram).collect { response ->
             when (response) {
-                is Response.Success -> {
+                is Resource.Success -> {
                     isLoading(false)
                     areaList(response.data)
                 }
 
-                is Response.Error -> {
+                is Resource.Error -> {
                     isLoading(false)
                     isError(true)
                     errorMessage(response.e)
                 }
 
-                is Response.Loading -> isLoading(true)
+                is Resource.Loading -> isLoading(true)
             }
         }
     }

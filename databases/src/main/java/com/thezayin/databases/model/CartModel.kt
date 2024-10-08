@@ -30,25 +30,25 @@ data class CartModel(
      * External identifier for the cart item, such as a Firestore document ID.
      * This allows mapping between the local database entry and the remote data source.
      */
-    val externalId: String? = null, // Renamed from 'id' to 'externalId' for clarity
+    val externalId: String = "", // Renamed from 'id' to 'externalId' for clarity
 
     /**
      * The name of the product.
      * Cannot be null to ensure that every cart item has a valid name.
      */
-    val name: String,
+    val name: String = "",
 
     /**
      * A brief description of the product.
      * Helps users understand what the product is about.
      */
-    val description: String,
+    val description: String = "",
 
     /**
      * The price of a single unit of the product.
      * Represented as a Double for accurate calculations.
      */
-    val price: Double,
+    val price: Double = 0.0,
 
     /**
      * The total price for the quantity of the product in the cart.
@@ -60,7 +60,7 @@ data class CartModel(
      * The URI of the product's image.
      * Optional, allowing flexibility if an image isn't available.
      */
-    val imageUri: String? = null,
+    val imageUri: String = "",
 
     /**
      * The number of units of the product in the cart.
@@ -73,5 +73,5 @@ data class CartModel(
      * Optional, allowing the field to be unset if not needed.
      * Can be represented as a formatted string or a timestamp.
      */
-    val date: String? = null
+    val date: String = ""
 )

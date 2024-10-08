@@ -27,7 +27,7 @@ fun OrderScreen(
     val activity = LocalContext.current as Activity
 
     val userId = activity.getUserUUID()
-    val isLoading = state.isLoading
+    val isLoading = false
     val isError = state.isError
     val errorMessage = state.errorMessage
     val orderList = state.orderList

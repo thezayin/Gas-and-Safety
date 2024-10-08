@@ -1,161 +1,82 @@
 package com.thezayin.analytics.events
 
 import android.os.Bundle
-import com.thezayin.analytics.utils.AnalyticsConstant.AD_REVENUE
-import com.thezayin.analytics.utils.AnalyticsConstant.APP_OPEN_AD
-import com.thezayin.analytics.utils.AnalyticsConstant.INTERSTITIAL_AD
-import com.thezayin.analytics.utils.AnalyticsConstant.NATIVE_AD
-import com.thezayin.analytics.utils.AnalyticsConstant.SCREEN_VIEW
-import com.thezayin.analytics.utils.AnalyticsConstant.SEARCH_NUMBER_CLICK
-import com.thezayin.analytics.utils.AnalyticsConstant.SERVER_SELECTION
-import com.thezayin.analytics.utils.AnalyticsConstant.SETTINGS_CONTACT_US
-import com.thezayin.analytics.utils.AnalyticsConstant.SETTINGS_FEEDBACK
-import com.thezayin.analytics.utils.AnalyticsConstant.SETTINGS_MORE_APPS
-import com.thezayin.analytics.utils.AnalyticsConstant.SETTINGS_PRIVACY_POLICY
-import com.thezayin.analytics.utils.AnalyticsConstant.SETTINGS_RATE_US
-import com.thezayin.analytics.utils.AnalyticsConstant.SETTINGS_TERMS_CONDITION
+import com.thezayin.analytics.utils.AnalyticsConstant.CART_CHECKOUT_INITIATED
+import com.thezayin.analytics.utils.AnalyticsConstant.CART_CLEARED
+import com.thezayin.analytics.utils.AnalyticsConstant.CART_ITEM_ADDED
+import com.thezayin.analytics.utils.AnalyticsConstant.CART_ITEM_REMOVED
+import com.thezayin.analytics.utils.AnalyticsConstant.CART_VIEWED
 
+/**
+ * Sealed class representing different analytics events related to user interactions.
+ *
+ * Each subclass corresponds to a specific event that can be logged to the analytics service.
+ *
+ * @property event The event name to be logged.
+ * @property args A Bundle containing any associated parameters for the event.
+ */
 sealed class AnalyticsEvent(
     val event: String? = null,
     val args: Bundle?
 ) {
     /**
-     * A key-value pair used to supply extra context to an
-     * analytics event.
+     * Event representing the addition of an item to the cart.
      *
-     * @param key - the parameter key. Wherever possible use
-     * one of the standard `ParamKeys`, however, if no suitable
-     * key is available you can define your own as long as it is
-     * configured in your backend analytics system (for example,
-     * by creating a Firebase Analytics custom parameter).
-     *
-     * @param value - the parameter value.
+     * @param itemId The ID of the item being added to the cart.
+     * @param quantity The quantity of the item being added.
      */
-    class AppOpenAdEvent(
-        status: String
+    class CartItemAddedEvent(
+        itemId: String,
+        quantity: Int
     ) : AnalyticsEvent(
-        APP_OPEN_AD,
+        CART_ITEM_ADDED,
         Bundle().apply {
-            putString("status", status)
+            putString("item_id", itemId)
+            putInt("quantity", quantity)
         }
     )
 
-    class InterstitialAdEvent(
-        status: String
+    /**
+     * Event representing the removal of an item from the cart.
+     *
+     * @param itemId The ID of the item being removed from the cart.
+     */
+    class CartItemRemovedEvent(
+        itemId: String
     ) : AnalyticsEvent(
-        INTERSTITIAL_AD,
+        CART_ITEM_REMOVED,
         Bundle().apply {
-            putString("status", status)
+            putString("item_id", itemId)
         }
     )
 
-    class AdPaidEvent(
-        event: String,
-        provider: String,
-        value: String
+    /**
+     * Event representing the clearing of the cart.
+     */
+    class CartClearedEvent : AnalyticsEvent(
+        CART_CLEARED,
+        null
+    )
+
+    /**
+     * Event representing the initiation of a checkout process.
+     *
+     * @param totalAmount The total amount for the checkout.
+     */
+    class CartCheckoutInitiatedEvent(
+        totalAmount: Double
     ) : AnalyticsEvent(
-        AD_REVENUE,
+        CART_CHECKOUT_INITIATED,
         Bundle().apply {
-            putString("event", event)
-            putString("provider", provider)
-            putString("price", value)
+            putDouble("total_amount", totalAmount)
         }
     )
 
-    class NativeAdEvent(
-        status: String
-    ) : AnalyticsEvent(
-        NATIVE_AD,
-        Bundle().apply {
-            putString("status", status)
-        }
-    )
-
-    class ScreenViewEvent(
-        status: String
-    ) : AnalyticsEvent(
-        SCREEN_VIEW,
-        Bundle().apply {
-            putString("status", status)
-        }
-    )
-
-    class ServerSelectionEvent(
-        status: String
-    ) : AnalyticsEvent(
-        SERVER_SELECTION,
-        Bundle().apply {
-            putString("url", status)
-        }
-    )
-
-    class AdImpressionEvent(event: String, provider: String) : AnalyticsEvent(
-        event,
-        Bundle().apply {
-            putString("ad_provider", provider)
-        }
-    )
-
-    class SettingsRateUs(
-        status: String
-    ) : AnalyticsEvent(
-        SETTINGS_RATE_US,
-        Bundle().apply {
-            putString("status", status)
-        }
-    )
-
-    class SettingsFeedback(
-        status: String
-    ) : AnalyticsEvent(
-        SETTINGS_FEEDBACK,
-        Bundle().apply {
-            putString("status", status)
-        }
-    )
-
-    class SettingsContactUs(
-        status: String
-    ) : AnalyticsEvent(
-        SETTINGS_CONTACT_US,
-        Bundle().apply {
-            putString("status", status)
-        }
-    )
-
-    class SettingsTermsConditions(
-        status: String
-    ) : AnalyticsEvent(
-        SETTINGS_TERMS_CONDITION,
-        Bundle().apply {
-            putString("status", status)
-        }
-    )
-
-    class SettingsPrivacyPolicy(
-        status: String
-    ) : AnalyticsEvent(
-        SETTINGS_PRIVACY_POLICY,
-        Bundle().apply {
-            putString("status", status)
-        }
-    )
-
-    class SearchNumberClick(
-        status: String
-    ) : AnalyticsEvent(
-        SEARCH_NUMBER_CLICK,
-        Bundle().apply {
-            putString("status", status)
-        }
-    )
-
-    class SettingMoreApps(
-        status: String
-    ) : AnalyticsEvent(
-        SETTINGS_MORE_APPS,
-        Bundle().apply {
-            putString("status", status)
-        }
+    /**
+     * Event representing the viewing of the cart.
+     */
+    class CartViewedEvent : AnalyticsEvent(
+        CART_VIEWED,
+        null
     )
 }

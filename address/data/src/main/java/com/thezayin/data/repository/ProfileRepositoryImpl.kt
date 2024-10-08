@@ -4,14 +4,29 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.thezayin.databases.dao.ProfileDao
 import com.thezayin.databases.model.ProfileModel
 import com.thezayin.domain.repository.ProfileRepository
-import com.thezayin.framework.utils.Response
+import com.thezayin.framework.utils.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
+import timber.log.Timber
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class ProfileRepositoryImpl(
-    private val profileDao: ProfileDao, private val firestore: FirebaseFirestore
+/**
+ * Implementation of ProfileRepository handling data operations with Room and Firestore.
+ *
+ * @property profileDao DAO for local database operations.
+ * @property firestore Instance of FirebaseFirestore for remote database operations.
+ */
+@Singleton
+class ProfileRepositoryImpl @Inject constructor(
+    private val profileDao: ProfileDao,
+    private val firestore: FirebaseFirestore
 ) : ProfileRepository {
+
+    /**
+     * Adds a new profile to both local Room database and Firestore.
+     */
     override fun addProfile(
         name: String,
         phoneNumber: String,
@@ -19,10 +34,11 @@ class ProfileRepositoryImpl(
         area: String,
         city: String,
         email: String?
-    ): Flow<Response<Boolean>> = flow {
+    ): Flow<Resource<Boolean>> = flow {
+        emit(Resource.Loading)
         try {
-            emit(Response.Loading)
-            val profile = ProfileModel(
+            // Create Profile instance
+            val profileModel = ProfileModel(
                 name = name,
                 phoneNumber = phoneNumber,
                 address = address,
@@ -30,81 +46,145 @@ class ProfileRepositoryImpl(
                 city = city,
                 email = email
             )
-            profileDao.addProfile(profile)
-            val userID = firestore.collection("user_info").document().id
-            val order = ProfileModel(
-                name = name,
-                phoneNumber = phoneNumber,
-                address = address,
-                area = area,
-                city = city,
-                email = email
-            )
-            firestore.collection("user_info").document(userID).set(order).await()
-            emit(Response.Success(true))
+            // Insert into local database
+            profileDao.insertProfile(profileModel)
+            Timber.d("Profile added to local database: $profileModel")
+
+            // Generate a unique ID for Firestore document
+            val firestoreDocRef = firestore.collection("user_info").document()
+            val firestoreProfile = profileModel.copy(id = firestoreDocRef.id.hashCode()) // Ensure unique ID if necessary
+
+            // Insert into Firestore
+            firestoreDocRef.set(firestoreProfile).await()
+            Timber.d("Profile added to Firestore with ID: ${firestoreDocRef.id}")
+
+            emit(Resource.Success(true))
         } catch (e: Exception) {
-            emit(Response.Error(e.localizedMessage ?: "An error occurred"))
+            Timber.e(e, "Error adding profile")
+            emit(Resource.Error("Failed to add profile: ${e.localizedMessage}"))
         }
     }
 
-    override fun updateProfileById(
-        id: Int,
-        name: String,
-        phoneNumber: String,
-        address: String,
-        email: String,
-    ): Flow<Response<Boolean>> = flow {
+    /**
+     * Updates an existing profile in the local Room database.
+     * Optionally synchronizes the update with Firestore.
+     */
+    override fun updateProfile(profileModel: ProfileModel): Flow<Resource<Boolean>> = flow {
+        emit(Resource.Loading)
         try {
-            emit(Response.Loading)
-            val profile = ProfileModel(
-                name = name, phoneNumber = phoneNumber, address = address, email = email
-            )
-            profileDao.getAllProfiles().find { it.id == id }?.let {
-                profileDao.updateProfileById(profile)
-            }
-            emit(Response.Success(true))
+            // Update in local database
+            profileDao.updateProfile(profileModel)
+            Timber.d("Profile updated in local database: $profileModel")
+
+            // Optionally, update in Firestore
+            // Uncomment the following lines if Firestore synchronization is required
+            /*
+            firestore.collection("user_info")
+                .document(profile.id.toString())
+                .set(profile)
+                .await()
+            Timber.d("Profile updated in Firestore: ${profile.id}")
+            */
+
+            emit(Resource.Success(true))
         } catch (e: Exception) {
-            emit(Response.Error(e.localizedMessage ?: "An error occurred"))
+            Timber.e(e, "Error updating profile")
+            emit(Resource.Error("Failed to update profile: ${e.localizedMessage}"))
         }
     }
 
-    override fun deleteProfileById(id: Int): Flow<Response<Boolean>> = flow {
+    /**
+     * Deletes a profile from the local Room database.
+     * Optionally deletes the profile from Firestore.
+     */
+    override fun deleteProfileById(id: Int): Flow<Resource<Boolean>> = flow {
+        emit(Resource.Loading)
         try {
-            emit(Response.Loading)
+            // Delete from local database
             profileDao.deleteProfileById(id)
-            emit(Response.Success(true))
+            Timber.d("Profile with ID $id deleted from local database")
+
+            // Optionally, delete from Firestore
+            // Uncomment the following lines if Firestore synchronization is required
+            /*
+            firestore.collection("user_info")
+                .document(id.toString())
+                .delete()
+                .await()
+            Timber.d("Profile with ID $id deleted from Firestore")
+            */
+
+            emit(Resource.Success(true))
         } catch (e: Exception) {
-            emit(Response.Error(e.localizedMessage ?: "An error occurred"))
+            Timber.e(e, "Error deleting profile")
+            emit(Resource.Error("Failed to delete profile: ${e.localizedMessage}"))
         }
     }
 
-    override fun deleteAllProfiles(): Flow<Response<Boolean>> = flow {
+    /**
+     * Deletes all profiles from the local Room database.
+     * Optionally deletes all profiles from Firestore.
+     */
+    override fun deleteAllProfiles(): Flow<Resource<Boolean>> = flow {
+        emit(Resource.Loading)
         try {
-            emit(Response.Loading)
+            // Delete all profiles from local database
             profileDao.deleteAllProfiles()
-            emit(Response.Success(true))
+            Timber.d("All profiles deleted from local database")
+
+            // Optionally, delete all profiles from Firestore
+            // Caution: Deleting all documents from Firestore can be expensive and may require batch operations
+            /*
+            val snapshot = firestore.collection("user_info").get().await()
+            val batch = firestore.batch()
+            for (document in snapshot.documents) {
+                batch.delete(document.reference)
+            }
+            batch.commit().await()
+            Timber.d("All profiles deleted from Firestore")
+            */
+
+            emit(Resource.Success(true))
         } catch (e: Exception) {
-            emit(Response.Error(e.localizedMessage ?: "An error occurred"))
+            Timber.e(e, "Error deleting all profiles")
+            emit(Resource.Error("Failed to delete all profiles: ${e.localizedMessage}"))
         }
     }
 
-    override fun getAllProfiles(): Flow<Response<List<ProfileModel>>> = flow {
+    /**
+     * Retrieves all profiles from the local Room database.
+     */
+    override fun getAllProfiles(): Flow<Resource<List<ProfileModel>>> = flow {
+        emit(Resource.Loading)
         try {
-            emit(Response.Loading)
-            val profileList = profileDao.getAllProfiles()
-            emit(Response.Success(profileList))
+            // Fetch all profiles from local database
+            val profiles = profileDao.getAllProfiles()
+            Timber.d("Retrieved ${profiles.size} profiles from local database")
+            emit(Resource.Success(profiles))
         } catch (e: Exception) {
-            emit(Response.Error(e.localizedMessage ?: "An error occurred"))
+            Timber.e(e, "Error retrieving all profiles")
+            emit(Resource.Error("Failed to retrieve profiles: ${e.localizedMessage}"))
         }
     }
 
-    override fun getProfileById(id: Int): Flow<Response<ProfileModel>> = flow {
+    /**
+     * Retrieves a specific profile by its ID from the local Room database.
+     */
+    override fun getProfileById(id: Int): Flow<Resource<ProfileModel>> = flow {
+        emit(Resource.Loading)
         try {
-            emit(Response.Loading)
-            val profile = profileDao.getProfile(id)
-            emit(Response.Success(profile))
+            // Fetch profile by ID from local database
+            val profile = profileDao.getProfileById(id)
+            if (profile != null) {
+                Timber.d("Retrieved profile: $profile")
+                emit(Resource.Success(profile))
+            } else {
+                Timber.w("Profile with ID $id not found")
+                emit(Resource.Error("Profile with ID $id not found"))
+            }
         } catch (e: Exception) {
-            emit(Response.Error(e.localizedMessage ?: "An error occurred"))
+            Timber.e(e, "Error retrieving profile by ID")
+            emit(Resource.Error("Failed to retrieve profile: ${e.localizedMessage}"))
         }
     }
 }

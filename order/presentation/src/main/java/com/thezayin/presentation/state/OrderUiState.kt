@@ -10,8 +10,19 @@ data class OrderUiState(
     val errorMessage: String = "",
     val orderList: List<CartModel> = emptyList(),
     val orderSuccess: Boolean = false,
-    val cityList: List<String> = emptyList(),
+    val cityList: List<String> = listOf(
+        "Select",
+        "Islamabad",
+        "Rawalpindi"
+    ),
     val areaList: List<String> = emptyList(),
     val getAddresses: List<ProfileModel>? = null,
-    val address: ProfileModel = ProfileModel()
+    val address: ProfileModel = ProfileModel(
+        name = "",
+        email = "",
+        phoneNumber = "",
+        address = "",
+        area = "",
+        city = "",
+    )
 )

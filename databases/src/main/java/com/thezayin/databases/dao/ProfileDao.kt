@@ -6,26 +6,56 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.thezayin.databases.model.ProfileModel
 
+/**
+ * DAO interface for performing CRUD operations on Profile entities.
+ */
 @Dao
 interface ProfileDao {
 
+    /**
+     * Inserts a new profile or replaces an existing one on conflict.
+     *
+     * @param profileModel The profile to be inserted.
+     */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addProfile(profileModel: ProfileModel)
+    suspend fun insertProfile(profileModel: ProfileModel)
 
-    @Query("SELECT * FROM address_table ")
-    fun getAllProfiles(): List<ProfileModel>
+    /**
+     * Retrieves all profiles from the database.
+     *
+     * @return A list of Profile entities.
+     */
+    @Query("SELECT * FROM profiles")
+    suspend fun getAllProfiles(): List<ProfileModel>
 
-    @Query("SELECT * FROM address_table WHERE id = :id")
-    fun getProfile(id: Int): ProfileModel
+    /**
+     * Retrieves a specific profile by its ID.
+     *
+     * @param id The unique identifier of the profile.
+     * @return The Profile entity with the specified ID, or null if not found.
+     */
+    @Query("SELECT * FROM profiles WHERE id = :id")
+    suspend fun getProfileById(id: Int): ProfileModel?
 
-    @Query("DELETE FROM address_table")
-    suspend fun deleteAllProfiles()
-
-    @Query("DELETE FROM address_table WHERE id = :id")
+    /**
+     * Deletes a specific profile by its ID.
+     *
+     * @param id The unique identifier of the profile to be deleted.
+     */
+    @Query("DELETE FROM profiles WHERE id = :id")
     suspend fun deleteProfileById(id: Int)
 
+    /**
+     * Deletes all profiles from the database.
+     */
+    @Query("DELETE FROM profiles")
+    suspend fun deleteAllProfiles()
+
+    /**
+     * Updates an existing profile. Replaces the profile with the same ID.
+     *
+     * @param profileModel The profile with updated information.
+     */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun updateProfileById(
-        profileModel: ProfileModel
-    )
+    suspend fun updateProfile(profileModel: ProfileModel)
 }

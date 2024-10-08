@@ -27,7 +27,7 @@ fun ProductScreen(
     val isAddedToCart = state.isAdded
 
     LaunchedEffect(Unit) {
-        viewModel.getProduct(productId)
+        viewModel.fetchProduct(productId)
     }
 
     GlassComponent()
@@ -47,7 +47,7 @@ fun ProductScreen(
         navigateToContact = navigateToContact,
         price = productDetail?.price ?: "No Data Found",
         onBuyClick = {
-            viewModel.addedToCart(
+            viewModel.addToCart(
                 id = productDetail?.id ?: "",
                 name = productDetail?.name ?: "",
                 price = productDetail?.price ?: "",
@@ -55,7 +55,7 @@ fun ProductScreen(
                 imageUri = productDetail?.imageUri.toString(),
             )
         },
-        onErrorClose = { viewModel.showError(false) },
-        updateCartValue = { viewModel.addedToCart(false) },
+        onErrorClose = { viewModel.emitShowError(false) },
+        updateCartValue = { viewModel.emitAddedToCart(false) },
     )
 }

@@ -1,7 +1,7 @@
 package com.thezayin.domain.usecase
 
 import com.thezayin.domain.repository.ProfileRepository
-import com.thezayin.framework.utils.Response
+import com.thezayin.framework.utils.Resource
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -10,7 +10,14 @@ import kotlinx.coroutines.flow.Flow
  * This interface defines the contract for removing all user profiles from the data source.
  * Implementations of this use case should handle the necessary business logic and data interactions.
  */
-interface DeleteAllProfilesUseCase : suspend () -> Flow<Response<Boolean>>
+interface DeleteAllProfilesUseCase {
+    /**
+     * Executes the use case to delete all user profiles.
+     *
+     * @return A [Flow] emitting a [Resource] indicating the success or failure of the operation.
+     */
+    fun execute(): Flow<Resource<Boolean>>
+}
 
 /**
  * Implementation of the [DeleteAllProfilesUseCase] interface.
@@ -24,9 +31,9 @@ class DeleteAllProfilesUseCaseImpl(
 ) : DeleteAllProfilesUseCase {
 
     /**
-     * Invokes the use case to delete all user profiles.
+     * Executes the use case to delete all user profiles.
      *
-     * @return A [Flow] emitting a [Response] indicating the success or failure of the operation.
+     * @return A [Flow] emitting a [Resource] indicating the success or failure of the operation.
      */
-    override suspend fun invoke(): Flow<Response<Boolean>> = profileRepository.deleteAllProfiles()
+    override fun execute(): Flow<Resource<Boolean>> = profileRepository.deleteAllProfiles()
 }

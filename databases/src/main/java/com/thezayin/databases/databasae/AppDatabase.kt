@@ -19,7 +19,7 @@ import com.thezayin.databases.model.ProfileModel
  */
 @Database(
     entities = [CartModel::class, ProfileModel::class],
-    version = 8, // Increment this number when making schema changes
+    version = 9, // Increment this number when making schema changes
     exportSchema = false // Set to true to export the schema for version control
 )
 abstract class AppDatabase : RoomDatabase() {

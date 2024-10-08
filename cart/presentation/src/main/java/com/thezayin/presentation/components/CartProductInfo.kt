@@ -30,6 +30,14 @@ import com.thezayin.databases.model.CartModel
 import ir.kaaveh.sdpcompose.sdp
 import ir.kaaveh.sdpcompose.ssp
 
+/**
+ * CartProductInfo displays the information of a product in the cart,
+ * including its image, name, description, and quantity.
+ *
+ * @param product The [CartModel] instance representing the product details.
+ * @param onIncrement Callback function invoked when the increment button is clicked.
+ * @param onDecrement Callback function invoked when the decrement button is clicked.
+ */
 @Composable
 fun CartProductInfo(
     product: CartModel?,
@@ -37,23 +45,33 @@ fun CartProductInfo(
     onDecrement: (CartModel) -> Unit = {}
 ) {
     Box(
-        modifier = Modifier.padding(top = 5.sdp, bottom = 5.sdp)
+        modifier = Modifier
+            .padding(top = 5.sdp, bottom = 5.sdp)
             .clip(shape = RoundedCornerShape(10.sdp))
-            .background(color = colorResource(id = R.color.semi_transparent)).fillMaxWidth()
+            .background(color = colorResource(id = R.color.semi_transparent))
+            .fillMaxWidth()
     ) {
         Column(
-            modifier = Modifier.padding(horizontal = 10.sdp).fillMaxWidth()
-                .heightIn(min = 90.sdp, max = 400.sdp), horizontalAlignment = Alignment.End
+            modifier = Modifier
+                .padding(horizontal = 10.sdp)
+                .fillMaxWidth()
+                .heightIn(min = 90.sdp, max = 400.sdp),
+            horizontalAlignment = Alignment.End
         ) {
+            // Product details section
             Row(
-                modifier = Modifier.padding(top = 15.sdp).fillMaxWidth(),
+                modifier = Modifier
+                    .padding(top = 15.sdp)
+                    .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Start
             ) {
                 AsyncImage(
                     model = product?.imageUri ?: R.drawable.ic_mail,
                     contentDescription = null,
-                    modifier = Modifier.clip(shape = RoundedCornerShape(100.sdp)).size(40.sdp)
+                    modifier = Modifier
+                        .clip(shape = RoundedCornerShape(100.sdp))
+                        .size(40.sdp)
                         .background(color = Color.White),
                     contentScale = ContentScale.Fit
                 )
@@ -64,38 +82,49 @@ fun CartProductInfo(
                         text = product?.name ?: "Product Name",
                         color = colorResource(id = R.color.black),
                         fontSize = 10.ssp,
-                        fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
+                        fontFamily = FontFamily(Font(R.font.noto_sans_bold))
                     )
                     Text(
                         text = product?.description ?: "Product Description",
                         color = colorResource(id = R.color.black),
                         fontSize = 8.ssp,
-                        fontFamily = FontFamily(Font(R.font.noto_sans_regular)),
+                        fontFamily = FontFamily(Font(R.font.noto_sans_regular))
                     )
                 }
             }
+            // Quantity control section
             Column(
-                modifier = Modifier.fillMaxWidth().padding(top = 10.sdp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 10.sdp),
                 verticalArrangement = Arrangement.Bottom,
                 horizontalAlignment = Alignment.End
             ) {
                 Row {
-                    Image(painter = painterResource(id = R.drawable.ic_minus),
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_minus),
                         contentDescription = null,
-                        modifier = Modifier.size(12.sdp).clickable {
-                            onDecrement(product!!)
-                        })
+                        modifier = Modifier
+                            .size(12.sdp)
+                            .clickable {
+                                product?.let { onDecrement(it) }
+                            }
+                    )
                     Text(
                         text = " ${product?.quantity} ",
                         color = colorResource(id = R.color.black),
                         fontSize = 10.ssp,
-                        fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
+                        fontFamily = FontFamily(Font(R.font.noto_sans_bold))
                     )
-                    Image(painter = painterResource(id = R.drawable.ic_plus),
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_plus),
                         contentDescription = null,
-                        modifier = Modifier.size(12.sdp).clickable {
-                            onIncrement(product!!)
-                        })
+                        modifier = Modifier
+                            .size(12.sdp)
+                            .clickable {
+                                product?.let { onIncrement(it) }
+                            }
+                    )
                 }
             }
         }

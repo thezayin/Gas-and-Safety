@@ -20,30 +20,40 @@ import com.thezayin.assets.R
 import ir.kaaveh.sdpcompose.sdp
 import ir.kaaveh.sdpcompose.ssp
 
+/**
+ * A composable function that displays a message when there are no products in the cart.
+ *
+ * This function presents a card with a message indicating that the cart is empty.
+ */
 @Composable
-@Preview
 fun NoProductFound() {
     Card(
         modifier = Modifier
-            .padding(horizontal = 20.sdp)
-            .padding(top = 100.sdp)
-            .fillMaxWidth()
-            .height(150.sdp),
+            .padding(horizontal = 20.sdp) // Horizontal padding for spacing
+            .padding(top = 100.sdp) // Top padding to position the card lower on the screen
+            .fillMaxWidth() // Fill the available width
+            .height(150.sdp), // Set a fixed height for the card
         colors = CardDefaults.cardColors(
-            containerColor = colorResource(R.color.semi_transparent)
+            containerColor = colorResource(R.color.semi_transparent) // Background color of the card
         ),
     ) {
         Row(
-            modifier = Modifier.fillMaxSize(),
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
+            modifier = Modifier.fillMaxSize(), // Fill the size of the card
+            horizontalArrangement = Arrangement.Center, // Center content horizontally
+            verticalAlignment = Alignment.CenterVertically // Center content vertically
         ) {
             Text(
-                text = "No Products in Cart",
-                fontSize = 15.ssp,
-                fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
-                color = colorResource(id = R.color.black)
+                text = "No Products in Cart", // Message to display
+                fontSize = 15.ssp, // Font size for the text
+                fontFamily = FontFamily(Font(R.font.noto_sans_bold)), // Font style
+                color = colorResource(id = R.color.black) // Text color
             )
         }
     }
+}
+
+@Composable
+@Preview
+fun NoProductFoundPreview() {
+    NoProductFound() // Preview the NoProductFound component
 }

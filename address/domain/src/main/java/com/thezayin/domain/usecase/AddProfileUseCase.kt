@@ -1,7 +1,7 @@
 package com.thezayin.domain.usecase
 
 import com.thezayin.domain.repository.ProfileRepository
-import com.thezayin.framework.utils.Response
+import com.thezayin.framework.utils.Resource
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -10,8 +10,15 @@ import kotlinx.coroutines.flow.Flow
  * This interface defines the contract for adding a user profile to the data source.
  * Implementations of this use case should handle the necessary business logic and data interactions.
  */
-interface AddProfileUseCase :
-    suspend (AddProfileParams) -> Flow<Response<Boolean>>
+
+/**
+ * Executes the use case to add a new user profile.
+ *
+ * The parameters required to create a new profile, encapsulated in [AddProfileParams].
+ * @return A [Flow] emitting a [Resource] indicating the success or failure of the operation.
+ */
+interface AddProfileUseCase : suspend (AddProfileParams) -> Flow<Resource<Boolean>>
+
 
 /**
  * Data class representing the parameters required to add a new user profile.
@@ -44,12 +51,12 @@ class AddProfileUseCaseImpl(
 ) : AddProfileUseCase {
 
     /**
-     * Invokes the use case to add a new user profile.
+     * Invoke the use case to add a new user profile.
      *
      * @param params The parameters required to create a new profile, encapsulated in [AddProfileParams].
-     * @return A [Flow] emitting a [Response] indicating the success or failure of the operation.
+     * @return A [Flow] emitting a [Resource] indicating the success or failure of the operation.
      */
-    override suspend fun invoke(params: AddProfileParams): Flow<Response<Boolean>> =
+    override suspend fun invoke(params: AddProfileParams): Flow<Resource<Boolean>> =
         profileRepository.addProfile(
             name = params.name,
             phoneNumber = params.phoneNumber,

@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thezayin.domain.model.OrderModel
 import com.thezayin.domain.usecase.GetMyOrders
-import com.thezayin.framework.utils.Response
+import com.thezayin.framework.utils.Resource
 import com.thezayin.presentation.event.HistoryUiEvents
 import com.thezayin.presentation.state.HistoryUiState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -40,18 +40,18 @@ class HistoryViewModel(private val getMyOrders: GetMyOrders) : ViewModel() {
     fun getOrdersHistory(userId: String) = viewModelScope.launch {
         getMyOrders(userId).collect { response ->
             when (response) {
-                is Response.Success -> {
+                is Resource.Success -> {
                     showLoading(false)
                     ordersList(response.data)
                 }
 
-                is Response.Error -> {
+                is Resource.Error -> {
                     showLoading(false)
                     showError(true)
                     errorMessage(response.e)
                 }
 
-                is Response.Loading -> showLoading(true)
+                is Resource.Loading -> showLoading(true)
             }
         }
     }

@@ -1,7 +1,8 @@
 package com.thezayin.data.repository
 
+import android.util.Log
 import com.thezayin.domain.repository.AreaRepository
-import com.thezayin.framework.utils.Response
+import com.thezayin.framework.utils.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -17,19 +18,19 @@ class AreaRepositoryImpl : AreaRepository {
      * @param city The name of the city for which to retrieve areas.
      * @return A Flow emitting Response objects containing the list of areas or an error.
      */
-    override suspend fun getAreaList(city: String): Flow<Response<List<String>>> = flow {
+    override suspend fun getAreaList(city: String): Flow<Resource<List<String>>> = flow {
         try {
             // Emit a loading state to indicate data fetching has started
-            emit(Response.Loading)
+            emit(Resource.Loading)
 
             // Determine the list of areas based on the city name
             val areaList = getAreasByCity(city)
 
             // Emit the successful response with the retrieved area list
-            emit(Response.Success(areaList))
+            emit(Resource.Success(areaList))
         } catch (e: Exception) {
             // Emit an error state with the exception message if something goes wrong
-            emit(Response.Error(e.localizedMessage ?: "An unexpected error occurred"))
+            emit(Resource.Error(e.localizedMessage ?: "An unexpected error occurred"))
         }
     }
 
@@ -38,19 +39,19 @@ class AreaRepositoryImpl : AreaRepository {
      *
      * @return A Flow emitting Response objects containing the list of cities or an error.
      */
-    override suspend fun getCityList(): Flow<Response<List<String>>> = flow {
+    override suspend fun getCityList(): Flow<Resource<List<String>>> = flow {
         try {
             // Emit a loading state to indicate data fetching has started
-            emit(Response.Loading)
+            emit(Resource.Loading)
 
             // Define the list of available cities
             val cityList = listOf("Select", "Islamabad", "Rawalpindi")
-
+            Log.d("AreaRepositoryImpl", "City list fetched: $cityList")
             // Emit the successful response with the retrieved city list
-            emit(Response.Success(cityList))
+            emit(Resource.Success(cityList))
         } catch (e: Exception) {
             // Emit an error state with the exception message if something goes wrong
-            emit(Response.Error(e.localizedMessage ?: "An unexpected error occurred"))
+            emit(Resource.Error(e.localizedMessage ?: "An unexpected error occurred"))
         }
     }
 

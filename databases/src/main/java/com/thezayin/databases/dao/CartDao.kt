@@ -34,7 +34,7 @@ interface CartDao {
      *
      * @param id The unique identifier of the product to be deleted.
      */
-    @Query("DELETE FROM carts_table WHERE id = :id")
+    @Query("DELETE FROM carts_table WHERE localId = :id")
     suspend fun deleteProductById(id: String)
 
     /**

@@ -16,28 +16,37 @@ import androidx.compose.ui.tooling.preview.Preview
 import ir.kaaveh.sdpcompose.sdp
 import ir.kaaveh.sdpcompose.ssp
 
+/**
+ * CartActionButton is a composable button for purchasing items in the cart.
+ *
+ * @param modifier Modifier to customize the button's layout.
+ * @param onPurchaseClick Callback function to execute when the button is clicked.
+ */
 @Composable
-fun CartBuyButton(modifier: Modifier, onBuyClick: () -> Unit) {
+fun CartActionButton(modifier: Modifier, onPurchaseClick: () -> Unit) {
     Button(
-        onClick = { onBuyClick() },
-        modifier = modifier.padding(bottom = 10.sdp).fillMaxWidth().height(35.sdp)
+        onClick = { onPurchaseClick() },
+        modifier = modifier
+            .padding(bottom = 10.sdp)
+            .fillMaxWidth()
+            .height(35.sdp)
             .padding(horizontal = 20.sdp),
         shape = RoundedCornerShape(10.sdp),
         colors = ButtonDefaults.buttonColors(
-            containerColor = colorResource(id = com.thezayin.assets.R.color.black),
+            containerColor = colorResource(id = com.thezayin.assets.R.color.black)
         )
     ) {
         Text(
             text = "Buy Now",
             color = colorResource(id = com.thezayin.assets.R.color.white),
             fontSize = 12.ssp,
-            fontFamily = FontFamily(Font(com.thezayin.assets.R.font.noto_sans_medium)),
+            fontFamily = FontFamily(Font(com.thezayin.assets.R.font.noto_sans_medium))
         )
     }
 }
 
 @Composable
 @Preview
-fun CartBuyButtonPreview() {
-    CartBuyButton(modifier = Modifier, onBuyClick = {})
+fun CartActionButtonPreview() {
+    CartActionButton(modifier = Modifier, onPurchaseClick = {})
 }

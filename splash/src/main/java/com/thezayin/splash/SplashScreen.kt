@@ -33,7 +33,6 @@ fun SplashScreen(
     onSplashFinished: () -> Unit
 ) {
     val viewModel: SplashViewModel = koinInject()
-    viewModel.analytics.logEvent(AnalyticsEvent.ScreenViewEvent("SplashScreen"))
     val activity = LocalContext.current as Activity
 
     val checkInternetConnection by remember { mutableStateOf(activity.checkForInternet()) }

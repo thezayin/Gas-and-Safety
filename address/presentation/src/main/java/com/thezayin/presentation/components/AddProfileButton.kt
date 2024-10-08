@@ -2,14 +2,7 @@ package com.thezayin.presentation.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -26,47 +19,68 @@ import com.thezayin.assets.R
 import ir.kaaveh.sdpcompose.sdp
 import ir.kaaveh.sdpcompose.ssp
 
+/**
+ * A composable button for adding a new profile.
+ *
+ * This component displays a rounded button with the text "Add New" and an icon, allowing users to add a new profile.
+ * The button is clickable, and triggers the provided [onClick] callback when pressed.
+ *
+ * @param onClick Lambda function to handle the click action for adding a new profile.
+ */
 @Composable
 fun AddProfileButton(
-    onClick: () -> Unit
+    onClick: () -> Unit // Callback triggered when the button is clicked
 ) {
     Row(
-        modifier = Modifier.padding(top = 25.sdp, bottom = 10.sdp).fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.End
+        modifier = Modifier
+            .padding(top = 25.sdp, bottom = 10.sdp) // Padding from the top and bottom
+            .fillMaxWidth(), // Takes up the full width of the screen
+        verticalAlignment = Alignment.CenterVertically, // Vertically centers content
+        horizontalArrangement = Arrangement.End // Aligns the button to the end of the row (right side)
     ) {
+        // Card component with rounded corners and semi-transparent background
         Card(
-            modifier = Modifier.width(70.sdp).height(30.sdp),
-            shape = RoundedCornerShape(30.sdp),
-            colors = CardDefaults.cardColors(containerColor = colorResource(id = com.thezayin.assets.R.color.semi_transparent)),
+            modifier = Modifier
+                .width(70.sdp) // Defines the width of the card
+                .height(30.sdp), // Defines the height of the card
+            shape = RoundedCornerShape(30.sdp), // Creates rounded corners with 30dp radius
+            colors = CardDefaults.cardColors(
+                containerColor = colorResource(id = R.color.semi_transparent) // Sets the background color of the card
+            )
         ) {
+            // Row inside the card to hold the text and icon
             Row(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .clickable {
-                        onClick()
-                    },
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically
+                    .fillMaxSize() // Fills the entire size of the card
+                    .clickable { onClick() }, // Makes the card clickable, triggering the provided onClick action
+                horizontalArrangement = Arrangement.Center, // Centers content horizontally within the card
+                verticalAlignment = Alignment.CenterVertically // Centers content vertically within the card
             ) {
+                // Text for the button
                 Text(
-                    text = "Add New",
-                    fontSize = 8.ssp,
-                    color = colorResource(R.color.black),
-                    fontFamily = FontFamily(Font(R.font.abeezee_italic))
+                    text = "Add New", // Button label
+                    fontSize = 8.ssp, // Font size using scalable sp units
+                    color = colorResource(R.color.black), // Text color
+                    fontFamily = FontFamily(Font(R.font.abeezee_italic)) // Custom font family
                 )
+                // Icon next to the text
                 Image(
-                    painter = painterResource(id = R.drawable.ic_add),
-                    contentDescription = null,
-                    modifier = Modifier.padding(start = 5.sdp).size(10.sdp)
+                    painter = painterResource(id = R.drawable.ic_add), // Image resource (add icon)
+                    contentDescription = null, // No content description needed for decorative icons
+                    modifier = Modifier
+                        .padding(start = 5.sdp) // Padding to create space between the text and icon
+                        .size(10.sdp) // Icon size
                 )
             }
         }
     }
 }
 
+/**
+ * Preview function to display how the AddProfileButton looks in isolation.
+ */
 @Preview
 @Composable
 fun AddProfileButtonPreview() {
-    AddProfileButton {}
+    AddProfileButton { /* No action needed for preview */ }
 }

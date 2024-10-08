@@ -1,6 +1,6 @@
 package com.thezayin.domain.repository
 
-import com.thezayin.framework.utils.Response
+import com.thezayin.framework.utils.Resource
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -19,9 +19,9 @@ interface AreaRepository {
      * from a remote server, a local database, or any other data source depending on the implementation.
      *
      * @param city The name of the city for which to retrieve the list of areas.
-     * @return A [Flow] emitting a [Response] containing a list of area names on success or an error message on failure.
+     * @return A [Flow] emitting a [Resource] containing a list of area names on success or an error message on failure.
      */
-    suspend fun getAreaList(city: String): Flow<Response<List<String>>>
+    suspend fun getAreaList(city: String): Flow<Resource<List<String>>>
 
     /**
      * Retrieves a list of all available cities.
@@ -29,7 +29,7 @@ interface AreaRepository {
      * This method fetches all the cities that are available in the system. The data source can vary
      * based on the implementation, such as fetching from a remote API or a local database.
      *
-     * @return A [Flow] emitting a [Response] containing a list of city names on success or an error message on failure.
+     * @return A [Flow] emitting a [Resource] containing a list of city names on success or an error message on failure.
      */
-    suspend fun getCityList(): Flow<Response<List<String>>>
+    suspend fun getCityList(): Flow<Resource<List<String>>>
 }

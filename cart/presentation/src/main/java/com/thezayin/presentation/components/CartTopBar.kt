@@ -19,6 +19,15 @@ import com.thezayin.assets.R
 import ir.kaaveh.sdpcompose.sdp
 import ir.kaaveh.sdpcompose.ssp
 
+/**
+ * CartTopBar displays the top bar for the cart screen.
+ *
+ * This component includes a back button, a title, and a contact button.
+ *
+ * @param modifier Optional [Modifier] to customize the layout and appearance.
+ * @param onBackClick Callback function invoked when the back button is clicked.
+ * @param onContactClick Callback function invoked when the contact button is clicked.
+ */
 @Composable
 fun CartTopBar(
     modifier: Modifier,
@@ -27,31 +36,36 @@ fun CartTopBar(
 ) {
     Row(
         modifier = modifier
-            .fillMaxWidth()
-            .padding(top = 20.sdp)
-            .padding(horizontal = 10.sdp),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
+            .fillMaxWidth() // Fill the entire width of the parent
+            .padding(top = 20.sdp) // Top padding for spacing
+            .padding(horizontal = 10.sdp), // Horizontal padding for spacing
+        horizontalArrangement = Arrangement.SpaceBetween, // Space items evenly
+        verticalAlignment = Alignment.CenterVertically // Center items vertically
     ) {
+        // Back button
         Image(
             painter = painterResource(id = R.drawable.ic_back),
-            contentDescription = null,
-            modifier = Modifier.clickable {
-                onBackClick()
-            }.size(25.sdp),
+            contentDescription = "Back",
+            modifier = Modifier
+                .clickable { onBackClick() } // Invoke back click callback
+                .size(25.sdp) // Size of the icon
         )
+
+        // Title
         Text(
             text = "Cart",
-            color = colorResource(id = R.color.black),
-            fontSize = 12.ssp,
-            fontFamily = FontFamily(Font(R.font.noto_sans_bold)),
+            color = colorResource(id = R.color.black), // Text color
+            fontSize = 12.ssp, // Font size
+            fontFamily = FontFamily(Font(R.font.noto_sans_bold)), // Font style
         )
+
+        // Contact button
         Image(
             painter = painterResource(id = R.drawable.ic_call),
-            contentDescription = null,
-            modifier = Modifier.clickable {
-                onContactClick()
-            }.size(20.sdp),
+            contentDescription = "Contact",
+            modifier = Modifier
+                .clickable { onContactClick() } // Invoke contact click callback
+                .size(20.sdp) // Size of the icon
         )
     }
 }
