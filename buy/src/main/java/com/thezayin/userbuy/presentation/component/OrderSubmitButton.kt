@@ -29,14 +29,14 @@ fun OrderSubmitButton(
             .padding(horizontal = 25.sdp),
         shape = RoundedCornerShape(10.sdp),
         colors = ButtonDefaults.buttonColors(
-            containerColor = colorResource(id = com.thezayin.core.R.color.black),
+            containerColor = colorResource(id = com.thezayin.assets.R.color.black),
         )
     ) {
         Text(
             text = "Submit",
-            color = colorResource(id = com.thezayin.core.R.color.white),
+            color = colorResource(id = com.thezayin.assets.R.color.white),
             fontSize = 12.ssp,
-            fontFamily = FontFamily(Font(com.thezayin.core.R.font.noto_sans_bold)),
+            fontFamily = FontFamily(Font(com.thezayin.assets.R.font.noto_sans_bold)),
         )
     }
 }

@@ -6,10 +6,10 @@ plugins {
 
 android {
     namespace = "com.thezayin.userbuy"
-    compileSdk = 34
+    compileSdk = libs.versions.compileSdkVersion.get().toInt()
 
     defaultConfig {
-        minSdk = 24
+        minSdk = libs.versions.minSdkVersion.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -37,11 +37,11 @@ android {
 }
 
 dependencies {
-    implementation(project(":core"))
-    implementation(project(":common"))
-    implementation(project(":entities"))
-    implementation(project(":framework"))
-    implementation(project(":cart"))
+    implementation(project(":core:assets"))
+    implementation(project(":core:common"))
+    implementation(project(":core:framework"))
+    implementation(project(":carts"))
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
