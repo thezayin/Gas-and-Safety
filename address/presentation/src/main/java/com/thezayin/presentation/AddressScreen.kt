@@ -1,5 +1,6 @@
 package com.thezayin.presentation
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import com.thezayin.presentation.components.AddressScreenContent
@@ -26,6 +27,8 @@ fun AddressScreen(
 
     // Collecting the UI state from the ViewModel as a State
     val state = viewModel.addressUiState.collectAsState().value
+
+    BackHandler(onBack = navigateBack) // Handle back button press
 
     // Destructuring the state for readability and convenience
     val isLoading = state.isLoading

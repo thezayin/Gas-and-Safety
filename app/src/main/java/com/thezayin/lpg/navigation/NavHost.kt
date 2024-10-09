@@ -59,16 +59,21 @@ fun NavHost(navController: NavHostController) {
         }
 
         composable<CartScreenNav> {
-            CartScreen(onBackClick = { navController.navigateUp() }, onContactClick = {
-                navController.navigate(ContactUsScreenNav)
-            }, onBuyClick = {
-                navController.navigate(OrderScreenNav)
-            })
+            CartScreen(
+                onBackClick = {
+                    navController.navigateUp()
+                }, onContactClick = {
+                    navController.navigate(ContactUsScreenNav)
+                }, onBuyClick = {
+                    navController.navigate(OrderScreenNav)
+                })
         }
 
         composable<AddressScreenNav> {
             AddressScreen(
-                navigateBack = { navController.navigateUp() },
+                navigateBack = {
+                    navController.navigateUp()
+                },
                 navigateToContactUs = {
                     navController.navigate(ContactUsScreenNav)
                 },
@@ -92,13 +97,16 @@ fun NavHost(navController: NavHostController) {
         }
 
         composable<OrderScreenNav> {
-            OrderScreen(navigateUp = { navController.navigateUp() }, navigateToHome = {
-                navController.popBackStack(HomeScreenNav, false)
-            }, navigateToProfile = {
-                navController.navigate(ProfileScreenNav)
-            }, navigateToContactUs = {
-                navController.navigate(ContactUsScreenNav)
-            })
+            OrderScreen(
+                navigateUp = {
+                    navController.navigateUp()
+                }, navigateToHome = {
+                    navController.popBackStack(HomeScreenNav, false)
+                }, navigateToProfile = {
+                    navController.navigate(ProfileScreenNav)
+                }, navigateToContactUs = {
+                    navController.navigate(ContactUsScreenNav)
+                })
         }
 
         composable<HistoryScreenNav> {

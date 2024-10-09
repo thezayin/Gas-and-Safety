@@ -25,88 +25,103 @@ import com.thezayin.assets.R
 import ir.kaaveh.sdpcompose.sdp
 import ir.kaaveh.sdpcompose.ssp
 
+/**
+ * A composable that displays a toggle button group where each button can be selected independently.
+ * The group contains multiple states (e.g., "All", "In Progress", "Delivered", "Cancelled").
+ *
+ * @param onClick A lambda function that is invoked when a button is clicked, returning the selected index.
+ */
 @Composable
-@Preview
 fun ToggleButton(
     onClick: (index: Int) -> Unit = {}
 ) {
     val cornerRadius = 8.sdp
 
+    // Remember the selected index (null means none is selected initially)
     val (selectedIndex, onIndexSelected) = remember { mutableStateOf<Int?>(null) }
+
+    // The items for the toggle button
     val items = listOf(
         "All",
         "In Progress",
         "Delivered",
-        "Cancelled",
+        "Cancelled"
     )
 
+    // Row container to display the toggle buttons horizontally
     Row(
-        modifier = Modifier.padding(top = 20.sdp).fillMaxWidth(),
+        modifier = Modifier
+            .padding(top = 20.sdp)
+            .fillMaxWidth(),
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
     ) {
+        // Iterate over the items and create a button for each
         items.forEachIndexed { index, item ->
             OutlinedButton(
-                modifier = when (index) {
-                    0 -> Modifier.offset(0.sdp, 0.sdp)
-                        .zIndex(if (selectedIndex == index) 1f else 0f)
+                // Modifier to adjust button position and z-index for the selected button
+                modifier = Modifier
+                    .offset(x = (-index).sdp) // Offset for proper button stacking
+                    .zIndex(if (selectedIndex == index) 1f else 0f), // Elevate selected button
 
-                    else -> Modifier.offset((-1 * index).sdp, 0.sdp)
-                        .zIndex(if (selectedIndex == index) 1f else 0f)
-                },
+                // Handle button click
                 onClick = {
-                    onIndexSelected(index)
-                    onClick(index)
+                    onIndexSelected(index) // Update the selected index
+                    onClick(index)         // Trigger the onClick lambda
                 },
+
+                // Define button shape based on position (left, right, or middle)
                 shape = when (index) {
-                    // left outer button
                     0 -> RoundedCornerShape(
                         topStart = cornerRadius,
-                        topEnd = 0.dp,
-                        bottomStart = cornerRadius,
-                        bottomEnd = 0.dp
-                    )
-                    // right outer button
+                        bottomStart = cornerRadius
+                    ) // Left outer button
                     items.size - 1 -> RoundedCornerShape(
-                        topStart = 0.dp,
                         topEnd = cornerRadius,
-                        bottomStart = 0.dp,
                         bottomEnd = cornerRadius
-                    )
-                    // middle button
-                    else -> RoundedCornerShape(
-                        topStart = 0.dp, topEnd = 0.dp, bottomStart = 0.dp, bottomEnd = 0.dp
-                    )
+                    ) // Right outer button
+                    else -> RoundedCornerShape(0.dp) // Middle buttons have no rounded corners
                 },
+
+                // Define border stroke, making it slightly thicker for selected items
                 border = BorderStroke(
-                    1.dp, if (selectedIndex == index) {
-                        colorResource(id = R.color.semi_transparent)
-                    } else {
-                        colorResource(id = R.color.semi_transparent)
-                    }
+                    width = 1.dp,
+                    color = colorResource(id = R.color.semi_transparent)
                 ),
+
+                // Define the colors for the selected and unselected buttons
                 colors = if (selectedIndex == index) {
-                    // selected colors
                     ButtonDefaults.outlinedButtonColors(
                         containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.1f),
                         contentColor = MaterialTheme.colorScheme.primary
                     )
                 } else {
-                    // not selected colors
                     ButtonDefaults.outlinedButtonColors(
                         containerColor = colorResource(id = R.color.semi_transparent),
                         contentColor = MaterialTheme.colorScheme.primary
                     )
-                },
+                }
             ) {
+                // Button text with color and font size adjustments based on selection state
                 Text(
-                    text = item, color = if (selectedIndex == index) {
+                    text = item,
+                    color = if (selectedIndex == index) {
                         MaterialTheme.colorScheme.primary
                     } else {
                         Color.DarkGray.copy(alpha = 0.9f)
-                    }, fontSize = 7.ssp, modifier = Modifier
+                    },
+                    fontSize = 7.ssp
                 )
             }
         }
     }
+}
+
+/**
+ * A preview function to display the ToggleButton composable in the Android Studio preview.
+ */
+@Composable
+@Preview
+fun PreviewToggleButton() {
+    ToggleButton()
 }

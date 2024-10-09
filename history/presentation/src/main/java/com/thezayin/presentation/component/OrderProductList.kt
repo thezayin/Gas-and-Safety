@@ -14,28 +14,38 @@ import androidx.compose.ui.text.font.FontFamily
 import com.thezayin.databases.model.CartModel
 import ir.kaaveh.sdpcompose.ssp
 
+/**
+ * A composable that displays a list of products in the order.
+ * Each product is shown with its name, quantity, and price.
+ *
+ * @param orders A list of CartModel objects representing the ordered products.
+ */
 @Composable
 fun OrderProductList(
     orders: List<CartModel>
 ) {
+    // A LazyColumn to efficiently display a scrollable list of products in the order.
     LazyColumn(
         modifier = Modifier.fillMaxWidth()
     ) {
-        items(orders.size) {
+        // Iterating over the list of orders and displaying each product with its details.
+        items(orders.size) { index ->
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
+                // Display product name and quantity
                 Text(
-                    text = orders[it].name + " x " + orders[it].quantity.toString(),
+                    text = "${orders[index].name} x ${orders[index].quantity}",
                     color = colorResource(id = com.thezayin.assets.R.color.black),
                     fontSize = 8.ssp,
                     fontFamily = FontFamily(Font(com.thezayin.assets.R.font.noto_sans_bold)),
                 )
 
+                // Display product price, defaulting to 0 if not available
                 Text(
-                    text = "Rs. ${orders[it].price ?: "0"}",
+                    text = "Rs. ${orders[index].price ?: "0"}",
                     fontSize = 8.ssp,
                     fontFamily = FontFamily(Font(com.thezayin.assets.R.font.noto_sans_bold)),
                     color = colorResource(id = com.thezayin.assets.R.color.black)

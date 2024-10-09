@@ -1,6 +1,7 @@
 package com.thezayin.presentation
 
 import android.app.Activity
+import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableIntStateOf
@@ -25,6 +26,8 @@ fun OrderScreen(
     val state = viewModel.orderUiState.collectAsState().value
     val totalAmount = state.orderList.sumBy { it.totalPrice?.toInt()!! }
     val activity = LocalContext.current as Activity
+
+    BackHandler(onBack = navigateUp)
 
     val userId = activity.getUserUUID()
     val isLoading = false

@@ -1,5 +1,6 @@
 package com.thezayin.presentation
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableIntStateOf
@@ -31,6 +32,8 @@ fun ProfileScreen(
 
     // Collect the UI state from the ViewModel as a State
     val state = viewModel.addressUiState.collectAsState().value
+
+    BackHandler(onBack = navigateBack) // Handle back button press
 
     // Remember mutable states for various form fields and dropdowns
     val selectedCityIndex = remember { mutableIntStateOf(0) } // State to track selected city index

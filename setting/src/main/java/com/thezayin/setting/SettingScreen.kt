@@ -1,5 +1,6 @@
 package com.thezayin.setting
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
 import com.thezayin.common.component.GlassComponent
 import com.thezayin.common.component.SetBarColors
@@ -10,6 +11,7 @@ fun SettingScreen(
     navigateUp: () -> Unit,
     navigateToContactUs: () -> Unit
 ) {
+    BackHandler(onBack = navigateUp)
     GlassComponent()
     SetBarColors()
     SettingScreenContent(

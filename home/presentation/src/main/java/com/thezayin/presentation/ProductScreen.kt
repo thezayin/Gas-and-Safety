@@ -1,5 +1,6 @@
 package com.thezayin.presentation
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -32,6 +33,8 @@ fun ProductScreen(
 
     GlassComponent()
     SetBarColors()
+
+    BackHandler(onBack = navigateUp)
 
     ProductScreenContent(
         modifier = Modifier,

@@ -1,5 +1,6 @@
 package com.thezayin.presentation
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
@@ -32,6 +33,7 @@ fun CartScreen(
     // Setup UI components
     GlassComponent()
     SetBarColors()
+    BackHandler(onBack = onBackClick)
 
     // Log the Cart Viewed event
     viewModel.analytics.logEvent(AnalyticsEvent.CartViewedEvent())
