@@ -1,15 +1,16 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    id("com.google.devtools.ksp") version "2.0.10-1.0.24"
+    alias(libs.plugins.serialization.json)
+    alias(libs.plugins.ksp)
 }
 
 android {
     namespace = "com.thezayin.databases"
-    compileSdk = 34
+    compileSdk = libs.versions.compileSdkVersion.get().toInt()
 
     defaultConfig {
-        minSdk = 24
+        minSdk = libs.versions.minSdkVersion.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -34,9 +35,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":core"))
-    implementation(project(":entities"))
-    implementation(project(":framework"))
+    implementation(project(":core:assets"))
+    implementation(project(":core:framework"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -49,4 +49,11 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.runtime)
+
+    //koin dependency injection
+    implementation(libs.koin.core)
+    implementation(libs.koin.compose)
+    implementation(libs.koin.android)
+    testImplementation(libs.koin.test.junit4)
+    implementation(libs.koin.androidx.navigation)
 }

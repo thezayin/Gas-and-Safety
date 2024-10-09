@@ -1,32 +1,82 @@
 package com.thezayin.analytics.events
 
-data class AnalyticsEvent(
-    val type: String,
-    val extras: List<Param> = emptyList(),
+import android.os.Bundle
+import com.thezayin.analytics.utils.AnalyticsConstant.CART_CHECKOUT_INITIATED
+import com.thezayin.analytics.utils.AnalyticsConstant.CART_CLEARED
+import com.thezayin.analytics.utils.AnalyticsConstant.CART_ITEM_ADDED
+import com.thezayin.analytics.utils.AnalyticsConstant.CART_ITEM_REMOVED
+import com.thezayin.analytics.utils.AnalyticsConstant.CART_VIEWED
+
+/**
+ * Sealed class representing different analytics events related to user interactions.
+ *
+ * Each subclass corresponds to a specific event that can be logged to the analytics service.
+ *
+ * @property event The event name to be logged.
+ * @property args A Bundle containing any associated parameters for the event.
+ */
+sealed class AnalyticsEvent(
+    val event: String? = null,
+    val args: Bundle?
 ) {
-    // Standard analytics types.
-    object Types {
-        const val SCREEN_VIEW = "screen_view" // (extras: SCREEN_NAME)
-        const val AD_IMPRESSION = "ad_impression"
-    }
+    /**
+     * Event representing the addition of an item to the cart.
+     *
+     * @param itemId The ID of the item being added to the cart.
+     * @param quantity The quantity of the item being added.
+     */
+    class CartItemAddedEvent(
+        itemId: String,
+        quantity: Int
+    ) : AnalyticsEvent(
+        CART_ITEM_ADDED,
+        Bundle().apply {
+            putString("item_id", itemId)
+            putInt("quantity", quantity)
+        }
+    )
 
     /**
-     * A key-value pair used to supply extra context to an
-     * analytics event.
+     * Event representing the removal of an item from the cart.
      *
-     * @param key - the parameter key. Wherever possible use
-     * one of the standard `ParamKeys`, however, if no suitable
-     * key is available you can define your own as long as it is
-     * configured in your backend analytics system (for example,
-     * by creating a Firebase Analytics custom parameter).
-     *
-     * @param value - the parameter value.
+     * @param itemId The ID of the item being removed from the cart.
      */
-    data class Param(val key: String, val value: String)
+    class CartItemRemovedEvent(
+        itemId: String
+    ) : AnalyticsEvent(
+        CART_ITEM_REMOVED,
+        Bundle().apply {
+            putString("item_id", itemId)
+        }
+    )
 
-    // Standard parameter keys.
-    object ParamKeys {
-        const val SCREEN_NAME = "screen_name"
-        const val AD_TYPE = "ad_type"
-    }
+    /**
+     * Event representing the clearing of the cart.
+     */
+    class CartClearedEvent : AnalyticsEvent(
+        CART_CLEARED,
+        null
+    )
+
+    /**
+     * Event representing the initiation of a checkout process.
+     *
+     * @param totalAmount The total amount for the checkout.
+     */
+    class CartCheckoutInitiatedEvent(
+        totalAmount: Double
+    ) : AnalyticsEvent(
+        CART_CHECKOUT_INITIATED,
+        Bundle().apply {
+            putDouble("total_amount", totalAmount)
+        }
+    )
+
+    /**
+     * Event representing the viewing of the cart.
+     */
+    class CartViewedEvent : AnalyticsEvent(
+        CART_VIEWED,
+        null
+    )
 }

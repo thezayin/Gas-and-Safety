@@ -13,14 +13,14 @@ plugins {
 
 android {
     namespace = "com.thezayin.lpg"
-    compileSdk = 34
+    compileSdk = libs.versions.compileSdkVersion.get().toInt()
 
     defaultConfig {
         applicationId = "com.thezayin.lpg"
-        minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0.0"
+        minSdk = libs.versions.minSdkVersion.get().toInt()
+        targetSdk = libs.versions.targetSdkVersion.get().toInt()
+        versionCode = 2
+        versionName = "1.0.0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -37,7 +37,6 @@ android {
     }
     buildFeatures {
         compose = true
-        dataBinding = true
     }
 
     packaging {
@@ -49,18 +48,19 @@ android {
 
 dependencies {
 
-    implementation(project(":core"))
-    implementation(project(":entities"))
-    implementation(project(":framework"))
+    implementation(project(":core:assets"))
+    implementation(project(":core:framework"))
     implementation(project(":analytics"))
-    implementation(project(":common"))
-    implementation(project(":address"))
-    implementation(project(":buy"))
-    implementation(project(":cart"))
-    implementation(project(":home"))
-    implementation(project(":history"))
-    implementation(project(":di"))
+    implementation(project(":core:common"))
     implementation(project(":databases"))
+
+    implementation(project(":splash"))
+    implementation(project(":setting"))
+    implementation(project(":home:presentation"))
+    implementation(project(":cart:presentation"))
+    implementation(project(":address:presentation"))
+    implementation(project(":order:presentation"))
+    implementation(project(":history:presentation"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -143,6 +143,6 @@ dependencies {
     //Accompanist (Permission)
     implementation(libs.accompanist.permissions)
 
-    implementation (libs.sdp.compose)
+    implementation(libs.sdp.compose)
 
 }

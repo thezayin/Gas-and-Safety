@@ -1,4 +1,8 @@
 [versions]
+compileSdkVersion = "34"
+minSdkVersion = "24"
+targetSdkVersion = "34"
+
 accompanistSystemuicontroller = "0.30.1"
 agp = "8.3.2"
 coilGif = "2.6.0"
@@ -6,49 +10,51 @@ core = "1.10.2"
 exoplayerCore = "2.19.1"
 firebaseAppcheckDebug = "18.0.0"
 firebaseAuthKtx = "23.0.0"
-firebaseBom = "33.1.2"
-firebaseDatabase = "21.0.0"
-firebaseFirestoreKtx = "25.0.0"
-firebaseMessagingKtx = "24.0.0"
+firebaseBom = "33.4.0"
+firebaseDatabase = "21.0.1"
+firebaseFirestoreKtx = "25.1.0"
+firebaseMessagingKtx = "24.0.2"
 gradle = "8.4.2"
 koin = "1.1.2"
 koin-version = "3.6.0-wasm-alpha2"
-koinAndroid = "3.5.3"
-kotlin = "2.0.10"
+koinAndroid = "3.5.6"
+kotlin = "2.0.20"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
-kotlinxSerializationJson = "1.7.1"
+kotlinxSerializationJson = "1.7.2"
 lottieCompose = "6.2.0"
 orgSerlize = "2.0.10"
-lifecycle = "2.8.4"
-activityCompose = "1.9.1"
-composeBom = "2024.06.00"
-ktor = "2.3.11"
-ktorSerialize = "1.6.4"
+lifecycle = "2.8.6"
+activityCompose = "1.9.2"
+composeBom = "2024.09.03"
+ktor = "2.3.12"
+ktorSerialize = "2.3.0"
 googleServicesVersion = "4.4.2"
-firebaseAnalytics = "22.0.2"
-firebaseCrashlytics = "19.0.3"
+firebaseAnalytics = "22.1.2"
+firebaseCrashlytics = "19.2.0"
 firebaseCrashlyticsGradle = "3.0.2"
 firebasePerf = "21.0.1"
 perfPlugin = "1.4.2"
 firebaseAppdistributionGradle = "5.0.0"
-firebaseMessaging = "24.0.0"
+firebaseMessaging = "24.0.2"
 firebaseInappmessagingDisplay = "21.0.0"
 firebaseConfig = "22.0.0"
 sdpCompose = "1.1.0"
 timber = "5.0.1"
-uiGraphicsAndroid = "1.6.8"
+uiGraphicsAndroid = "1.7.3"
 workRuntime = "2.9.1"
 room = "2.6.1"
 appcompat = "1.7.0"
 material = "1.12.0"
 accompanistNavigationAnimation = "0.34.0"
-animation = "1.6.8"
-jsoupVersion = "1.17.2"
+animation = "1.7.3"
+jsoupVersion = "1.18.1"
 jetbrainsKotlinJvm = "1.9.22"
 firebaseCommonKtx = "21.0.0"
+ksp = "2.0.10-1.0.24"
+navigationCompose ="2.8.0-rc01"
 
 [libraries]
 accompanist-navigation-animation = { module = "com.google.accompanist:accompanist-navigation-animation", version.ref = "accompanistNavigationAnimation" }
@@ -65,7 +71,7 @@ firebase-appcheck-debug = { module = "com.google.firebase:firebase-appcheck-debu
 firebase-auth = { module = "com.google.firebase:firebase-auth", version.ref = "firebaseAuthKtx" }
 firebase-auth-ktx = { module = "com.google.firebase:firebase-auth-ktx", version.ref = "firebaseAuthKtx" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
-firebase-database = { module = "com.google.firebase:firebase-database", version.ref = "firebaseDatabase" }
+firebase-database = { module = "com.google.firebase:firebase-database" }
 firebase-firestore-ktx = { module = "com.google.firebase:firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
 firebase-messaging-ktx = { module = "com.google.firebase:firebase-messaging-ktx", version.ref = "firebaseMessagingKtx" }
 firebase-storage-ktx = { module = "com.google.firebase:firebase-storage-ktx", version.ref = "firebaseDatabase" }
@@ -91,7 +97,7 @@ androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecyc
 
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinAndroid" }
 koin-androidx-navigation = { module = "io.insert-koin:koin-androidx-navigation", version.ref = "koin-version" }
-koin-core = { module = "io.insert-koin:koin-core", version.ref ="koin" }
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin" }
 koin-test-junit4 = { module = "io.insert-koin:koin-test-junit4", version.ref = "koin-version" }
 
@@ -127,11 +133,13 @@ androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 firebase-common-ktx = { group = "com.google.firebase", name = "firebase-common-ktx", version.ref = "firebaseCommonKtx" }
 
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 
 [plugins]
+jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 serialization-json = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "orgSerlize" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
