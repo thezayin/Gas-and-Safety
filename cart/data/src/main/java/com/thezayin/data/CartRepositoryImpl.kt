@@ -85,14 +85,13 @@ class CartRepositoryImpl(
         try {
             emit(Resource.Loading) // Emit loading state
             val cartModel = cartDao.getAllProducts()
-                .find { it.localId.toString() == id } // Find the cart item by ID
+                .find { it.externalId == id } // Find the cart item by ID
             cartModel?.let {
                 val updatedCartModel =
                     it.copy(quantity = quantity, totalPrice = totalPrice.toDouble())
                 cartDao.upsertCartItem(updatedCartModel) // Update the cart item with new quantity and price
                 emit(Resource.Success(true)) // Emit success
-            }
-                ?: emit(Resource.Error("Product not found in the cart")) // Emit error if product not found
+            } ?: emit(Resource.Error("Product not found in the cart")) // Emit error if product not found
         } catch (e: Exception) {
             emit(
                 Resource.Error(
