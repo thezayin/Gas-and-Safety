@@ -1,6 +1,5 @@
 package com.thezayin.presentation
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thezayin.databases.model.CartModel
@@ -51,29 +50,21 @@ class HomeViewModel(
     // Convenience methods for event handling
     private fun handleHomeUiEvent(event: HomeUiEvents) {
         when (event) {
-            is HomeUiEvents.GetProducts ->
-                _homeUiState.update { it.copy(getProducts = event.list) } // Update products in UI state
+            is HomeUiEvents.GetProducts -> _homeUiState.update { it.copy(getProducts = event.list) } // Update products in UI state
 
-            is HomeUiEvents.ErrorMessage ->
-                _homeUiState.update { it.copy(errorMessage = event.message) } // Update error message
+            is HomeUiEvents.ErrorMessage -> _homeUiState.update { it.copy(errorMessage = event.message) } // Update error message
 
-            is HomeUiEvents.ShowError ->
-                _homeUiState.update { it.copy(isError = event.isError) } // Show or hide error
+            is HomeUiEvents.ShowError -> _homeUiState.update { it.copy(isError = event.isError) } // Show or hide error
 
-            is HomeUiEvents.ShowLoading ->
-                _homeUiState.update { it.copy(isLoading = event.isLoading) } // Show loading indicator
+            is HomeUiEvents.ShowLoading -> _homeUiState.update { it.copy(isLoading = event.isLoading) } // Show loading indicator
 
-            is HomeUiEvents.AddToCart ->
-                _homeUiState.update { it.copy(isAdded = event.isAdded) } // Update cart status
+            is HomeUiEvents.AddToCart -> _homeUiState.update { it.copy(isAdded = event.isAdded) } // Update cart status
 
-            is HomeUiEvents.GetCart ->
-                _homeUiState.update { it.copy(getCart = event.cartList) } // Update cart items
+            is HomeUiEvents.GetCart -> _homeUiState.update { it.copy(getCart = event.cartList) } // Update cart items
 
-            is HomeUiEvents.GetAddresses ->
-                _homeUiState.update { it.copy(getAddresses = event.getAddresses) } // Update addresses
+            is HomeUiEvents.GetAddresses -> _homeUiState.update { it.copy(getAddresses = event.getAddresses) } // Update addresses
 
-            is HomeUiEvents.ProductDetail ->
-                _homeUiState.update { it.copy(productDetail = event.productDetail) } // Update product detail
+            is HomeUiEvents.ProductDetail -> _homeUiState.update { it.copy(productDetail = event.productDetail) } // Update product detail
         }
     }
 
@@ -219,18 +210,16 @@ class HomeViewModel(
         viewModelScope.launch {
             val existingCartItem = _homeUiState.value.getCart?.find { it.externalId == id }
             if (existingCartItem != null) {
-                Log.d("jeje", "Cart Item already exists in cart")
                 val newQuantity = existingCartItem.quantity + 1
                 val newTotalPrice = existingCartItem.totalPrice + price.toInt()
                 updateProductQuantity(id, newQuantity, newTotalPrice.toInt())
-                Log.d("jeje", "New Quantity: $newQuantity")
+                emitAddedToCart(true)
                 emitShowLoading(false)
             } else {
                 val params = AddToCartParams(id, name, price, description, imageUri)
                 addProductToCart(params).collect { response ->
                     when (response) {
                         is Resource.Success -> {
-                            Log.d("jeje", "Product added to cart")
                             emitShowLoading(false)
                             emitAddedToCart(true)
                             fetchAllCartItems() // Refresh cart items
@@ -243,7 +232,6 @@ class HomeViewModel(
                         }
 
                         is Resource.Loading -> {
-                            Log.d("jeje", "Adding product to cart")
                             emitShowLoading(true)
                         }
                     }

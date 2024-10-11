@@ -98,10 +98,6 @@ dependencies {
     implementation(libs.ktor.client.logging)
     implementation(libs.ktor.client.serialize)
 
-    //Custom Navigation
-    implementation(libs.raamcosta.destination.core)
-    ksp(libs.raamcosta.destination.ksp)
-
     //lottie anim
     implementation(libs.lottie.compose)
     implementation(libs.androidx.animation)
