@@ -51,6 +51,7 @@ fun OrderScreenContent(
     onItemSelected: (Int) -> Unit,
     navigateToContactUs: () -> Unit,
     fetchAreaList: (String) -> Unit,
+    showLoading: () -> Unit,
     placeOrder: (String, String, String, String, String) -> Unit,
     addNewProfile: (String, String, String, String, String) -> Unit,
 ) {
@@ -70,7 +71,8 @@ fun OrderScreenContent(
     Scaffold(modifier = Modifier.navigationBarsPadding().statusBarsPadding(),
         containerColor = colorResource(id = R.color.semi_transparent),
         topBar = {
-            UserTopBar(modifier = Modifier,
+            UserTopBar(
+                modifier = Modifier,
                 screen = "Select Address",
                 onBackClick = { navigateUp() },
                 onContactClick = { navigateToContactUs() })
@@ -80,6 +82,7 @@ fun OrderScreenContent(
                 if (name.value.text.isEmpty() || phoneNumber.value.text.isEmpty() || city.value.isEmpty() || area.value.isEmpty() || address.value.text.isEmpty()) {
                     checkField.value = true
                 } else {
+                    showLoading()
                     placeOrder(
                         name.value.text,
                         phoneNumber.value.text,
@@ -144,10 +147,10 @@ fun OrderScreenContent(
                         selectedIndex = selectedIndex.value
                     ) { profile, index ->
                         name.value = TextFieldValue(profile.name!!)
-                        phoneNumber.value = TextFieldValue(profile.phoneNumber!!)
-                        address.value = TextFieldValue(profile.address!!)
-                        city.value = profile.city!!
-                        area.value = profile.area!!
+                        phoneNumber.value = TextFieldValue(profile.phoneNumber)
+                        address.value = TextFieldValue(profile.address)
+                        city.value = profile.city
+                        area.value = profile.area
                         selectedIndex.value = index
                         onItemSelected(index)
                     }

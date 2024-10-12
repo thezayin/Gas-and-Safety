@@ -1,6 +1,7 @@
 package com.thezayin.presentation
 
 import android.app.Activity
+import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -73,6 +74,7 @@ fun OrderScreen(
         area = area,
         list = profileList,
         selectedIndex = selectedCityIndex,
+        showLoading = {viewModel.isLoading(true)},
         navigateUp = { navigateUp() },
         hideError = { viewModel.isError(false) },
         navigateToHome = { navigateToHome() },

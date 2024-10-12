@@ -29,7 +29,7 @@ class HistoryRepositoryImpl(private val firestore: FirebaseFirestore) : HistoryR
                 trySend(Resource.Loading)
 
                 // Query Firestore for orders where the userID matches the provided userId
-                val orderListener = firestore.collection("user_orders")
+                val orderListener = firestore.collection("user_order")
                     .whereEqualTo("userID", userId)
                     .addSnapshotListener { snapShot, error ->
 

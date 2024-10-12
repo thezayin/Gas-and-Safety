@@ -33,7 +33,7 @@ class PlaceOrderRepositoryImpl(private val fireStore: FirebaseFirestore) : Place
         flow {
             try {
                 emit(Response.Loading)
-                val orderId = fireStore.collection("user_orders").document().id
+                val orderId = fireStore.collection("user_order").document().id
                 val order = UserOrderModel(
                     id = orderId,
                     userID = userID,
@@ -52,7 +52,7 @@ class PlaceOrderRepositoryImpl(private val fireStore: FirebaseFirestore) : Place
                     totalAmount = totalAmount,
                     orders = orders,
                 )
-                fireStore.collection("user_orders").document(orderId).set(order)
+                fireStore.collection("user_order").document(orderId).set(order)
                     .addOnSuccessListener {
                         operationSuccessFull = true
                     }.addOnFailureListener {

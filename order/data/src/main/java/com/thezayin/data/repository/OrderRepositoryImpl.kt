@@ -49,14 +49,32 @@ class OrderRepositoryImpl(private val fireStore: FirebaseFirestore) : OrderRepos
         totalAmount: String,
         orders: List<CartModel>
     ): Flow<Resource<Boolean>> = flow {
+        emit(Resource.Loading) // Emit loading state
         try {
-            emit(Resource.Loading) // Emit loading state
-            // Generate a unique order ID
-            val orderId = fireStore.collection("user_orders").document().id
+            // Reference to the counter document
+            val counterRef = fireStore.collection("counters").document("orderCounter")
 
-            // Create a new UserOrderModel object
+            // Firestore transaction to increment counter and generate unique order ID
+            val newOrderId = fireStore.runTransaction { transaction ->
+                val snapshot = transaction.get(counterRef)
+                if (!snapshot.exists()) {
+                    throw Exception("Counter document does not exist!")
+                }
+
+                val lastOrderId = snapshot.getLong("lastOrderId") ?: throw Exception("lastOrderId not found!")
+
+                val incrementedOrderId = lastOrderId + 1
+
+                // Update the counter
+                transaction.update(counterRef, "lastOrderId", incrementedOrderId)
+
+                // Format the order ID to 8 digits with leading zeros
+                String.format("%06d", incrementedOrderId)
+            }.await()
+
+            // Create a new UserOrderModel object with the generated orderId
             val order = UserOrderModel(
-                id = orderId,
+                id = newOrderId, // Use the generated 8-digit ID
                 userID = userID,
                 name = name,
                 phoneNumber = phoneNumber,
@@ -74,8 +92,8 @@ class OrderRepositoryImpl(private val fireStore: FirebaseFirestore) : OrderRepos
                 orders = orders
             )
 
-            // Attempt to save the order to Firestore
-            fireStore.collection("user_orders").document(orderId).set(order).await()
+            // Attempt to save the order to Firestore with the 8-digit orderId as the document ID
+            fireStore.collection("user_order").document(newOrderId).set(order).await()
 
             // Emit success state after successful saving
             emit(Resource.Success(true))

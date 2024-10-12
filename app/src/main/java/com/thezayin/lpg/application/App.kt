@@ -1,6 +1,8 @@
 package com.thezayin.lpg.application
 
 import android.app.Application
+import com.google.firebase.appcheck.FirebaseAppCheck
+import com.google.firebase.appcheck.playintegrity.PlayIntegrityAppCheckProviderFactory
 import com.thezayin.analytics.di.analyticsModule
 import com.thezayin.databases.di.databaseModule
 import com.thezayin.framework.di.frameworkModule
@@ -17,6 +19,11 @@ import org.koin.core.context.startKoin
 class App : Application() {
     override fun onCreate() {
         super.onCreate()
+
+        FirebaseAppCheck.getInstance().installAppCheckProviderFactory(
+            PlayIntegrityAppCheckProviderFactory.getInstance()
+        )
+
         startKoin {
             androidLogger()
             androidContext(this@App)

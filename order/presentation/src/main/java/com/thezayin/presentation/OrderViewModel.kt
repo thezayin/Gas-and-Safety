@@ -77,7 +77,7 @@ class OrderViewModel(
 
     private fun areaList(list: List<String>) = orderUiEvent(OrderUiEvent.AreaList(list))
     private fun cityList(list: List<String>) = orderUiEvent(OrderUiEvent.CityList(list))
-    private fun isLoading(loading: Boolean) = orderUiEvent(OrderUiEvent.ShowLoading(loading))
+    fun isLoading(loading: Boolean) = orderUiEvent(OrderUiEvent.ShowLoading(loading))
     fun isError(error: Boolean) = orderUiEvent(OrderUiEvent.ShowError(error))
     private fun errorMessage(message: String) = orderUiEvent(OrderUiEvent.ShowErrorMessage(message))
     private fun orderList(list: List<CartModel>) = orderUiEvent(OrderUiEvent.OrderList(list))
@@ -114,6 +114,7 @@ class OrderViewModel(
         totalAmount: String,
         products: List<CartModel>
     ) = viewModelScope.launch {
+        Log.d("OrderFun", "Placing Order")
         createOrder(
             userID,
             name,
@@ -131,10 +132,11 @@ class OrderViewModel(
             totalAmount,
             products,
         ).collect { response ->
+            Log.d("OrderRes", "Response: $response")
             when (response) {
                 is Resource.Success -> {
-                    isLoading(false)
                     orderSuccess(true)
+                    isLoading(false)
                     emptyCart()
                 }
 
@@ -144,7 +146,9 @@ class OrderViewModel(
                     errorMessage(response.e)
                 }
 
-                is Resource.Loading -> isLoading(true)
+                is Resource.Loading -> {
+                    isLoading(true)
+                }
             }
         }
     }

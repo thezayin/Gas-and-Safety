@@ -5,7 +5,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.navigation.compose.rememberNavController
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.messaging.FirebaseMessaging
+import com.thezayin.framework.remote.Initialization
 import com.thezayin.lpg.navigation.NavHost
 import com.thezayin.lpg.theme.LPGTheme
 
@@ -19,6 +21,10 @@ class MainActivity : ComponentActivity() {
             }
             task.result
         }
+        // Initialize Firestore
+        val fireStore = FirebaseFirestore.getInstance()
+        // Initialize the order counter
+        Initialization.initializeOrderCounter(fireStore)
         enableEdgeToEdge()
         setContent {
             LPGTheme {
