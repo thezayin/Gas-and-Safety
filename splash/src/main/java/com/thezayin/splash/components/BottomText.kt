@@ -35,7 +35,7 @@ fun BottomText(modifier: Modifier) {
             fontSize = 8.ssp,
             textAlign = TextAlign.Center,
             fontWeight = FontWeight.Bold,
-            fontFamily = FontFamily(Font(R.font.abeezee_regular))
+            fontFamily = FontFamily(Font(R.font.noto_sans_bold))
         )
     }
 }

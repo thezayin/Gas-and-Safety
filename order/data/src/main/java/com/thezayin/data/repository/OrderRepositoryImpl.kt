@@ -1,5 +1,6 @@
 package com.thezayin.data.repository
 
+import android.util.Log
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.thezayin.databases.model.CartModel
@@ -49,8 +50,10 @@ class OrderRepositoryImpl(private val fireStore: FirebaseFirestore) : OrderRepos
         totalAmount: String,
         orders: List<CartModel>
     ): Flow<Resource<Boolean>> = flow {
+        Log.d("jejRepFlow","Creating order for user: $userID")
         emit(Resource.Loading) // Emit loading state
         try {
+            Log.d("jejRepTry","Creating order for user: $userID")
             // Reference to the counter document
             val counterRef = fireStore.collection("counters").document("orderCounter")
 

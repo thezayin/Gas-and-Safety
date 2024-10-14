@@ -31,7 +31,7 @@ fun OrderScreen(
     BackHandler(onBack = navigateUp)
 
     val userId = activity.getUserUUID()
-    val isLoading = false
+    val isLoading = state.isLoading
     val isError = state.isError
     val errorMessage = state.errorMessage
     val orderList = state.orderList

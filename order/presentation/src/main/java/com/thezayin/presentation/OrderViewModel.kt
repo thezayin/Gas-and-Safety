@@ -132,10 +132,11 @@ class OrderViewModel(
             totalAmount,
             products,
         ).collect { response ->
-            Log.d("OrderRes", "Response: $response")
+            Log.d("OrderFunResRes", "Response: $response")
             when (response) {
                 is Resource.Success -> {
                     orderSuccess(true)
+                    Log.d("OrderFunSuccess", "Success")
                     isLoading(false)
                     emptyCart()
                 }
@@ -147,6 +148,7 @@ class OrderViewModel(
                 }
 
                 is Resource.Loading -> {
+                    Log.d("OrderFunLoading", "Loading")
                     isLoading(true)
                 }
             }
@@ -192,7 +194,6 @@ class OrderViewModel(
             }
         }
     }
-
 
     fun fetchProfileById(id: Int) = viewModelScope.launch {
         val pram = GetProfileByIdParams(id)
@@ -280,7 +281,6 @@ class OrderViewModel(
                     isError(true)
                     errorMessage(response.e)
                 }
-
                 is Resource.Loading -> isLoading(true)
             }
         }

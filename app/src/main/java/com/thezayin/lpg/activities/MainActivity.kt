@@ -10,6 +10,7 @@ import com.google.firebase.messaging.FirebaseMessaging
 import com.thezayin.framework.remote.Initialization
 import com.thezayin.lpg.navigation.NavHost
 import com.thezayin.lpg.theme.LPGTheme
+import com.thezayin.framework.remote.ForceUpdateManager
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +26,13 @@ class MainActivity : ComponentActivity() {
         val fireStore = FirebaseFirestore.getInstance()
         // Initialize the order counter
         Initialization.initializeOrderCounter(fireStore)
+
+        // Initialize ForceUpdateManager
+        ForceUpdateManager.initialize(this)
+
+        // Check for force update
+        ForceUpdateManager.checkForceUpdate(this)
+
         enableEdgeToEdge()
         setContent {
             LPGTheme {
