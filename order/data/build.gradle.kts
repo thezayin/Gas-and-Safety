@@ -34,6 +34,7 @@ android {
 
 dependencies {
     implementation(project(":core:framework"))
+    implementation(project(":core:assets"))
     implementation(project(":databases"))
 
     implementation(project(":order:domain"))
@@ -48,4 +49,12 @@ dependencies {
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.firebase.storage.ktx)
     implementation(libs.firebase.common.ktx)
+
+    //serialization and ktor
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.ktor.client.android)
+    implementation(libs.ktor.client.logging)
+    implementation(libs.ktor.client.serialize)
+
+    implementation(libs.google.auth.library.oauth2.http)
 }

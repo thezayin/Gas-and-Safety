@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<defaultsMap>
+    <entry>
+        <key>force_update_version</key>
+        <value>1</value> <!-- Replace with your current versionCode -->
+    </entry>
+</defaultsMap>

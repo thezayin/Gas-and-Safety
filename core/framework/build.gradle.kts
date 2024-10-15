@@ -39,6 +39,7 @@ android {
 dependencies {
 
     implementation(project(":analytics"))
+    implementation(project(":core:assets"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
