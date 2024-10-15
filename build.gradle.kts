@@ -6,6 +6,7 @@ buildscript {
         classpath(libs.firebase.crashlytics.gradle)
         classpath(libs.perf.plugin)
         classpath(libs.firebase.appdistribution.gradle)
+
     }
 }
 // Top-level build file where you can add configuration options common to all sub-projects/modules.

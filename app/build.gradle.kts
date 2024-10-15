@@ -1,3 +1,5 @@
+import com.android.build.api.dsl.Packaging
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
@@ -12,6 +14,7 @@ plugins {
 }
 
 android {
+
     namespace = "com.thezayin.lpg"
     compileSdk = libs.versions.compileSdkVersion.get().toInt()
 
@@ -25,6 +28,17 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
+        }
+    }
+    packaging {
+        resources {
+            excludes += setOf(
+                "META-INF/DEPENDENCIES",
+                "META-INF/LICENSE",
+                "META-INF/LICENSE.txt",
+                "META-INF/NOTICE",
+                "META-INF/NOTICE.txt"
+            )
         }
     }
 
@@ -47,7 +61,6 @@ android {
 }
 
 dependencies {
-
     implementation(project(":core:assets"))
     implementation(project(":core:framework"))
     implementation(project(":analytics"))
@@ -71,7 +84,6 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.firebase.appcheck.playintegrity)
-
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -131,7 +143,7 @@ dependencies {
     implementation(libs.firebase.messaging)
     implementation(libs.firebase.inappmessaging.display)
     implementation(libs.firebase.perf)
-
+    implementation (libs.firebase.messaging.ktx)
     //room database
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
@@ -141,5 +153,4 @@ dependencies {
     implementation(libs.accompanist.permissions)
 
     implementation(libs.sdp.compose)
-
 }

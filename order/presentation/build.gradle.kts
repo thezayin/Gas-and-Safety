@@ -80,4 +80,11 @@ dependencies {
     implementation(libs.koin.android)
     testImplementation(libs.koin.test.junit4)
     implementation(libs.koin.androidx.navigation)
+
+    //serialization and ktor
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.ktor.client.android)
+    implementation(libs.ktor.client.logging)
+    implementation(libs.ktor.client.serialize)
+    implementation(libs.ktor.client.cio)
 }

@@ -56,6 +56,9 @@ firebaseCommonKtx = "21.0.0"
 ksp = "2.0.10-1.0.24"
 navigationCompose ="2.8.0-rc01"
 firebaseAppcheckPlayintegrity = "18.0.0"
+ktorClientCio = "2.3.12"
+firebaseAdmin = "9.4.0"
+googleAuthLibraryOauth2Http = "1.12.1"
 
 [libraries]
 accompanist-navigation-animation = { module = "com.google.accompanist:accompanist-navigation-animation", version.ref = "accompanistNavigationAnimation" }
@@ -68,6 +71,7 @@ coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilGif" }
 coil-gif = { module = "io.coil-kt:coil-gif", version.ref = "coilGif" }
 exoplayer-core = { module = "com.google.android.exoplayer:exoplayer-core", version.ref = "exoplayerCore" }
 exoplayer-ui = { module = "com.google.android.exoplayer:exoplayer-ui", version.ref = "exoplayerCore" }
+firebase-admin = { module = "com.google.firebase:firebase-admin", version.ref = "firebaseAdmin" }
 firebase-appcheck-debug = { module = "com.google.firebase:firebase-appcheck-debug", version.ref = "firebaseAppcheckDebug" }
 firebase-auth = { module = "com.google.firebase:firebase-auth", version.ref = "firebaseAuthKtx" }
 firebase-auth-ktx = { module = "com.google.firebase:firebase-auth-ktx", version.ref = "firebaseAuthKtx" }
@@ -76,6 +80,7 @@ firebase-database = { module = "com.google.firebase:firebase-database" }
 firebase-firestore-ktx = { module = "com.google.firebase:firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
 firebase-messaging-ktx = { module = "com.google.firebase:firebase-messaging-ktx", version.ref = "firebaseMessagingKtx" }
 firebase-storage-ktx = { module = "com.google.firebase:firebase-storage-ktx", version.ref = "firebaseDatabase" }
+google-auth-library-oauth2-http = { module = "com.google.auth:google-auth-library-oauth2-http", version.ref = "googleAuthLibraryOauth2Http" }
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 jsoup-jsoup = { module = "org.jsoup:jsoup", version.ref = "jsoupVersion" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -107,9 +112,8 @@ kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serializa
 ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
 ktor-client-logging = { module = "io.ktor:ktor-client-logging-jvm", version.ref = "ktor" }
 ktor-client-serialize = { module = "io.ktor:ktor-client-serialization", version.ref = "ktorSerialize" }
+ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktorClientCio" }
 
-raamcosta-destination-ksp = { module = "io.github.raamcosta.compose-destinations:ksp", version.ref = "core" }
-raamcosta-destination-core = { module = "io.github.raamcosta.compose-destinations:core", version.ref = "core" }
 google-services = { group = "com.google.gms", name = "google-services", version.ref = "googleServicesVersion" }
 firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics", version.ref = "firebaseAnalytics" }
 firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics", version.ref = "firebaseCrashlytics" }
