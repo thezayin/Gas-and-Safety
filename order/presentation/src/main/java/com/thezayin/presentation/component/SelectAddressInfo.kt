@@ -46,7 +46,7 @@ fun SelectAddressInfo(
                 .clickable {
                     if (profileModel.id != selectedIndex) onSelected(
                         profileModel,
-                        profileModel.id!!
+                        profileModel.id
                     )
                 }
                 .padding(horizontal = 20.sdp)
@@ -57,7 +57,7 @@ fun SelectAddressInfo(
         ) {
             Spacer(modifier = Modifier.height(20.sdp))
             Text(
-                text = "${profileModel.address}",
+                text = profileModel.address,
                 modifier = Modifier.padding(top = 5.sdp),
                 fontSize = 10.ssp,
                 color = colorResource(id = R.color.black),
@@ -72,21 +72,21 @@ fun SelectAddressInfo(
                 fontFamily = FontFamily(Font(R.font.noto_sans_bold))
             )
             Text(
-                text = "${profileModel.name}",
+                text = profileModel.name,
                 modifier = Modifier.padding(top = 5.sdp),
                 fontSize = 10.ssp,
                 color = colorResource(id = R.color.black),
                 fontFamily = FontFamily(Font(R.font.noto_sans_regular))
             )
             Text(
-                text = "${profileModel.area}",
+                text = profileModel.area,
                 modifier = Modifier.padding(top = 5.sdp),
                 fontSize = 10.ssp,
                 color = colorResource(id = R.color.black),
                 fontFamily = FontFamily(Font(R.font.noto_sans_regular))
             )
             Text(
-                text = "${profileModel.email}",
+                text = profileModel.phoneNumber,
                 modifier = Modifier.padding(top = 5.sdp, bottom = 20.sdp),
                 fontSize = 10.ssp,
                 color = colorResource(id = R.color.black),
