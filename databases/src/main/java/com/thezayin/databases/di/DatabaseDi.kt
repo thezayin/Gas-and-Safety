@@ -22,6 +22,7 @@ import com.thezayin.databases.dao.ProfileDao
  * @return A singleton instance of [AppDatabase].
  */
 fun provideAppDatabase(context: Context): AppDatabase {
+
     return Room.databaseBuilder(
         context.applicationContext,
         AppDatabase::class.java,

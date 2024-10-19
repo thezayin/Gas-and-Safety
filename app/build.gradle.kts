@@ -1,5 +1,3 @@
-import com.android.build.api.dsl.Packaging
-
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
@@ -22,8 +20,8 @@ android {
         applicationId = "com.thezayin.lpg"
         minSdk = libs.versions.minSdkVersion.get().toInt()
         targetSdk = libs.versions.targetSdkVersion.get().toInt()
-        versionCode = 2
-        versionName = "1.0.0.1"
+        versionCode = 4
+        versionName = "1.0.1.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -143,7 +141,7 @@ dependencies {
     implementation(libs.firebase.messaging)
     implementation(libs.firebase.inappmessaging.display)
     implementation(libs.firebase.perf)
-    implementation (libs.firebase.messaging.ktx)
+    implementation(libs.firebase.messaging.ktx)
     //room database
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
