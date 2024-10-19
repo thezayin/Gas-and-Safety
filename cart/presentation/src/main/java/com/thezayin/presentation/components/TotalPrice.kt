@@ -35,6 +35,7 @@ fun TotalPrice(price: String) {
             text = "Total Price: $price", // Display the total price
             modifier = Modifier.padding(top = 15.sdp, bottom = 15.sdp), // Padding around the text
             fontSize = 18.ssp, // Font size for the text
+
             fontWeight = FontWeight.ExtraBold, // Boldness of the font
             fontFamily = FontFamily(Font(com.thezayin.assets.R.font.noto_sans_bold)) // Font style
         )

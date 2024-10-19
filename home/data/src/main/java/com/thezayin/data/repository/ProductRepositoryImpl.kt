@@ -1,7 +1,7 @@
 package com.thezayin.data.repository
 
-import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.storage.FirebaseStorage
 import com.thezayin.domain.model.HomeProdModel
 import com.thezayin.domain.repository.ProductRepository
@@ -33,28 +33,27 @@ class ProductRepositoryImpl(
      * @return A Flow emitting Resource<List<HomeProdModel>> containing the list of products or an error state.
      */
     override fun fetchProducts(): Flow<Resource<List<HomeProdModel>>> = callbackFlow {
-        // Emit loading state
         trySend(Resource.Loading)
 
-        // Listener to fetch products from Firestore
-        val snapshotListener =
-            firestore.collection("products").addSnapshotListener { snapshot, error ->
+        // Fetch products ordered by the `date` field in ascending order (oldest first)
+        val snapshotListener = firestore.collection("products")
+            .orderBy("date", Query.Direction.DESCENDING) // Change to ascending order
+            .addSnapshotListener { snapshot, error ->
                 val resource = if (snapshot != null) {
                     val productList = snapshot.toObjects(HomeProdModel::class.java)
                     Resource.Success(productList)
                 } else {
                     Resource.Error(error?.message ?: "Unknown error occurred")
                 }
-                // Emit the resource state
                 trySend(resource).isSuccess
             }
 
-        // Await closure to remove listener and close channel
         awaitClose {
             snapshotListener.remove()
             channel.close()
         }
     }
+
 
     /**
      * Retrieves products along with their associated images from Firebase Storage.
